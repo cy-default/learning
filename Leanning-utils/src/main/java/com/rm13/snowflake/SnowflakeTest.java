@@ -1,4 +1,4 @@
-package com.rm13.util.snowflake;
+package com.rm13.snowflake;
 
 import cn.hutool.core.lang.Snowflake;
 import cn.hutool.core.util.IdUtil;

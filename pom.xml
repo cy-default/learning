@@ -11,6 +11,9 @@
     <description>Leanning</description>
 
     <modules>
+        <module>Leanning-utils</module>
+        <module>Leanning-design-patterns</module>
+        <module>Leanning-jdk</module>
     </modules>
 
 </project>
