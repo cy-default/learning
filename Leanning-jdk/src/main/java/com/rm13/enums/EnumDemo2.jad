@@ -1,0 +1,37 @@
+// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.kpdus.com/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   EnumDemo2.java
+
+
+public final class EnumDemo2 extends Enum
+{
+
+    public static EnumDemo2[] values()
+    {
+        return (EnumDemo2[])$VALUES.clone();
+    }
+
+    public static EnumDemo2 valueOf(String s)
+    {
+        return (EnumDemo2)Enum.valueOf(EnumDemo2, s);
+    }
+
+    private EnumDemo2(String s, int i)
+    {
+        super(s, i);
+    }
+
+    public static final EnumDemo2 ONE;
+    public static final EnumDemo2 TWO;
+    private static final EnumDemo2 $VALUES[];
+
+    static 
+    {
+        ONE = new EnumDemo2("ONE", 0);
+        TWO = new EnumDemo2("TWO", 1);
+        $VALUES = (new EnumDemo2[] {
+            ONE, TWO
+        });
+    }
+}

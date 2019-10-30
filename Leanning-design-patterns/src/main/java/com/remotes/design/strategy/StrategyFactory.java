@@ -3,6 +3,7 @@ package com.remotes.design.strategy;
 import com.remotes.design.constant.Constants;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author yuan.chen
@@ -10,22 +11,19 @@ import java.util.Map;
  * @company INGEEK
  * @Date 2019-05-14
  */
-public class StrategyConfig {
+public class StrategyFactory {
 
 
 
-    private static Map<String, Buyer> result ;
+    private static Map<String, Buyer> result = new ConcurrentHashMap<>(3);
 
-    static {
-        result = new HashMap<>(3);
-        Buyer buyer = new ParticularlyVipBuyer();
-        result.put(Constants.Strategy.ParticularlyVipBuyer.getCode(), buyer);
-        buyer = new SuperVipBuyer();
-        result.put(Constants.Strategy.SuperVipBuyer.getCode(), buyer);
-        buyer = new VipBuyer();
-        result.put(Constants.Strategy.VipBuyer.getCode(), buyer);
+    private StrategyFactory(){
+
     }
 
+    public static void addStrategy(String type, Buyer buyer){
+        result.put(type, buyer);
+    }
 
     /**
      * 通过指定的类型， 选择指定的策略

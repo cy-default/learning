@@ -1,0 +1,42 @@
+// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.kpdus.com/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   Singleton4.java
+
+package com.remotes.design.singleton;
+
+
+public final class Singleton4 extends Enum
+{
+
+    public static Singleton4[] values()
+    {
+        return (Singleton4[])$VALUES.clone();
+    }
+
+    public static Singleton4 valueOf(String name)
+    {
+        return (Singleton4)Enum.valueOf(com/remotes/design/singleton/Singleton4, name);
+    }
+
+    private Singleton4(String s, int i)
+    {
+        super(s, i);
+    }
+
+    public Singleton4 getInstance()
+    {
+        return INSTANCE;
+    }
+
+    public static final Singleton4 INSTANCE;
+    private static final Singleton4 $VALUES[];
+
+    static 
+    {
+        INSTANCE = new Singleton4("INSTANCE", 0);
+        $VALUES = (new Singleton4[] {
+            INSTANCE
+        });
+    }
+}

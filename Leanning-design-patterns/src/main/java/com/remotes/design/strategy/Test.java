@@ -22,7 +22,7 @@ public class Test {
         // 创建上下文
         Cashier cashier = null;
         // 选择需要使用的策略对象
-        Buyer strategy =  StrategyConfig.getInstance(buyerType);
+        Buyer strategy =  StrategyFactory.getInstance(buyerType);
         cashier = new Cashier(strategy);
         // 计算价格
         BigDecimal quote = cashier.quote(new BigDecimal(300));

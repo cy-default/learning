@@ -14,12 +14,24 @@ public abstract class ExportTemplate {
      * 文档导出
      */
     public final void export(){
+
+        System.out.println("AAAA");
+
         // 打印表头
         printTitle();
+
+        System.out.println("BBBB");
+
         // 打印正文
         printBody();
+
+        System.out.println("CCCC");
+
         // 打印表尾
         printTail();
+
+        System.out.println("DDDD");
+
         // 打印水印
         printWaterMark();
     }

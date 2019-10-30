@@ -7,4 +7,6 @@ package com.remotes.design.proxy.dynamic;
  */
 public interface ISubject {
     void exec();
+    void exec2();
+
 }

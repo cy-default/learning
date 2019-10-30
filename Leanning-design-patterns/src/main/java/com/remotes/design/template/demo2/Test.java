@@ -1,6 +1,5 @@
 package com.remotes.design.template.demo2;
 
-import javax.management.Query;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,16 +11,18 @@ import java.util.List;
 public class Test {
     public static void main(String[] args) {
 
-        SearchParam search = new SearchParam();
+        Search search = new Search();
 
-        PageResult result =  new QueryTemplate<Object>(){
+        PageResult result =  new PageTemplate<UserVO, Search>(){
             @Override
-            public List<Object> pageQuery() {
+            public List<UserVO> pageQuery(Search search) {
 
                 // 实现具体的业务逻辑查询。
                 List result = new ArrayList();
-                result.add("aa");
-                result.add("bb");
+                UserVO userVO = new UserVO("张三");
+                result.add(userVO);
+                userVO = new UserVO("李四");
+                result.add(userVO);
                 return result;
             }
         }.pageResult(search);

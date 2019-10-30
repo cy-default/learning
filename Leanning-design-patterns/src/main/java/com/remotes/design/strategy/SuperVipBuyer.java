@@ -1,6 +1,8 @@
 package com.remotes.design.strategy;
 
 import com.remotes.design.constant.Constants;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
@@ -13,7 +15,8 @@ import java.math.BigDecimal;
  * @company INGEEK
  * @Date 2019-05-13
  */
-public class SuperVipBuyer implements Buyer {
+@Service
+public class SuperVipBuyer implements Buyer, InitializingBean {
 
     private final BigDecimal discount = new BigDecimal(0.7);
 
@@ -31,5 +34,10 @@ public class SuperVipBuyer implements Buyer {
     @Override
     public BigDecimal calPrice(BigDecimal orderPrice) {
         return orderPrice.multiply(discount);
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        StrategyFactory.addStrategy( Constants.Strategy.SuperVipBuyer.getCode(), this);
     }
 }

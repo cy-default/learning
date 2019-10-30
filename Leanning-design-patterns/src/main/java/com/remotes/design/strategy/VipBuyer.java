@@ -1,6 +1,7 @@
 package com.remotes.design.strategy;
 
 import com.remotes.design.constant.Constants;
+import org.springframework.beans.factory.InitializingBean;
 
 import java.math.BigDecimal;
 
@@ -13,7 +14,7 @@ import java.math.BigDecimal;
  * @company INGEEK
  * @Date 2019-05-13
  */
-public class VipBuyer implements Buyer {
+public class VipBuyer implements Buyer, InitializingBean {
 
     @Override
     public String getType() {
@@ -56,5 +57,10 @@ public class VipBuyer implements Buyer {
      */
     private int getSuperVipExpiredDays(){
         return 1;
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        StrategyFactory.addStrategy(Constants.Strategy.VipBuyer.getCode(), this);
     }
 }

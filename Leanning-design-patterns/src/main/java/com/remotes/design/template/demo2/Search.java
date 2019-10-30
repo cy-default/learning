@@ -8,5 +8,5 @@ import lombok.Data;
  * @Date 2019-08-23
  */
 @Data
-public class SearchParam extends PageParam {
+public class Search extends PageParam {
 }

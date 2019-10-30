@@ -6,7 +6,13 @@
     <artifactId>Leanning-parent</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
-
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.8.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    
     <name>Leanning</name>
     <description>Leanning</description>
 
