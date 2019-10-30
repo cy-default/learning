@@ -2,3 +2,4 @@
 .mvn
 java-design-patterns.iml
 .src/test
+.target
