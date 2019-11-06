@@ -20,6 +20,8 @@
         <module>Leanning-utils</module>
         <module>Leanning-design-patterns</module>
         <module>Leanning-jdk</module>
+        <module>Leanning-spring</module>
+        <module>Leanning-arithmetic</module>
     </modules>
 
 </project>

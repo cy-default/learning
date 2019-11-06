@@ -7,13 +7,12 @@ package com.remotes.design.handler.demo3;
  */
 public class Test {
     public static void main(String[] args) {
-        String input = "4";
+        String input = "1";
         CaseChain chain = CaseChainFactory.caseChain();
         System.out.println("==first==");
         chain.doSomething(input, chain);
         chain.reset();
         System.out.println("==second==");
         chain.doSomething(input, chain);
-
     }
 }

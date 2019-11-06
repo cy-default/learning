@@ -33,7 +33,7 @@ public class CustomizeHandler implements InvocationHandler {
         Object result = method.invoke(target, args);
         after();
         System.out.println("proxy class:"+proxy.getClass().getName());
-        return null;
+        return result;
     }
 
     private void before(){
