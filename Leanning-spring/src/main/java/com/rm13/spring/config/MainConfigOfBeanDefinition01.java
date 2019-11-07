@@ -32,7 +32,7 @@ import java.lang.reflect.AnnotatedType;
          */
         @Filter(type = FilterType.CUSTOM, classes ={MyTypeFilter.class} )
 }, useDefaultFilters = false)})
-public class MainConfig01 {
+public class MainConfigOfBeanDefinition01 {
 
     /**
      * 给容器中注册一个Bean;类型为返回值的类型，id默认是用方法名作为id

@@ -1,0 +1,17 @@
+package com.rm13.spring.aop;
+
+import lombok.extern.slf4j.Slf4j;
+
+/**
+ * @author yuan.chen
+ * @email chen.yuan135@chinaredstar.com
+ * @Date 2019-11-06
+ */
+@Slf4j
+public class MathCalculator {
+
+    public int div(int i,int j){
+        log.info("MathCalculator...div...");
+        return i/j;
+    }
+}

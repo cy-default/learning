@@ -1,7 +1,7 @@
 package com.rm13.spring.ioc;
 
 import com.alibaba.fastjson.JSON;
-import com.rm13.spring.config.MainConfig02;
+import com.rm13.spring.config.MainConfigOfBeanDefinition02;
 import com.rm13.spring.domain.entity.Blue;
 import com.rm13.spring.domain.entity.Person;
 import lombok.extern.slf4j.Slf4j;
@@ -12,12 +12,13 @@ import org.springframework.core.env.ConfigurableEnvironment;
 import java.util.Map;
 
 /**
+ * IOC容器bean定义02
  * @author yuan.chen
  * @email chen.yuan135@chinaredstar.com
  * @Date 2019-11-06
  */
 @Slf4j
-public class IOCTest02 {
+public class IOCTestOfBeanDefinition02 {
 
 
     /**
@@ -25,7 +26,7 @@ public class IOCTest02 {
      */
     @Test
     public void test01(){
-        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig02.class);
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfigOfBeanDefinition02.class);
         for (String beanDefinitionName : applicationContext.getBeanDefinitionNames()) {
             log.info("beanDefinitionName:{}",beanDefinitionName);
         }
@@ -39,7 +40,7 @@ public class IOCTest02 {
      */
     @Test
     public void test02(){
-        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig02.class);
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfigOfBeanDefinition02.class);
         // 单实例的（默认值）：ioc容器启动会调用方法创建对象放到ioc容器中。以后每次获取就是直接从容器（map.get()）中拿.
         Person person1 = (Person)applicationContext.getBean("singleton");
         Person person2 = (Person)applicationContext.getBean("singleton");
@@ -58,7 +59,7 @@ public class IOCTest02 {
      */
     @Test
     public void test03(){
-        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig02.class);
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfigOfBeanDefinition02.class);
         String[] beanNamesForType = applicationContext.getBeanNamesForType(Person.class);
         ConfigurableEnvironment environment = applicationContext.getEnvironment();
         String properties = environment.getProperty("os.name");
@@ -76,7 +77,7 @@ public class IOCTest02 {
      */
     @Test
     public void test04(){
-        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig02.class);
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfigOfBeanDefinition02.class);
         String[] definitionNames = applicationContext.getBeanDefinitionNames();
         for (String name : definitionNames) {
             log.info("beanDefinitionName:{}",name);

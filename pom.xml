@@ -22,6 +22,7 @@
         <module>Leanning-jdk</module>
         <module>Leanning-spring</module>
         <module>Leanning-arithmetic</module>
+        <module>Leanning-springboot</module>
     </modules>
 
 </project>
