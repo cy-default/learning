@@ -1,11 +1,12 @@
 package com.rm13.springboot.interceptor;
 
-import com.rm13.springboot.security.UserSecurity;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,19 +40,10 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
         log.info("authorization:{}", token);
 
         // 3.登陆状态校验
-        String unionId = redisTemplate.opsForValue().get(token);
+        String session = redisTemplate.opsForValue().get(token);
         log.info("session:{}");
-        if(StringUtils.isNotBlank(unionId)){
-            UserSecurity.unionId.set(unionId);
-            return true;
-        }else{
-            return false;
-        }
+
+        return true;
     }
 
-    @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        UserSecurity.unionId.remove();
-        UserSecurity.user.remove();
-    }
 }

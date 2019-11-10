@@ -33,7 +33,7 @@ public class LogAspects {
      */
     @After("com.rm13.spring.aop.LogAspects.pointCut()")
     public void logEnd(JoinPoint joinPoint){
-        log.info("@After..method:{}..", joinPoint.getSignature().getName());
+        log.info("@Before..method:{}..", joinPoint.getSignature().getName());
     }
 
     /**
@@ -54,6 +54,6 @@ public class LogAspects {
      */
     @AfterThrowing(value="pointCut()",throwing="exception")
     public void logException(JoinPoint joinPoint, Exception exception){
-        log.info("@AfterThrowing..method:{}..exception:{}", joinPoint.getSignature().getName(), exception.getMessage());
+        log.info("@AfterThrowing..method:{}..exception:{}", joinPoint.getSignature().getName(), exception);
     }
 }
