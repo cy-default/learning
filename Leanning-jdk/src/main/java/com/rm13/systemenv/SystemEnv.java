@@ -26,7 +26,13 @@ public class SystemEnv {
 
 
     public static void env3(){
+        // 类所在的目录
+        // /Users/chenyuan/Documents/project/collect/Leanning/Leanning-jdk/target/classes/com/rm13/systemenv/
         System.out.println(SystemEnv.class.getResource("").getPath());
+        // 根目录
+        // /Users/chenyuan/Documents/project/collect/Leanning/Leanning-jdk/target/classes/
+        System.out.println(SystemEnv.class.getResource("/").getPath());
+
     }
 
 

@@ -1,7 +1,11 @@
 package com.rm13.optional;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.Value;
+
+import java.util.List;
 
 /**
  * @author yuan.chen
@@ -9,12 +13,15 @@ import lombok.Value;
  * @Date 2019-09-05
  */
 @Data
-@Value
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
     private String name;
     private String phone;
 
     private Address address;
+
+    public List<Country> tags;
 
 }
