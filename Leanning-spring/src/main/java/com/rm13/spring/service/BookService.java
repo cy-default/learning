@@ -2,6 +2,7 @@ package com.rm13.spring.service;
 
 import com.alibaba.fastjson.JSON;
 import com.rm13.spring.dao.BookDao;
+import com.rm13.spring.domain.entity.Blue;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

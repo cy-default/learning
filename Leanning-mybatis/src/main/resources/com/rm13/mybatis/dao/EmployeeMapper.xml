@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rm13.mybatis.dao.EmployeeMapper">
+
+    <!--
+        namespace:名称空间; 指定为接口的全类名
+        id：唯一标识
+        resultType：返回值类型
+        #{id}: 从传递过来的参数中取出id值
+    -->
+    <select id="selectEmp" resultType="com.rm13.mybatis.entity.Employee" databaseId="mysql">
+        select * from tbl_employee where 1=1 and id = #{id}
+    </select>
+
+    <select id="getEmpById" resultType="com.rm13.mybatis.entity.Employee" databaseId="mysql">
+        select * from tbl_employee where 1=1 and id = #{id}
+    </select>
+
+    <!--
+        1：parameterType 可以省略
+
+        获取自增主键的值
+           mysql支持自增主键， 自增主键值的获取，mybatis也是利用statement.getGeneratedKeys();
+           useGeneratedKeys="true", 使用自增主键获取主键值策略
+           keyProperty="id" 指定对应的主键属性，也就是mybatis获取到主键值后，将这个值赋值给哪个java属性
+    -->
+    <insert id="addEmp" useGeneratedKeys="true" keyProperty="id" keyColumn="id" databaseId="mysql">
+        insert into tbl_employee(last_name, gender, email) values (#{lastName}, #{gender}, #{email})
+    </insert>
+
+    <!--
+        Oracle不支持自增：Oracle使用序列来模拟自增；
+        每次朝如的数据的主键是从序列中拿到的值。
+    -->
+    <insert id="addEmp" parameterType="com.rm13.mybatis.entity.Employee" databaseId="oracle">
+        <!--
+            keyProperty:查出的主键值封装给javaBean的哪个属性
+            order="BEFORE": 当前sql在插入sql之前运行
+                  "AFTER":  当前sql在插入sql之后运行
+            resultType="integer": 查出数据的返回值类型
+        -->
+        <selectKey keyProperty="id" order="BEFORE" resultType="integer">
+            select employees_seq.nextval from dual
+        </selectKey>
+
+        insert into tbl_employee(last_name, gender, email) values (#{lastName}, #{gender}, #{email})
+    </insert>
+
+    <update id="updateEmp" parameterType="com.rm13.mybatis.entity.Employee">
+        update tbl_employee set last_name=#{lastName},gender=#{gender},email=#{email} where id=#{id}
+    </update>
+
+    <delete id="deleteEmp" parameterType="integer">
+        delete from tbl_employee where id = #{id}
+    </delete>
+
+</mapper>
