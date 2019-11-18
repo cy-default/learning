@@ -48,6 +48,17 @@
     </typeHandlers>
 
 
+    <plugins>
+        <plugin interceptor="com.rm13.mybatis.plugin.ParameterInterceptor">
+            <property name="user" value="lovemyrm13"/>
+            <property name="pass" value="lovemyrm14"/>
+        </plugin>
+        <plugin interceptor="com.rm13.mybatis.plugin.ResultSetInterceptor">
+            <property name="rm13" value="rmm"/>
+            <property name="rm14" value="rmm"/>
+        </plugin>
+    </plugins>
+
      <!--
         environments: 可以配置多种环境； default指定使用某种环境。可以达到快速切换环境。
             environment：配置一个具体的环境信息， 必须要有2个标签

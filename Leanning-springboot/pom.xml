@@ -155,10 +155,10 @@
 
 	<build>
 		<plugins>
-			<plugin>
+			<com.rm13.mybatis.plugin>
 				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+				<artifactId>spring-boot-maven-com.rm13.mybatis.plugin</artifactId>
+			</com.rm13.mybatis.plugin>
 		</plugins>
 	</build>
 

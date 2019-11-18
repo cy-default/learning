@@ -11,6 +11,8 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Mybatis_03_MapperTests {
@@ -26,32 +28,30 @@ public class Mybatis_03_MapperTests {
 	}
 
 
-	/**
-	 * 测试增删改
-	 * 1: mybatis容许增删改直接定义以下类型返回值
-	 * 		Integer， Long， Boolean
-	 */
+
 	@Test
 	public void test01(){
-
+		// 多参数查询，mybatis3.4+jdk1.8 多参数 默认名称就是参数名
 		final SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		final EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
-		String gender = String.valueOf((int)(10 * Math.random()));
-		Employee ee = Employee.builder().lastName("张三").gender(gender).email("rm13@aliyun.com").build();
-		// 测试添加
-		final boolean addEmp = mapper.addEmp(ee);
-		System.out.println("add result:"+addEmp);
-		System.out.println("Employee:"+ee);
+		final Employee empByIdAndLastName = mapper.getEmpByIdAndLastName(1, "%张%");
+		System.out.println(empByIdAndLastName);
 
-		// 测试修改
-		// ee = Employee.builder().id(1L).email("my@aliyun.com").gender(gender).lastName("李"+gender).build();
-		// final boolean updateEmp = mapper.updateEmp(ee);
-		// System.out.println(updateEmp);
+		Map map = new HashMap<>();
+		map.put("id",1);
+		map.put("lastName", "%李%");
 
-		// 测试删除
-		// final boolean deleteEmp = mapper.deleteEmp(2);
-		// System.out.println(deleteEmp);
-
+		final Employee empByMap = mapper.getEmpByMap(map);
+		System.out.println(empByMap);
 	}
 
+
+	@Test
+	public void test02(){
+		// 多参数查询，mybatis3.4+jdk1.8 多参数 默认名称就是参数名
+		final SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		final EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
+		final Map<Long, Employee> result = mapper.getEmpByLastNameLikeReturnMap("%张%");
+		System.out.println(result);
+	}
 }

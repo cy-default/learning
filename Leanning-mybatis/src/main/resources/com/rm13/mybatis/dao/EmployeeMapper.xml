@@ -56,4 +56,39 @@
         delete from tbl_employee where id = #{id}
     </delete>
 
+    <select id="getEmpByIdAndLastName" resultType="com.rm13.mybatis.entity.Employee" databaseId="mysql">
+        select * from tbl_employee where 1=1 and id = #{id} and last_name=#{lastName}
+    </select>
+
+    <select id="getEmpByIdAndLastName2" resultType="com.rm13.mybatis.entity.Employee" databaseId="mysql">
+        select * from tbl_employee where 1=1 and id = #{id} and last_name=#{lastName}
+    </select>
+
+    <select id="getEmpByMap" resultType="com.rm13.mybatis.entity.Employee" databaseId="mysql">
+        select * from tbl_employee where 1=1 and id = #{id} and last_name=#{lastName}
+    </select>
+
+
+    <!--resultType: 如果返回的是一个集合， 要写集合中元素的类型-->
+    <select id="getEmpsByLastNameLike" resultType="com.rm13.mybatis.entity.Employee" databaseId="mysql">
+        select * from tbl_employee where 1=1 and last_name like #{lastName}
+    </select>
+
+    <select id="getEmpByIdReturnMap" resultType="map" databaseId="mysql">
+        select * from tbl_employee where 1=1 and id=#{id}
+    </select>
+
+    <select id="getEmpByLastNameLikeReturnMap" resultType="com.rm13.mybatis.entity.Employee" databaseId="mysql">
+        select * from tbl_employee where 1=1 and last_name like #{lastName}
+    </select>
+
+
+
+    <resultMap id="emp" type="com.rm13.mybatis.entity.Employee">
+        <id property="id" column="id"></id>
+        <result property="email" column="email"></result>
+        <result column="gender" property="gender"></result>
+        <result property="lastName" column="last_name"></result>
+    </resultMap>
+
 </mapper>

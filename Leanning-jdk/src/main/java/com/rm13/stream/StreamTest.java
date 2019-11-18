@@ -1,9 +1,6 @@
 package com.rm13.stream;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -28,6 +25,7 @@ public class StreamTest {
         toTreeSet();
         toGroup();
         toJoining();
+        emptyListFilter();
     }
 
     public static void toMap(){
@@ -77,6 +75,18 @@ public class StreamTest {
 
         String reduce2 = Stream.of("1", "2", "3", "4").reduce("0", (x, y) -> (x + "," + y));
         System.out.println(reduce2);
+    }
+
+    public static void emptyListFilter(){
+        final ArrayList<String> arrayList = new ArrayList();
+        final Optional<String> result = arrayList.stream().filter(t -> t.equals("cc")).findAny();
+        if(result.isPresent()){
+        System.out.println(result.get());
+        }else{
+            System.out.println("null");
+        }
+
+
     }
 
 
