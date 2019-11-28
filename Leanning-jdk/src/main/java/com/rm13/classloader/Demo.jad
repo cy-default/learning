@@ -1,0 +1,43 @@
+// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.kpdus.com/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   ClassLoaderTest.java
+
+package com.rm13.classloader;
+
+import java.io.PrintStream;
+
+// Referenced classes of package com.rm13.classloader:
+//            Super, Demo4, Demo2, Demo3
+
+class Demo extends Super
+{
+
+    public Demo()
+    {
+        super(1);
+        System.out.println("no static1 demo");
+        demo4 = new Demo4();
+        System.out.println("no static2 demo");
+        System.out.println("constructor demo");
+    }
+
+    public Demo(int i)
+    {
+        super(1);
+        System.out.println("no static1 demo");
+        demo4 = new Demo4();
+        System.out.println("no static2 demo");
+        System.out.println("constructor demo");
+    }
+
+    public static Demo2 demo2 = new Demo2();
+    public static final Demo3 demo3 = new Demo3();
+    public Demo4 demo4;
+
+    static 
+    {
+        System.out.println("static1 demo");
+        System.out.println("static2 demo");
+    }
+}
