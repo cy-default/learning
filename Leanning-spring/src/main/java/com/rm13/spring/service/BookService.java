@@ -9,6 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @author yuan.chen
  * @email chen.yuan135@chinaredstar.com
@@ -28,6 +31,14 @@ public class BookService {
 
     @Autowired
     private BookDao bookDao;
+
+    // 注入所有BookDao类型的bean
+    @Autowired
+    private List<BookDao> bookDaoList;
+
+    @Autowired
+    private Map<String, BookDao> bookDaoMap;
+
 
     public void print(){
         log.info(JSON.toJSONString(bookDao));

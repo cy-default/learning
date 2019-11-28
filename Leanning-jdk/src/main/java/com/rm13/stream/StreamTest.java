@@ -31,6 +31,9 @@ public class StreamTest {
     public static void toMap(){
         // collectors.toMap 仅支持 key, value 一一对应。
         System.out.println("toMap=="+list.stream().collect(Collectors.toMap(Person::getName, Function.identity())));
+        System.out.println("=====");
+        final Map<Integer, Person> collect = list.stream().collect(Collectors.toMap(Person::getAge, Function.identity(), (a, b) -> a));
+        System.out.println("toMap==="+collect);
     }
 
     public static void toSet(){

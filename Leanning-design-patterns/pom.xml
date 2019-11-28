@@ -57,19 +57,4 @@
         </dependency>
 
     </dependencies>
-
-
-    <build>
-        <plugins>
-            <com.rm13.mybatis.plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-com.rm13.mybatis.plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                </configuration>
-            </com.rm13.mybatis.plugin>
-        </plugins>
-    </build>
 </project>

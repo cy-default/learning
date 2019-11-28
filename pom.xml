@@ -25,6 +25,7 @@
         <module>Leanning-springboot</module>
         <module>Leanning-kafka</module>
         <module>Leanning-mybatis</module>
+        <module>Leanning-springmvc</module>
     </modules>
 
     <dependencyManagement>

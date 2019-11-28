@@ -25,10 +25,13 @@ public class Boss {
 
     /**
      * 构造器要用的组件，都是从容器中获取
-     * @param car
+     * @param car1
+     * @param car2
+     * @param car3
      */
-    public Boss(Car car){
-        this.car = car;
+    public Boss(Car car1, Car car2, Car car3){
+        System.out.println("Boss init:"+car1+","+car1+","+car1);
+        this.car = car1;
         System.out.println("Boss...有参构造器");
     }
 }

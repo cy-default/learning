@@ -9,6 +9,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>Leanning-jdk</artifactId>
+    <packaging>jar</packaging>
 
     <name>Leanning-jdk</name>
     <description>Leanning-jdk</description>
@@ -23,7 +24,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.8</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -51,17 +51,4 @@
 
     </dependencies>
 
-    <build>
-        <plugins>
-            <com.rm13.mybatis.plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-com.rm13.mybatis.plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                </configuration>
-            </com.rm13.mybatis.plugin>
-        </plugins>
-    </build>
 </project>

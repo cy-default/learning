@@ -24,6 +24,10 @@ public class StringTest {
         result = "；";
         System.out.println(result.getBytes().length);
         System.out.println(result.length());
+        result = ",";
+        System.out.println(result.getBytes().length);
+        System.out.println(result.length());
+
     }
 
     /**

@@ -2,6 +2,7 @@ package com.rm13.stream;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @author yuan.chen
@@ -12,6 +13,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class Person implements Comparable {
     private String name;
+    @EqualsAndHashCode.Exclude
     private Integer age;
     private String sex;
 

@@ -7,9 +7,9 @@ package com.rm13.array;
  */
 public class ArrayTest {
     public static void main(String[] args) {
-        int num = 8;
+        int num = 1;
 
         System.out.println(num >> 1);
-        System.out.println(num<<1);
+        System.out.println(num<<2);
     }
 }

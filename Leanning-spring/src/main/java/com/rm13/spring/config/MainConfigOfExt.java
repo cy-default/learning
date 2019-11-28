@@ -2,6 +2,7 @@ package com.rm13.spring.config;
 
 import com.rm13.spring.aop.LogAspects;
 import com.rm13.spring.aop.MathCalculator;
+import com.rm13.spring.domain.entity.Blue;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -103,15 +104,9 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @Configuration
 public class MainConfigOfExt {
 
-    //业务逻辑类加入容器中
     @Bean
-    public MathCalculator mathCalculator(){
-        return new MathCalculator();
+    public Blue blue(){
+        return new Blue();
     }
 
-    //切面类加入到容器中
-    @Bean
-    public LogAspects logAspects(){
-        return new LogAspects();
-    }
 }

@@ -48,7 +48,22 @@ public class IOCTestOfAutowired {
         log.info("color.car==car:{}", color.getCar()==car);
         applicationContext.close();
 
+    }
 
+    @Test
+    public void test02(){
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfigOfAutowired.class);
+        // 构造函数 依赖注入
+        Boss boss = applicationContext.getBean(Boss.class);
+        log.info("boss:{}", boss);
+        Car car = applicationContext.getBean(Car.class);
+        log.info("car:{}", car);
+        log.info("boss.car==car:{}", boss.getCar()==car);
 
+        // @Bean 方法依赖注入
+        Color color = applicationContext.getBean(Color.class);
+        log.info("color:{}", color);
+        log.info("color.car==car:{}", color.getCar()==car);
+        applicationContext.close();
     }
 }

@@ -18,7 +18,7 @@ public class LogAspects {
      * 1、本类引用
      * 2、其他的切面引用
      */
-    @Pointcut("execution(public int com.rm13.spring.aop.MathCalculator.*(..)))")
+    @Pointcut("execution(* com.rm13.spring.aop.MathCalculator.*(..)))")
     public void pointCut(){};
 
     @Before("pointCut()")
@@ -33,7 +33,7 @@ public class LogAspects {
      */
     @After("com.rm13.spring.aop.LogAspects.pointCut()")
     public void logEnd(JoinPoint joinPoint){
-        log.info("@Before..method:{}..", joinPoint.getSignature().getName());
+        log.info("@After..method:{}..", joinPoint.getSignature().getName());
     }
 
     /**
