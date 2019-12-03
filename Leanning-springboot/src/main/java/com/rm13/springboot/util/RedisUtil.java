@@ -18,8 +18,9 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Redis工具类
+ *
  * @author ZENG.XIAO.YAN
- * @date   2018年6月7日
+ * @date 2018年6月7日
  */
 @Component
 public final class RedisUtil {
@@ -488,7 +489,7 @@ public final class RedisUtil {
     public boolean lSet(String key, Object value, long time) {
         try {
             redisTemplate.opsForList().rightPush(key, value);
-            if (time > 0){
+            if (time > 0) {
                 expire(key, time);
             }
             return true;
@@ -526,7 +527,7 @@ public final class RedisUtil {
     public boolean lSet(String key, List<Object> value, long time) {
         try {
             redisTemplate.opsForList().rightPushAll(key, value);
-            if (time > 0){
+            if (time > 0) {
                 expire(key, time);
             }
             return true;

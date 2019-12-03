@@ -1,4 +1,4 @@
-package com.rm13.enums;
+package com.rm13.base.enums;
 
 /**
  * @author yuan.chen

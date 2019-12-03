@@ -16,12 +16,13 @@ public class CookieUtil {
 
     /**
      * 设置cookie
+     *
      * @param response
      * @param name
      * @param value
      * @param maxAge
      */
-    public static void set(HttpServletResponse response, String name, String value, int maxAge){
+    public static void set(HttpServletResponse response, String name, String value, int maxAge) {
         Cookie cookie = new Cookie(name, value);
         cookie.setPath("/");
         cookie.setMaxAge(maxAge);
@@ -30,13 +31,14 @@ public class CookieUtil {
 
     /**
      * 获取cookie
+     *
      * @param request
      * @param name
      * @return
      */
-    public static Cookie get(HttpServletRequest request, String name){
+    public static Cookie get(HttpServletRequest request, String name) {
         Map<String, Cookie> cookieMap = cookieMap(request);
-        if(cookieMap.containsKey(name)){
+        if (cookieMap.containsKey(name)) {
             return cookieMap.get(name);
         }
         return null;
@@ -44,14 +46,15 @@ public class CookieUtil {
 
     /**
      * 请求的cookie封装成map
+     *
      * @param request
      * @return
      */
-    private static Map<String, Cookie> cookieMap(HttpServletRequest request){
+    private static Map<String, Cookie> cookieMap(HttpServletRequest request) {
         Map<String, Cookie> map = new HashMap<>();
         Cookie[] cookies = request.getCookies();
-        if(cookies!=null){
-            for (Cookie cookie:cookies){
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
                 map.put(cookie.getName(), cookie);
             }
         }

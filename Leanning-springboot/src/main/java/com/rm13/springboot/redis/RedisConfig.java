@@ -33,11 +33,10 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * @see RedisAutoConfiguration
- *
  * @author yuan.chen
  * @email chen.yuan135@chinaredstar.com
  * @Date 2019-11-07
+ * @see RedisAutoConfiguration
  */
 @Slf4j
 @Configuration
@@ -47,6 +46,7 @@ public class RedisConfig {
 
     /**
      * jackson JSON序列化工具
+     *
      * @return
      */
     @Bean
@@ -71,9 +71,10 @@ public class RedisConfig {
 
     /**
      * redis序列化设置
+     *
      * @param template
      */
-    private void setSerializer(StringRedisTemplate template){
+    private void setSerializer(StringRedisTemplate template) {
         Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
         jackson2JsonRedisSerializer.setObjectMapper(objectMapper());
         template.setValueSerializer(jackson2JsonRedisSerializer);
@@ -81,6 +82,7 @@ public class RedisConfig {
 
     /**
      * 自定义redis key生成策略
+     *
      * @return
      */
     @Bean

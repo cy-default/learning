@@ -5,6 +5,7 @@ import org.springframework.context.annotation.PropertySource;
 
 /**
  * 数据库配置
+ *
  * @author yuan.chen
  * @email chen.yuan135@chinaredstar.com
  * @Date 2019-11-07

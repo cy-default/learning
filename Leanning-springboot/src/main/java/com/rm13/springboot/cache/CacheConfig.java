@@ -13,16 +13,18 @@ import java.time.Duration;
 
 /**
  * 缓存管理
- * @see RedisConfig
+ *
  * @author yuan.chen
  * @email chen.yuan135@chinaredstar.com
  * @Date 2019-11-07
+ * @see RedisConfig
  */
 @EnableCaching
 public class CacheConfig {
 
     /**
-     *  缓存管理器
+     * 缓存管理器
+     *
      * @param redisConnectionFactory
      * @return
      */

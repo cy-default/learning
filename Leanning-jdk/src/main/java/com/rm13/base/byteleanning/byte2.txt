@@ -2,7 +2,7 @@ Classfile /Users/chenyuan/Documents/project/collect/Leanning/Leanning-jdk/target
   Last modified 2019-8-22; size 1485 bytes
   MD5 checksum 2700e1ccbd58bc994191bc7eb879f141
   Compiled from "ByteLeanning.java"
-public class com.rm13.byteleanning.ByteLeanning
+public class com.rm13.base.byteleanning.ByteLeanning
   minor version: 0
   major version: 52
   flags: ACC_PUBLIC, ACC_SUPER
@@ -84,7 +84,7 @@ Constant pool:
   #75 = Utf8               println
   #76 = Utf8               (Ljava/lang/String;)V
 {
-  public com.rm13.byteleanning.ByteLeanning();
+  public com.rm13.base.byteleanning.ByteLeanning();
     descriptor: ()V
     flags: ACC_PUBLIC
     Code:

@@ -17,10 +17,10 @@ import java.util.Map;
 public class PreconditionController {
 
     @RequestMapping("/login")
-    public Map<String, Object> login(String userName, String password){
+    public Map<String, Object> login(String userName, String password) {
         Map<String, Object> rootJson = Maps.newHashMap();
-        PreconditionUtil.notEmpty(userName, -1,"没有填写用户名");
-        PreconditionUtil.notEmpty(password,-2,"没有输入密码");
+        PreconditionUtil.notEmpty(userName, -1, "没有填写用户名");
+        PreconditionUtil.notEmpty(password, -2, "没有输入密码");
         return null;
     }
 }

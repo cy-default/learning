@@ -1,4 +1,4 @@
-package com.rm13.byteleanning;
+package com.rm13.base.byteleanning;
 
 import java.util.Date;
 

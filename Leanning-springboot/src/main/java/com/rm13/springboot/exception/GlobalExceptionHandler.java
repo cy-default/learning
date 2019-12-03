@@ -1,4 +1,5 @@
 package com.rm13.springboot.exception;
+
 import com.rm13.springboot.response.ResultResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -14,8 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * <p>
- *    统一异常处理
+ * 统一异常处理
  * <p>
+ *
  * @author yuan.chen
  * @email chen.yuan135@chinaredstar.com
  * @Date 2019-11-07 17:38
@@ -28,48 +30,52 @@ public class GlobalExceptionHandler {
 
     /**
      * 认证异常
+     *
      * @param e
      * @return
      */
     @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(AuthenticationException.class)
-    public ResultResponse authenticationException(AuthenticationException e){
+    public ResultResponse authenticationException(AuthenticationException e) {
         log.error("AuthenticationException:{}", e.getMessage());
         return ResultResponse.error(403, e.getMessage());
     }
 
     /**
      * 自定义业务异常
+     *
      * @param e
      * @return
      */
     @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(BusinessException.class)
-    public ResultResponse businessException(BusinessException e){
+    public ResultResponse businessException(BusinessException e) {
         log.error("BusinessException:{}", e.getMessage());
         return ResultResponse.error(500, e.getMessage());
     }
 
     /**
      * 自定义系统异常
+     *
      * @param e
      * @return
      */
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(SystemException.class)
-    public ResultResponse systemException(SystemException e){
+    public ResultResponse systemException(SystemException e) {
         log.error("BusinessException:{}", e.getMessage());
         return ResultResponse.error(-1, e.getMessage());
     }
 
     /**
      * 全局异常
+     *
      * @param e
      * @return
      */
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
-    public ResultResponse globalException(Exception e){
+    public ResultResponse globalException(Exception e) {
         e.printStackTrace();
         return ResultResponse.error(-1, e.getMessage());
     }

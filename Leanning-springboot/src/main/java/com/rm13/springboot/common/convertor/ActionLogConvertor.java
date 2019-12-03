@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
  * @email chen.yuan135@chinaredstar.com
  * @Date 2019-11-21
  */
-@Mapper(componentModel="spring")
+@Mapper(componentModel = "spring")
 public interface ActionLogConvertor {
 
 

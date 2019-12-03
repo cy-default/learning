@@ -29,17 +29,17 @@ public class AnnotationLogAspect {
 
 
     @Pointcut("@annotation(com.rm13.springboot.annotation.Logg)")
-    public void logPointCut(){
+    public void logPointCut() {
     }
 
     @AfterReturning("logPointCut()")
     public void saveLog(JoinPoint joinPoint) throws Throwable {
-        MethodSignature signature = (MethodSignature)joinPoint.getSignature();
+        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
 
         ActionLog actionLog = new ActionLog();
         Logg lg = method.getAnnotation(Logg.class);
-        if(lg!=null){
+        if (lg != null) {
             actionLog.setDescription(lg.value());
         }
         String className = joinPoint.getTarget().getClass().getName();

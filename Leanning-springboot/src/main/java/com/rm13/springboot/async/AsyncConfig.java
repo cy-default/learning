@@ -15,8 +15,9 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * <p>
- *    异步
+ * 异步
  * <p>
+ *
  * @author yuan.chen
  * @email chen.yuan135@chinaredstar.com
  * @Date 2019-11-07 15:43
@@ -47,6 +48,7 @@ public class AsyncConfig implements AsyncConfigurer {
     /**
      * 如果返回值是Future类型，那么直接将异常抛出。
      * 如果返回值是void，那么会调用handleUncaughtException方法来处理异常。
+     *
      * @return
      */
     @Override

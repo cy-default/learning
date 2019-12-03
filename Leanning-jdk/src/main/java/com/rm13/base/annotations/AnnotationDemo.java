@@ -1,4 +1,4 @@
-package com.rm13.annotations;
+package com.rm13.base.annotations;
 
 import java.lang.annotation.*;
 

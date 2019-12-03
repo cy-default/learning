@@ -1,6 +1,4 @@
-package com.rm13.string;
-
-import sun.jvm.hotspot.runtime.Bytes;
+package com.rm13.base.basetype;
 
 /**
  * @author yuan.chen

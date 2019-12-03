@@ -1,6 +1,5 @@
 package com.rm13.spring.config;
 
-import com.oracle.tools.packager.Log;
 import com.rm13.spring.condition.*;
 import com.rm13.spring.domain.entity.Color;
 import com.rm13.spring.domain.entity.ColorFactoryBean;

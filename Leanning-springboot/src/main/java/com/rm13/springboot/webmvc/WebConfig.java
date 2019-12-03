@@ -22,15 +22,17 @@ public class WebConfig implements WebMvcConfigurer {
 
     /**
      * 登陆状态拦截器
+     *
      * @return
      */
     @Bean
-    public TokenInterceptor tokenInterceptor(){
+    public TokenInterceptor tokenInterceptor() {
         return new TokenInterceptor(stringRedisTemplate);
     }
 
     /**
      * 拦截器
+     *
      * @param registry
      */
     @Override
@@ -40,6 +42,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     /**
      * 跨域配置,origins = *
+     *
      * @param registry
      */
     @Override

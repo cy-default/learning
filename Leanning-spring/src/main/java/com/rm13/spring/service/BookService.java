@@ -32,7 +32,9 @@ public class BookService {
     @Autowired
     private BookDao bookDao;
 
+    // https://cloud.tencent.com/developer/article/1420334
     // 注入所有BookDao类型的bean
+    // DefaultListableBeanFactory.doResolveDependency()
     @Autowired
     private List<BookDao> bookDaoList;
 
