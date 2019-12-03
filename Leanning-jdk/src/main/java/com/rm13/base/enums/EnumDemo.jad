@@ -1,0 +1,43 @@
+// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.kpdus.com/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   EnumDemo.java
+
+package com.rm13.base.enums;
+
+
+public final class EnumDemo extends Enum
+{
+
+    public static EnumDemo[] values()
+    {
+        return (EnumDemo[])$VALUES.clone();
+    }
+
+    public static EnumDemo valueOf(String name)
+    {
+        return (EnumDemo)Enum.valueOf(com/rm13/base/enums/EnumDemo, name);
+    }
+
+    private EnumDemo(String s, int i, String code, String name)
+    {
+        super(s, i);
+        this.code = code;
+        this.name = name;
+    }
+
+    public static final EnumDemo ONE;
+    public static final EnumDemo TWO;
+    private String code;
+    private String name;
+    private static final EnumDemo $VALUES[];
+
+    static 
+    {
+        ONE = new EnumDemo("ONE", 0, "code1", "name1");
+        TWO = new EnumDemo("TWO", 1, "code2", "name2");
+        $VALUES = (new EnumDemo[] {
+            ONE, TWO
+        });
+    }
+}
