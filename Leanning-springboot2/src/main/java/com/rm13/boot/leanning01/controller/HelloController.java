@@ -1,4 +1,4 @@
-package com.rm13.boot.Leanning01.controller;
+package com.rm13.boot.leanning01.controller;
 
 import org.springframework.stereotype.Controller;
 
