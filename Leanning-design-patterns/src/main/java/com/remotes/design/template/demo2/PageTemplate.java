@@ -12,7 +12,8 @@ import java.util.List;
  * @email chen.yuan135@chinaredstar.com
  * @Date 2019-08-23
  */
-public abstract class PageTemplate<T, S extends PageParam> {
+@FunctionalInterface
+public interface PageTemplate<T, S extends PageParam> {
 
     /**
      * 模版方法实现分页列表查询
@@ -20,9 +21,9 @@ public abstract class PageTemplate<T, S extends PageParam> {
      * @param search
      * @param
      */
-    public final PageResult<T> pageResult(S search){
+     default PageResult<T> pageResult(S search){
         // 分页
-        Page page = PageHelper.startPage(search.getPageNum(), search.getPageSize());
+        Page page = PageHelper.startPage(search.getPNum(), search.getPSize());
 
         // 子类实现
         List<T> result = pageQuery(search);
@@ -35,5 +36,5 @@ public abstract class PageTemplate<T, S extends PageParam> {
      * 具体到子类实现的查询逻辑
      * @return
      */
-    public abstract List<T> pageQuery(S search);
+     List<T> pageQuery(S search);
 }

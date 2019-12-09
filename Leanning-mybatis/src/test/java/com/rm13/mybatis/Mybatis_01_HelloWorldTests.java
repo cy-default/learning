@@ -13,6 +13,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -84,7 +85,7 @@ public class Mybatis_01_HelloWorldTests {
 		// 会为接口自动的创建一个代理对象， 代理对象去执行增删改查
 		final EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
 		System.out.println(mapper.getClass());
-		final Employee employee = mapper.selectEmp(1L);
+		final Employee employee = mapper.selectEmp(Arrays.asList(1L));
 		System.out.println(employee);
 	}
 

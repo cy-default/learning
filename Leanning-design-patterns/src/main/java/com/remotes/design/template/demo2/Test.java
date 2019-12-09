@@ -13,19 +13,17 @@ public class Test {
 
         Search search = new Search();
 
-        PageResult result =  new PageTemplate<UserVO, Search>(){
-            @Override
-            public List<UserVO> pageQuery(Search search) {
+        // lambda
+        PageResult result = ((PageTemplate<UserVO, Search>) t -> {
 
-                // 实现具体的业务逻辑查询。
-                List result = new ArrayList();
-                UserVO userVO = new UserVO("张三");
-                result.add(userVO);
-                userVO = new UserVO("李四");
-                result.add(userVO);
-                return result;
-            }
-        }.pageResult(search);
+            // 实现具体的业务逻辑查询。
+            List result1 = new ArrayList();
+            UserVO userVO = new UserVO("张三");
+            result1.add(userVO);
+            userVO = new UserVO("李四");
+            result1.add(userVO);
+            return result1;
+        }).pageResult(search);
 
         System.out.println(result.toString());
     }

@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public interface EmployeeMapper {
 
-    Employee selectEmp(Long id);
+    Employee selectEmp(List<Long> id);
 
     Employee getEmpById(Integer id);
 

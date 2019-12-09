@@ -1,24 +1,25 @@
 package com.rm13.jvm;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
- * @author yuan.chen
- * @email chen.yuan135@chinaredstar.com
- * @Date 2019-08-22
+ *
+ * -Xms40m -Xmx40m -Xmn20m -Xss1m -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintGCDateStamps  -XX:+PrintGCDetails -Xloggc:/Users/chenyuan/Documents/project/collect/Leanning/Leanning-jdk/src/main/java/com/rm13/jvm/OOMTestGC.log
+ *
+ *
+ *
  */
 public class OOMTest {
 
     private static List<Byte[]> result = new ArrayList<>();
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
 
         while (true){
-            // 10k
-            Byte[] bt = new Byte[1024*10];
-            result.add(bt);
-            Thread.sleep(50);
+            result.add(new Byte[1024*1]);
         }
     }
 }
