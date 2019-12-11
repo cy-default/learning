@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  *
- * -Xms40m -Xmx40m -Xmn20m -Xss1m -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintGCDateStamps  -XX:+PrintGCDetails -Xloggc:/Users/chenyuan/Documents/project/collect/Leanning/Leanning-jdk/src/main/java/com/rm13/jvm/OOMTestGC.log
+ * -Xms40m -Xmx40m -Xmn20m -Xss1m -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintGCDateStamps  -XX:+PrintGCDetails -Xloggc:/Users/chenyuan/Documents/project/collect/Leanning/Leanning-jdk/src/main/java/com/rm13/jvm/OOMTestGC.log -XX:HeapDumpPath=/Users/chenyuan/Documents/project/collect/Leanning/Leanning-jdk/src/main/java/com/rm13/jvm
  *
  *
  *
