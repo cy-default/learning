@@ -22,7 +22,7 @@ import java.util.Map;
  * @email chen.yuan135@chinaredstar.com
  * @Date 2019/12/12
  */
-@FeignClient(name = "FeignProxy", url = "http://localhost:8080" , configuration = FeignProxy.FeignProxyConfig.class)
+@FeignClient(name = "feignProxy", url = "http://localhost:8080" , configuration = FeignProxy.FeignProxyConfig.class)
 public interface FeignProxy {
 
 
@@ -51,7 +51,7 @@ public interface FeignProxy {
 
 
     /**
-     * 使用map调用post请求， 类型定义必须是Map<String, ?>
+     * 使用map调用post请求， 类型定义必须是Map<String, ?>, ?是Object也不行。
      * @param user
      * @param ab
      * @return

@@ -1,0 +1,12 @@
+hello: application
+
+logging:
+  level:
+    com:
+      rm13:
+        cloud:
+          feign: debug
+
+feign:
+  okhttp:
+    enabled: true

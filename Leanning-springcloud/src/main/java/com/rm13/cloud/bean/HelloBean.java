@@ -20,7 +20,7 @@ public class HelloBean {
     }
 
     @Value("${hello:}")
-    public void setHello( String hello) {
+    public void setHello(String hello) {
         this.hello = hello;
     }
 }
