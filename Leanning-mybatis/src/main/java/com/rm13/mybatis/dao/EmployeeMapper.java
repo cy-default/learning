@@ -14,11 +14,12 @@ import java.util.Map;
  */
 public interface EmployeeMapper {
 
-    Employee selectEmp(List<Long> id);
+    Employee selectEmp(Integer id);
 
     Employee getEmpById(Integer id);
 
     boolean addEmp(Employee employee);
+
 
     boolean updateEmp(Employee employee);
 

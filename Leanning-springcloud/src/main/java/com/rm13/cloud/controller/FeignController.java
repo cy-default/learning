@@ -75,5 +75,4 @@ public class FeignController {
     public String after4(@RequestParam("a")String a, @RequestParam("b")String b){
         return a+b+"after3@aliyun.com";
     }
-
 }

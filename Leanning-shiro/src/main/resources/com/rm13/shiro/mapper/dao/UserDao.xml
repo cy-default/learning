@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rm13.shiro.mapper.dao.UserDao">
+
+    <select id="selectByUserName" resultType="com.rm13.shiro.model.generator.User">
+        select <include refid="com.rm13.shiro.mapper.base.UserMapper.Base_Column_List"></include>
+        from tb_user
+        where username = #{username}
+    </select>
+    <select id="selectAll" resultType="com.rm13.shiro.model.generator.User">
+        select <include refid="com.rm13.shiro.mapper.base.UserMapper.Base_Column_List"></include>
+        from tb_user
+    </select>
+</mapper>

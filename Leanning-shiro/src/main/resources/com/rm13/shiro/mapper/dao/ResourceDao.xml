@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rm13.shiro.mapper.dao.ResourceDao">
+
+
+    <select id="selectResourceByUserName" resultMap="com.rm13.shiro.mapper.base.ResourceMapper.BaseResultMap">
+        select re.* from tb_user ur
+        inner join tb_user_role ure on ur.id=ure.user_id
+        inner join tb_role_resource rre on rre.role_id=ure.role_id
+        inner join tb_resource re on re.id=rre.resource_id
+        where 1=1
+        <if test="username!=null and username!=''">
+            and ur.username = #{username}
+        </if>
+    </select>
+</mapper>

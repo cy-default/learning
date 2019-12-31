@@ -1,5 +1,6 @@
 hello: application
 
+
 logging:
   level:
     com:
@@ -10,3 +11,19 @@ logging:
 feign:
   okhttp:
     enabled: true
+
+server:
+  servlet:
+    session:
+      timeout: 30
+
+management:
+  endpoint:
+    health:
+      show-details: always
+
+
+  endpoints:
+    web:
+      exposure:
+        include: "*"

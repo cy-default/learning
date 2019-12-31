@@ -8,9 +8,11 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.MutablePropertySources;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 import java.io.IOException;
 
+@EnableAsync
 @EnableFeignClients
 @SpringBootApplication
 public class LeanningSpringcloudApplication {
