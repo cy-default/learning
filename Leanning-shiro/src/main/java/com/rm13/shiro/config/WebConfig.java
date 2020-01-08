@@ -18,12 +18,6 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(loginHandlerInterceptor()).addPathPatterns("/**");
     }
 
-
-    @Bean
-    public MyExceptionResolver myExceptionResolver(){
-        return new MyExceptionResolver();
-    }
-
     @Bean
     public LoginHandlerInterceptor loginHandlerInterceptor(){
         return new LoginHandlerInterceptor();

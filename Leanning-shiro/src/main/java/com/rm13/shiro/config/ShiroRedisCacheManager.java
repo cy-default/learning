@@ -18,11 +18,11 @@ import java.io.Serializable;
 public class ShiroRedisCacheManager implements CacheManager {
 
     @Resource
-    private RedisTemplate redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
 
     @Override
-    public <K, V> Cache<K, V> getCache(String name) throws CacheException {
-        return new ShiroRedisCache<K, V>(name, redisTemplate);
+    public Cache<String, Object> getCache(String name) throws CacheException {
+        return new ShiroRedisCache<String, Object>(name, redisTemplate);
     }
 }

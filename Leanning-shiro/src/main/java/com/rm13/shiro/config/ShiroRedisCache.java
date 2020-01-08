@@ -32,14 +32,14 @@ public class ShiroRedisCache<K, V> implements Cache<K, V> {
      * static final constant value
      */
     // seconds
-    public static final int DEFAULT_EXPIRE = 30 * 60 ;
-    public static final String DEFAULT_CACHE_KEY_PREFIX = "snmt:admin:shiro:";
+    private static final int DEFAULT_EXPIRE = 30 * 60 ;
+    private final String DEFAULT_CACHE_KEY_PREFIX = "snmt:admin:shiro:";
 
     /**
      *
      */
     private int expire = DEFAULT_EXPIRE;
-    private String cacheKey = DEFAULT_CACHE_KEY_PREFIX;
+    private String cacheKey;
     private RedisTemplate<K, V> redisTemplate;
 
     public ShiroRedisCache(int expire, String name, RedisTemplate<K, V> redisTemplate) {
@@ -61,7 +61,7 @@ public class ShiroRedisCache<K, V> implements Cache<K, V> {
         }
         // 设置过期时间
         redisTemplate.boundValueOps(getCacheKey(key)).expire(expire, TimeUnit.SECONDS);
-        final V result = (V)redisTemplate.boundValueOps(getCacheKey(key)).get();
+        final V result = redisTemplate.boundValueOps(getCacheKey(key)).get();
         return result;
     }
 

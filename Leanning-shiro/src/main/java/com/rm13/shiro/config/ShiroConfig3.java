@@ -17,7 +17,11 @@ import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreato
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.RedisSerializer;
 
+import java.net.UnknownHostException;
 import java.util.LinkedHashMap;
 
 /**
@@ -28,6 +32,19 @@ import java.util.LinkedHashMap;
 @Configuration
 public class ShiroConfig3 {
 
+
+    /**
+     * redis 作为缓存
+     * @param redisConnectionFactory
+     * @return
+     */
+    @Bean
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+        RedisTemplate<String, Object> template = new RedisTemplate<>();
+        template.setKeySerializer(RedisSerializer.string());
+        template.setConnectionFactory(redisConnectionFactory);
+        return template;
+    }
 
     @Bean
     public ShiroFilterFactoryBean shiroFilterFactoryBean(ShiroRedisCacheManager redisCacheManager) {
@@ -55,6 +72,7 @@ public class ShiroConfig3 {
         // 调用logout后，会重定向到/login
         filterChainDefinitionMap.put("/logout", "logout");
         filterChainDefinitionMap.put("/login", "anon");
+        filterChainDefinitionMap.put("/403", "perms");
 
         // 除上以外所有url都必须是用户才可以访问，未通过认证自动访问LoginUrl
         filterChainDefinitionMap.put("/**", "user");
@@ -120,6 +138,7 @@ public class ShiroConfig3 {
      * 开启Shiro的注解(如@RequiresRoles,@RequiresPermissions),需借助SpringAOP扫描使用Shiro注解的类,并在必要时进行安全逻辑验证
      * 配置以下两个bean(DefaultAdvisorAutoProxyCreator(可选)和AuthorizationAttributeSourceAdvisor)即可实现此功能
      */
+    // 相等于@EnableAspectJAutoProxy(proxyTargetClass=true)
     @Bean
     @DependsOn({"lifecycleBeanPostProcessor"})
     public DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator() {
@@ -133,6 +152,15 @@ public class ShiroConfig3 {
         AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
         authorizationAttributeSourceAdvisor.setSecurityManager(securityManager());
         return authorizationAttributeSourceAdvisor;
+    }
+
+    /**
+     * 解决 UnauthorizedUrl（403） 不生效问题
+     * @return
+     */
+    @Bean
+    public MyExceptionResolver myExceptionResolver(){
+        return new MyExceptionResolver();
     }
 
     /**
