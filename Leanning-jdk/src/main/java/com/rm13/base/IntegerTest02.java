@@ -21,5 +21,8 @@ public class IntegerTest02 {
         Byte b2 = 127;
         System.out.println(b1==b2);
         System.out.println(a1==a2);
+
+
+
     }
 }
