@@ -23,6 +23,7 @@ public class InstanceUser {
     }
 
     public InstanceUser(String name, String address) {
+        System.out.println("InstanceUser 实例化");
         this.name = name;
         this.address = address;
     }

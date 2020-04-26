@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import sun.jvm.hotspot.runtime.ServiceThread;
+import sun.jvm.hotspot.runtime.Threads;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,6 +39,11 @@ public class FeignController {
 
     @RequestMapping("/after1")
     public String after1(@RequestParam("a")String a, @RequestParam("b")String b){
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return a+b+"after1@aliyun.com";
     }
 

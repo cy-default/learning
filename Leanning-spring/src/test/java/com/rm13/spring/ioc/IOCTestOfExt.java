@@ -33,6 +33,7 @@ public class IOCTestOfExt {
     public void test01(){
         final AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfigOfExt.class);
         applicationContext.publishEvent(new MyApplicationEvent("myapplicationEvent"));
+
         applicationContext.close();
     }
 }

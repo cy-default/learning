@@ -15,7 +15,7 @@ import java.util.List;
  * @info best wishes no bug
  **/
 @Mapper(componentModel = "spring")
-public abstract class AbstractActivityInfoConvertor {
+public interface AbstractActivityInfoConvertor {
 
     /**
         * 类型转换
@@ -24,7 +24,7 @@ public abstract class AbstractActivityInfoConvertor {
         * @param @param centerInfoBO
         * @return ActivityInfoDO    返回类型
      */
-    public abstract ActivityInfoDO boToDO(ActivityInfoBO centerInfoBO);
+    ActivityInfoDO boToDO(ActivityInfoBO centerInfoBO);
     
     /**
         * 类型转换
@@ -33,10 +33,10 @@ public abstract class AbstractActivityInfoConvertor {
         * @param @param centerInfoDO
         * @return ActivityInfoDTO    返回类型
      */
-    public abstract ActivityInfoDTO doToDTO(ActivityInfoDO centerInfoDO);
+    ActivityInfoDTO doToDTO(ActivityInfoDO centerInfoDO);
 
 
-    public abstract List<ActivityInfoDTO> dosToDTOs(List<ActivityInfoDO> centerInfoDOs);
+    List<ActivityInfoDTO> dosToDTOs(List<ActivityInfoDO> centerInfoDOs);
 
     @Mappings({
             @Mapping(source = "user.id", target = "id"),
@@ -46,7 +46,12 @@ public abstract class AbstractActivityInfoConvertor {
             @Mapping(source = "address.state", target = "state"),
             @Mapping(source = "address.id", target = "aid")
     })
-    public abstract UserView userAndAddressToView(User user, Address address);
+    UserView userAndAddressToView(User user, Address address);
 
+
+    @Mappings({
+            @Mapping(source = "roleinfoList", target = "roleInfoDTOList")
+    })
+    UserInfoDTO infoToDto(UserInfo userInfo);
 
 }

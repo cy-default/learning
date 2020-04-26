@@ -1,9 +1,7 @@
 package com.rm13.io;
 
-import sun.nio.fs.DefaultFileSystemProvider;
 
 import java.io.File;
-import java.nio.file.spi.FileSystemProvider;
 
 /**
  * @author yuan.chen

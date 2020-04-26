@@ -1,6 +1,5 @@
 package com.rm13.array;
 
-import com.sun.tools.javac.code.Type;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;

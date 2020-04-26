@@ -26,6 +26,7 @@ public class IOCTestOfAOP {
      */
     @Test
     public void test01(){
+        System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
         final AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfigOfAOP.class);
         final MathCalculator mathCalculator = applicationContext.getBean(MathCalculator.class);
         final int div = mathCalculator.div(1, 1);

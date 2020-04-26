@@ -24,4 +24,8 @@ public class User {
 
     public List<Country> tags;
 
+    public User(String name, String phone) {
+        this.name = name;
+        this.phone = phone;
+    }
 }

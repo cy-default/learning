@@ -15,6 +15,5 @@ public class JSONTest {
     @Test
     public void json(){
         final InputStream inputStream = JSONTest.class.getResourceAsStream("/demo.json");
-        FileUtils.
     }
 }

@@ -16,5 +16,31 @@ public class StringTest {
         String s1="abc";
         String s2 = "a"+"b" +"c";
         String s3 = s0 +"bc";
+        System.out.println(s3==s2);
+        System.out.println(s1==s2);
+
     }
 }
+
+
+/*
+public class StringTest
+{
+
+    public StringTest()
+    {
+    }
+
+    public static void main(String args[])
+    {
+        String result = "\u597D";
+        System.out.println(result.getBytes().length);
+        String s0 = "a";
+        String s1 = "abc";
+        String s2 = "abc";
+        String s3 = (new StringBuilder()).append(s0).append("bc").toString();
+        System.out.println(s3 == s2);
+        System.out.println(s1 == s2);
+    }
+}
+ */

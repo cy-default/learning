@@ -8,10 +8,27 @@ import org.aspectj.lang.annotation.*;
 /**
  * 切面类
  * @Aspect 告诉Spring当前类是一个切面类
+ *
+ * try{
+ *     before();
+ *     xxxxx;
+ *     AfterReturning();
+ * }catch(Exception e){
+ *     AfterThrowing();
+ * }finally{
+ *     After();
+ * }
+ *
+ *
+ *
  */
 @Slf4j
 @Aspect
 public class LogAspects {
+
+    public LogAspects() {
+        System.out.println("LogAspects");
+    }
 
     /**
      * 抽取公共的切入点表达式

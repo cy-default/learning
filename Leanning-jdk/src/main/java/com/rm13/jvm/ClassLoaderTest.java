@@ -17,14 +17,17 @@ import com.rm13.entity.StaticUser;
  */
 public class ClassLoaderTest {
 
-    private static StaticUser staticUser  = new StaticUser();
-    private InstanceUser instanceUser = new InstanceUser("张三", "上海");
-
     static {
         System.out.println("ClassLoaderTest 静态代码块");
     }
 
+    private static StaticUser staticUser  = new StaticUser();
+    private InstanceUser instanceUser = new InstanceUser("张三", "上海");
+
+
+
     public static void main(String[] args) {
         System.out.println("main");
+        final InstanceUser instanceUser = new ClassLoaderTest().instanceUser;
     }
 }

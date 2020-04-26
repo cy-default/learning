@@ -10,7 +10,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MathCalculator {
 
-    public int div(int i,int j){
+    public MathCalculator() {
+        System.out.println("constructor");
+    }
+
+    public int div(int i, int j){
         log.info("MathCalculator...div...");
         return i/j;
     }

@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
 /**
+ *
  * @author yuan.chen
  * @email chen.yuan135@chinaredstar.com
  * @Date 2019-11-13
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
 public class MyApplicationListener implements ApplicationListener<MyApplicationEvent> {
     @Override
     public void onApplicationEvent(MyApplicationEvent event) {
+
         log.info("MyApplicationListener...listener:{}", event);
     }
 }

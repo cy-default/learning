@@ -22,7 +22,11 @@ import java.util.Map;
  * @email chen.yuan135@chinaredstar.com
  * @Date 2019/12/12
  */
-@FeignClient(name = "feignProxy", url = "http://localhost:8080" , configuration = FeignProxy.FeignProxyConfig.class)
+@FeignClient(name = "feignProxy",
+        url = "http://localhost:8080" ,
+        configuration = FeignProxy.FeignProxyConfig.class,
+        fallback = FeignProxyFallBack.class
+)
 public interface FeignProxy {
 
 

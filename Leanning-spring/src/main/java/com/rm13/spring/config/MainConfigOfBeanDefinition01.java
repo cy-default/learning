@@ -25,7 +25,7 @@ import java.lang.reflect.AnnotatedType;
 
 // 配置类==配置文件, 告诉Spring这是一个配置类
 @Configuration
-@ComponentScans({@ComponentScan(value = "com.rm13.spring", includeFilters = {
+@ComponentScans({@ComponentScan(value = "com.rm13.spring.dao", includeFilters = {
         /*
         @Filter(type=FilterType.ANNOTATION, classes = {Controller.class}),
         @Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {BookService.class}),

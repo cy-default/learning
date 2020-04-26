@@ -3,6 +3,7 @@ package com.rm13.collection;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -22,6 +23,33 @@ public class ListTest {
 
         list.add(1, 33);
         System.out.println(list);
+
+
+        /*
+         增强for循环反编译后的数据
+         for(Iterator iterator = list.iterator(); iterator.hasNext();){
+            o = iterator.next();
+            System.out.println(o);
+         }
+         */
+        for (Object o : list) {
+            System.out.println(o);
+
+        }
+
+        /*
+         增强for循环反编译后的数据
+         for(Iterator iterator1 = linkedList.iterator(); iterator1.hasNext();){
+            integer = (Integer)iterator1.next();
+            System.out.println(integer)
+         }
+         */
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        linkedList.add(33);
+        linkedList.add(44);
+        for (Integer integer : linkedList) {
+            System.out.println(integer);
+        }
 
 
         final long until = LocalDate.now().until(LocalDate.of(2019, 12, 25), ChronoUnit.DAYS);

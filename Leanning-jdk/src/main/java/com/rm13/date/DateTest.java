@@ -18,6 +18,9 @@ public class DateTest {
         LocalDate start = LocalDate.of(2019, 10, 12);
         LocalDate end = LocalDate.of(2020, 11, 13);
 
+        System.out.println(start.toString());
+        System.out.println(end.toString());
+
         // 398
         System.out.println(ChronoUnit.DAYS.between(start, end));
         // 398

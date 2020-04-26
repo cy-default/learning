@@ -38,8 +38,11 @@ public class SystemEnv {
 
     public static void env1(){
         System.out.println(System.getProperties());
+        System.out.println("1.env1111111111111111111");
         Properties properties = System.getProperties();
+        System.out.println(properties.get("ccc"));
         System.out.println(System.getenv());
+        System.out.println("2.env1111111111111111111");
         Properties properties1 = Optional.ofNullable(System.getProperties()).orElseThrow(() -> new RuntimeException());
         joiner();
     }

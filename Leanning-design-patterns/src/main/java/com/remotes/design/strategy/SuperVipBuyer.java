@@ -18,7 +18,8 @@ import java.math.BigDecimal;
 @Service
 public class SuperVipBuyer implements Buyer, InitializingBean {
 
-    private final BigDecimal discount = new BigDecimal(0.7);
+    // bigDecimal精度问题， 只能通过字符串构造函数解决， 其他类型的构造函数无法解决精度问题
+    private final BigDecimal discount = new BigDecimal("0.7");
 
 
     @Override
