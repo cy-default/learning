@@ -1,19 +1,25 @@
 package com.rm13.cloud.common;
 
+import lombok.Data;
+
 /**
  * 业务类异常，不记录带有栈追踪信息的Exception；（fillInStackTrace性能慢50倍）
  * @author yuan.chen
  * @email chen.yuan135@chinaredstar.com
  * @Date 2019-06-25
  */
+@Data
 public class CustomException extends RuntimeException {
+
+    private Integer code;
+    private String message;
 
     /**
      * 仅包含message, 没有cause, 也不记录栈异常, 性能最高
      * @param message
      */
-    public CustomException(String message) {
-        this(message, false);
+    public CustomException(Integer code, String message) {
+        this(code, message, false);
     }
 
     /**
@@ -21,8 +27,10 @@ public class CustomException extends RuntimeException {
      * @param msg
      * @param recordStackTrace
      */
-    public CustomException(String msg, boolean recordStackTrace) {
+    public CustomException(Integer code, String msg, boolean recordStackTrace) {
         super(msg, null, false, recordStackTrace);
+        this.code = code;
+        this.message = msg;
     }
 
 
@@ -31,7 +39,7 @@ public class CustomException extends RuntimeException {
      * @param msg
      * @param cause
      */
-    public CustomException(String msg, Throwable cause) {
+    public CustomException(Integer code, String msg, Throwable cause) {
         super(msg, cause, false, true);
     }
 }

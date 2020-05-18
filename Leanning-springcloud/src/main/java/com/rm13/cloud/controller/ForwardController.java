@@ -1,5 +1,6 @@
 package com.rm13.cloud.controller;
 
+import com.rm13.cloud.common.annotation.PassLogin;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +16,7 @@ import java.io.IOException;
  * @email chen.yuan135@chinaredstar.com
  * @Date 2020/4/26
  */
+@PassLogin
 @Slf4j
 @RestController
 @RequestMapping("/forward")

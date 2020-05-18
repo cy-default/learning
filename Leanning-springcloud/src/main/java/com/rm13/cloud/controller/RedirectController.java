@@ -1,6 +1,7 @@
 package com.rm13.cloud.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rm13.cloud.common.annotation.PassLogin;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,7 @@ import java.util.UUID;
  * @email chen.yuan135@chinaredstar.com
  * @Date 2020/4/26
  */
+@PassLogin
 @Slf4j
 @Controller
 @RequestMapping("/redirect")

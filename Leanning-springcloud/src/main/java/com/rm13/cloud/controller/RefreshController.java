@@ -1,5 +1,6 @@
 package com.rm13.cloud.controller;
 
+import com.rm13.cloud.common.annotation.PassLogin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ import java.time.LocalTime;
  * @email chen.yuan135@chinaredstar.com
  * @Date 2020/5/18
  */
+@PassLogin
 @RestController
 @RequestMapping("/refresh")
 public class RefreshController {

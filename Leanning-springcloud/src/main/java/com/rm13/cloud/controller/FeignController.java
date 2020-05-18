@@ -2,6 +2,7 @@ package com.rm13.cloud.controller;
 
 import com.google.common.collect.Maps;
 import com.rm13.cloud.bean.User;
+import com.rm13.cloud.common.annotation.PassLogin;
 import com.rm13.cloud.feign.FeignProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ import java.util.Map;
  * @email chen.yuan135@chinaredstar.com
  * @Date 2019/12/12
  */
+@PassLogin
 @RestController
 @RequestMapping("/feign")
 public class FeignController {

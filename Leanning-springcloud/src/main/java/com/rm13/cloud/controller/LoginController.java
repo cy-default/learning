@@ -28,7 +28,7 @@ public class LoginController {
 
 
     @GetMapping("/user1")
-    public UserDTO business1(@RequestParam("name")String name, UserDTO userDTO){
+    public UserDTO business1(@RequestParam(value = "name", required = false)String name, UserDTO userDTO){
         userDTO.setCurrentTime(LocalDateTime.now());
         return userDTO;
     }

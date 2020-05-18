@@ -1,5 +1,6 @@
 package com.rm13.cloud.controller;
 
+import com.rm13.cloud.common.annotation.PassLogin;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  * @email chen.yuan135@chinaredstar.com
  * @Date 2020/4/21
  */
+@PassLogin
 @RestController
 public class ModelAttributeController {
 

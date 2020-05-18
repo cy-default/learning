@@ -2,11 +2,9 @@ package com.rm13.cloud.controller;
 
 import com.rm13.cloud.bean.User;
 import com.rm13.cloud.bean.User2;
+import com.rm13.cloud.common.annotation.PassLogin;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -16,6 +14,7 @@ import javax.validation.Valid;
  * @email chen.yuan135@chinaredstar.com
  * @Date 2020/3/17
  */
+@PassLogin
 @RestController
 public class SourceCodeController {
 

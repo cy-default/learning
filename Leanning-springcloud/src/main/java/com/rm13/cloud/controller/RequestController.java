@@ -1,6 +1,7 @@
 package com.rm13.cloud.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.rm13.cloud.common.annotation.PassLogin;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import java.util.Map;
  * @email chen.yuan135@chinaredstar.com
  * @Date 2020/4/14
  */
+@PassLogin
 @Slf4j
 @RestController
 @RequestMapping("/req")

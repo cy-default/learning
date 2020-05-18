@@ -24,7 +24,7 @@ public class LoginUserHolder {
     public static UserDTO get() {
         UserDTO userInfo = C_ACCOUNT_THREAD_LOCAL.get();
         if (userInfo == null) {
-            throw new CustomException("用户不存在");
+            throw new CustomException(1102,"用户不存在");
         }
         return userInfo;
     }
