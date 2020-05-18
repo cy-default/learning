@@ -1,29 +1,37 @@
 package com.rm13.cloud.config;
 
-import org.springframework.context.annotation.Bean;
+import com.rm13.cloud.login.LoginUserArgumentResolver;
+import com.rm13.cloud.login.LoginUserInterceptor;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.client.ClientHttpRequestFactory;
-import org.springframework.http.client.SimpleClientHttpRequestFactory;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.List;
 
 /**
  * @author yuan.chen
  * @email chen.yuan135@chinaredstar.com
- * @Date 2020/4/26
+ * @Date 2020/5/18
  */
 @Configuration
-public class WebConfig {
+public class WebConfig implements WebMvcConfigurer {
 
-    @Bean
-    public ClientHttpRequestFactory clientHttpRequestFactory() {
-        final SimpleClientHttpRequestFactory simpleClientHttpRequestFactory = new SimpleClientHttpRequestFactory();
-        simpleClientHttpRequestFactory.setReadTimeout(60_000);
-        simpleClientHttpRequestFactory.setConnectTimeout(10_000);
-        return simpleClientHttpRequestFactory;
+    /**
+     * 添加参数解析器
+     * @param resolvers 参数解析器集合
+     */
+    @Override
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
+        resolvers.add(new LoginUserArgumentResolver());
     }
 
-    @Bean
-    public RestTemplate restTemplate(){
-        return new RestTemplate(clientHttpRequestFactory());
+    /**
+     * 添加请求拦截器
+     * @param registry
+     */
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new LoginUserInterceptor());
     }
 }
