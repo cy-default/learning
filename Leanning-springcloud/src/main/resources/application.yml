@@ -13,7 +13,7 @@ feign:
     enabled: false
   httpclient:
     enabled: false
-
+  # 开启熔断
   hystrix:
     enabled: true
 

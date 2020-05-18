@@ -4,14 +4,10 @@ import com.google.common.collect.Maps;
 import com.rm13.cloud.bean.User;
 import com.rm13.cloud.feign.FeignProxy;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
-import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import sun.jvm.hotspot.runtime.ServiceThread;
-import sun.jvm.hotspot.runtime.Threads;
 
 import java.util.HashMap;
 import java.util.Map;
