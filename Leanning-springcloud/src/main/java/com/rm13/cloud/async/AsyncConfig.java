@@ -11,7 +11,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
  * @Date 2019/12/17
  */
 @Configuration
-public class Config {
+public class AsyncConfig {
 
     @Bean("rm13TaskExecutor")
     public TaskExecutor taskExecutor(){
