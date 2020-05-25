@@ -6,10 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.ServletException;
@@ -38,27 +36,27 @@ public class RedirectController {
     private RestTemplate restTemplate;
     private ObjectMapper objectMapper=new ObjectMapper();
 
-    @RequestMapping("/request1")
-    public String req(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        log.info("request1"+Thread.currentThread().getName()+":"+Thread.currentThread().getId());
-        Cookie cookie = new Cookie("snmt-req-token", UUID.randomUUID().toString().replace("-",""));
-        resp.addCookie(cookie);
-        return "redirect:/redirect/redirect";
-    }
-
     @ResponseBody
     @RequestMapping("/redirect")
     public String forward(HttpServletRequest req, HttpServletResponse resp){
-        log.info("redirect"+Thread.currentThread().getName()+":"+Thread.currentThread().getId());
-        return "redirect:redirect:redirect";
+        log.info("redirect:"+Thread.currentThread().getName()+":"+Thread.currentThread().getId());
+        return "finally_result";
+    }
+
+    @RequestMapping("/request1")
+    public String req(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        log.info("request1:"+Thread.currentThread().getName()+":"+Thread.currentThread().getId());
+        Cookie cookie = new Cookie("snmt-req-token", UUID.randomUUID().toString().replace("-",""));
+        resp.addCookie(cookie);
+        return "redirect:/redirect/redirect?cc=http://localhost:8080";
     }
 
     @RequestMapping("/request2")
     public void req2(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        log.info("request2"+Thread.currentThread().getName()+":"+Thread.currentThread().getId());
+        log.info("request2:"+Thread.currentThread().getName()+":"+Thread.currentThread().getId());
         Cookie cookie = new Cookie("snmt-req2-token", UUID.randomUUID().toString().replace("-",""));
         resp.addCookie(cookie);
-        resp.sendRedirect("/redirect/request1");
+        resp.sendRedirect("/redirect/request1?cc=http://localhost:8080");
     }
 
 
@@ -70,6 +68,6 @@ public class RedirectController {
         // 请求链路 request2->redirect:request1->redirect:redirect->具体响应数据
         final ResponseEntity<String> forEntity = restTemplate.getForEntity("http://localhost:8080/redirect/request2", String.class);
         log.info("result:{}", objectMapper.writeValueAsString(forEntity));
-        return "request3";
+        return objectMapper.writeValueAsString(forEntity);
     }
 }

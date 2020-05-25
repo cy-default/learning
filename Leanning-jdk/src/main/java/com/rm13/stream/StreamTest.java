@@ -1,5 +1,6 @@
 package com.rm13.stream;
 
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -14,24 +15,11 @@ public class StreamTest {
 
     private static List<Person> list  = null;
 
-
-    public static void main(String[] args) {
-        flatMap();
-        reduce();
-        // collectors
-        toList();
-        toSet();
-        toMap();
-        toTreeSet();
-        toGroup();
-        toJoining();
-        emptyListFilter();
-    }
-
     public static void toMap(){
         // collectors.toMap 仅支持 key, value 一一对应。
         System.out.println("toMap=="+list.stream().collect(Collectors.toMap(Person::getName, Function.identity())));
         System.out.println("=====");
+        // 取第一个参数
         final Map<Integer, Person> collect = list.stream().collect(Collectors.toMap(Person::getAge, Function.identity(), (a, b) -> a));
         System.out.println("toMap==="+collect);
     }
@@ -56,7 +44,7 @@ public class StreamTest {
      * 分组
      */
     public static void toGroup(){
-        Map<String, List<Person>> collect = list.stream().collect(Collectors.groupingBy(person -> person.getSex()));
+        Map<String, List<Person>> collect = list.stream().collect(Collectors.groupingBy(Person::getSex));
         System.out.println("toGroup=="+collect);
     }
 
@@ -71,13 +59,24 @@ public class StreamTest {
         System.out.println("flatMap=="+collect0);
     }
 
+
     public static void reduce(){
         // 累加， 初始值是 10
-        Integer reduce1 = Stream.of(1,2,3,4).reduce(10, (count, item)->count+item);
+        Integer reduce1 = Stream.of(1,2,3,4).reduce(10, Integer::sum);
         System.out.println(reduce1);
-
+        // 字符串拼接
         String reduce2 = Stream.of("1", "2", "3", "4").reduce("0", (x, y) -> (x + "," + y));
         System.out.println(reduce2);
+        // bigDecimal,无初始值
+        BigDecimal bigDecimal = Stream.of(new BigDecimal("1"), new BigDecimal("1"), new BigDecimal("1")).reduce(BigDecimal::add).get();
+        System.out.println(bigDecimal);
+        // 过滤空值后 做计算操作
+        final BigDecimal o = Stream.of((BigDecimal)null).filter(e->e!=null).reduce(BigDecimal::add).orElse(BigDecimal.ONE);
+        System.out.println(o);
+    }
+
+    public static void main(String[] args) {
+        reduce();
     }
 
     public static void emptyListFilter(){

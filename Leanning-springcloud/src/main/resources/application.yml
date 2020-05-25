@@ -3,6 +3,9 @@ hello: application
 
 logging:
   level:
+    org:
+      springframework:
+        retry: debug
     com:
       rm13:
         cloud:

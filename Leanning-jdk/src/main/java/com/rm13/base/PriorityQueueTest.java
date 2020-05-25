@@ -12,12 +12,7 @@ import java.util.PriorityQueue;
 public class PriorityQueueTest {
 
     public static void main(String[] args) {
-        PriorityQueue<Integer> queue = new PriorityQueue<Integer>(new Comparator<Integer>() {
-            @Override
-            public int compare(Integer a, Integer b) {
-                return a-b;
-            }
-        });
+        PriorityQueue<Integer> queue = new PriorityQueue<Integer>(Comparator.comparingInt(a -> a));
         queue.add(4);
         queue.add(2);
         queue.add(3);
@@ -25,6 +20,7 @@ public class PriorityQueueTest {
         System.out.println(queue);
         System.out.println("------");
         final Iterator<Integer> iterator = queue.iterator();
+
         while (iterator.hasNext()){
             System.out.println(queue.poll());
         }
