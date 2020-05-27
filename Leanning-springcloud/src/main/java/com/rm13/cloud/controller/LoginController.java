@@ -1,7 +1,7 @@
 package com.rm13.cloud.controller;
 
 import com.rm13.cloud.common.annotation.PassLogin;
-import com.rm13.cloud.domain.dto.user.UserDTO;
+import com.rm13.cloud.pojo.dto.user.UserDTO;
 import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

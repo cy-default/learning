@@ -1,7 +1,6 @@
 package com.rm13.cloud.login;
 
-import com.rm13.cloud.common.LoginUserHolder;
-import com.rm13.cloud.domain.dto.user.UserDTO;
+import com.rm13.cloud.pojo.dto.user.UserDTO;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -26,7 +25,7 @@ public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver 
      * 用于判断当前参数是否需要转换类型
      *
      * @param parameter 源参数
-     * @return {@code true} 参数类型为 {@link com.rm13.cloud.domain.dto.user.UserDTO}
+     * @return {@code true} 参数类型为 {@link com.rm13.cloud.pojo.dto.user.UserDTO}
      */
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
