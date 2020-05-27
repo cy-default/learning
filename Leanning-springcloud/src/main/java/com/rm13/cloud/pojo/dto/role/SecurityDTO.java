@@ -1,4 +1,4 @@
-package com.rm13.cloud.domain.dto.role;
+package com.rm13.cloud.pojo.dto.role;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import lombok.Data;

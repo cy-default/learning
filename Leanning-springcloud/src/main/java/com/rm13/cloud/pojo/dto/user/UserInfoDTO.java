@@ -1,5 +1,6 @@
-package com.rm13.cloud.domain.po;
+package com.rm13.cloud.pojo.dto.user;
 
+import com.rm13.cloud.pojo.dto.role.RoleInfoDTO;
 import lombok.Data;
 
 import java.util.List;
@@ -10,9 +11,9 @@ import java.util.List;
  * @Date 2020/3/20
  */
 @Data
-public class UserInfo {
+public class UserInfoDTO {
     private String username;
     private String password;
-    private List<RoleInfo> roleinfoList;
+    private List<RoleInfoDTO> roleInfoDTOList;
     private List<String> cc;
 }

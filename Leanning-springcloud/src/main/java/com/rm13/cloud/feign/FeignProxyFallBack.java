@@ -1,6 +1,6 @@
 package com.rm13.cloud.feign;
 
-import com.rm13.cloud.domain.po.User;
+import com.rm13.cloud.pojo.po.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

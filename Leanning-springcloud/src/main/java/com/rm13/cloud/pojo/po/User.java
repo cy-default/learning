@@ -1,4 +1,4 @@
-package com.rm13.cloud.domain.po;
+package com.rm13.cloud.pojo.po;
 
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;

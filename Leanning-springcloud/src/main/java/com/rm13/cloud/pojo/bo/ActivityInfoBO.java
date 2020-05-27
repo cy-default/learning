@@ -1,4 +1,4 @@
-package com.rm13.cloud.domain.dto;
+package com.rm13.cloud.pojo.bo;
 
 import lombok.Data;
 
@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
  * @Date 2019-12-10
  */
 @Data
-public class ActivityInfoDTO {
+public class ActivityInfoBO {
     private String name;
     private LocalDateTime birth;
 

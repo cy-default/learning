@@ -1,6 +1,7 @@
-package com.rm13.cloud.common;
+package com.rm13.cloud.login;
 
-import com.rm13.cloud.domain.dto.user.UserDTO;
+import com.rm13.cloud.common.CustomException;
+import com.rm13.cloud.pojo.dto.user.UserDTO;
 import org.springframework.core.NamedThreadLocal;
 
 /**

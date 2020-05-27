@@ -1,4 +1,4 @@
-package com.rm13.cloud.domain.dto.user;
+package com.rm13.cloud.pojo.dto.user;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;

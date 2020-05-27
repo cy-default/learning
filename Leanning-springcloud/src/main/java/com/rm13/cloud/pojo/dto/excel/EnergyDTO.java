@@ -1,4 +1,4 @@
-package com.rm13.cloud.domain.dto.excel;
+package com.rm13.cloud.pojo.dto.excel;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import lombok.Data;
