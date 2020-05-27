@@ -34,7 +34,7 @@ public class RetryServiceImpl implements RetryService {
     @Override
     public String annotationRetryService(String sql) {
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
-        log.info("retryService:{},{}", uuid, sql);
+        log.info("retryService:{},{},{}", Thread.currentThread().getName(),uuid, sql);
         if(true){
             throw new RuntimeException(uuid);
         }
@@ -52,7 +52,6 @@ public class RetryServiceImpl implements RetryService {
 
         String result = retryTemplate.execute(context -> {
             // 这里写我们的业务代码
-            // ....
             String uuid = UUID.randomUUID().toString().replaceAll("-", "");
             log.info("custRetryService.RetryCallback:{},{}", uuid, sql);
             // 模拟抛出异常
@@ -76,7 +75,7 @@ public class RetryServiceImpl implements RetryService {
     @Recover
     @Override
     public String recover(Exception e, String sql) {
-        log.error("recover:{}",e.getMessage());
+        log.error("recover:{},{}",Thread.currentThread().getName(), e.getMessage());
         return "recover".concat(sql);
     }
 }

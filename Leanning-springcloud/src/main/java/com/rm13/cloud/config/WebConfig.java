@@ -19,6 +19,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     /**
      * 添加参数解析器
+     *
      * @param resolvers 参数解析器集合
      */
     @Override
@@ -28,10 +29,11 @@ public class WebConfig implements WebMvcConfigurer {
 
     /**
      * 添加请求拦截器
+     *
      * @param registry
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoginUserInterceptor());
+        registry.addInterceptor(new LoginUserInterceptor()).excludePathPatterns("/swagger-*/**", "/webjars/**", "/v2/api-docs/**");
     }
 }

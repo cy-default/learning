@@ -2,8 +2,13 @@ package com.rm13.stream;
 
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
 /**
@@ -75,20 +80,65 @@ public class StreamTest {
         System.out.println(o);
     }
 
-    public static void main(String[] args) {
-        reduce();
+    public static void emptyListFilter(){
+        ArrayList<String> arrayList = new ArrayList();
+        String result = arrayList.stream().filter(t -> t.equals("cc")).findFirst().orElse("null");
+        System.out.println(result);
     }
 
-    public static void emptyListFilter(){
-        final ArrayList<String> arrayList = new ArrayList();
-        final Optional<String> result = arrayList.stream().filter(t -> t.equals("cc")).findAny();
-        if(result.isPresent()){
-        System.out.println(result.get());
-        }else{
-            System.out.println("null");
-        }
+
+    public static void baseTypeStream(){
+        // [0, 10)
+        LongStream.range(0L, 10L).boxed().forEach(System.out::println);
+        System.out.println("==========");
+        // [0, 10]
+        LongStream.rangeClosed(0L, 10L).boxed().forEach(System.out::println);
+        System.out.println("==========");
+        // Collector
+        ConcurrentHashMap<String, Long> result = LongStream.rangeClosed(0L, 10L).boxed().collect(Collectors.toConcurrentMap(i -> UUID.randomUUID().toString(), Function.identity(), (o1, o2) -> o1, ConcurrentHashMap::new));
+        System.out.println(result.size());
+        System.out.println("==========");
+        // 无状态数据流顺序 0 ->peek 0 ->peek 0 -> sout -> sum
+        LongStream.range(0L, 10L).peek(System.out::println).peek(System.out::println).sum();
+        System.out.println("==========");
+        // reduce
+        System.out.println(LongStream.range(0L, 10L).boxed().reduce(Long::sum).orElse(-1L));
+        System.out.println(Stream.of(new BigDecimal("0.1"), new BigDecimal("0.2"), new BigDecimal("0.3")).reduce(BigDecimal::add).orElse(new BigDecimal("-1")));
+    }
+
+    public static void parllonStream1(){
+        // 多线程 ==> 使用ForkJoinPool.commonPool
+        IntStream.range(0,10)
+                .parallel()
+                .forEach(v-> System.out.println(Thread.currentThread().getName().concat("====").concat(""+v)));
+        // ForkJoinPool测试
+        ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
+        System.out.println(forkJoinPool);
+        String pp = System.getProperty("java.util.concurrent.ForkJoinPool.common.parallelism");
+        System.out.println(pp);
+    }
+
+    public static void parllonStream2() throws InterruptedException {
+        // 多线程 ==> 使用ForkJoinPool.commonPool 3个线程
+        /*
+        IntStream.range(0,10)
+                .parallel()
+                .forEach(v-> System.out.println(Thread.currentThread().getName().concat("====").concat(""+v)));
+         */
+        System.out.println("========================================");
+        ForkJoinPool forkJoinPool = new ForkJoinPool(10);
+        forkJoinPool.execute(()->{
+            IntStream.rangeClosed(1,10)
+                    .parallel()
+                    .forEach(v-> System.out.println(Thread.currentThread().getName().concat("====").concat(""+v)));
+        });
+        forkJoinPool.shutdown();
+        forkJoinPool.awaitTermination(1, TimeUnit.HOURS);
+    }
 
 
+    public static void main(String[] args) throws Exception {
+        parllonStream2();
     }
 
 

@@ -3,6 +3,7 @@ package com.rm13.cloud.async;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.TaskExecutor;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 /**
@@ -10,6 +11,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
  * @email chen.yuan135@chinaredstar.com
  * @Date 2019/12/17
  */
+@EnableAsync
 @Configuration
 public class AsyncConfig {
 

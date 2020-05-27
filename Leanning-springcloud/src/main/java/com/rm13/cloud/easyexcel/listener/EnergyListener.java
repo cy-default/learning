@@ -6,7 +6,8 @@ import com.rm13.cloud.domain.dto.EnergyDTO;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- *  有个很重要的点 DemoDataListener 不能被spring管理，要每次读取excel都要new,然后里面用到spring可以构造方法传进去
+ * 有个很重要的点 DemoDataListener 不能被spring管理，要每次读取excel都要new,然后里面用到spring可以构造方法传进去
+ *
  * @author yuan.chen
  * @email chen.yuan135@chinaredstar.com
  * @Date 2020/5/13

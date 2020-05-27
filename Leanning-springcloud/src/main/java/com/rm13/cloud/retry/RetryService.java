@@ -9,6 +9,7 @@ public interface RetryService {
 
     /**
      * 基于注解方式的重试服务
+     *
      * @param sql
      * @return
      */
@@ -16,6 +17,7 @@ public interface RetryService {
 
     /**
      * 基于用户自定义retryTemplate实现方式
+     *
      * @param sql
      * @return
      */
@@ -24,6 +26,7 @@ public interface RetryService {
 
     /**
      * 异常最后执行的方法
+     *
      * @param e
      * @param sql
      * @return

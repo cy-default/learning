@@ -12,7 +12,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
- *  有个很重要的点 OverViewListener 不能被spring管理，要每次读取excel都要new,然后里面用到spring可以构造方法传进去
+ * 有个很重要的点 OverViewListener 不能被spring管理，要每次读取excel都要new,然后里面用到spring可以构造方法传进去
+ *
  * @author yuan.chen
  * @email chen.yuan135@chinaredstar.com
  * @Date 2020/5/13
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 @Service
 public class ExcelService {
 
-    public void parseExcel(){
+    public void parseExcel() {
         InputStream resourceAsStream = ExcelService.class.getResourceAsStream("/overview.xlsx");
         final ArrayList<Object> result = Lists.newArrayList();
         ExcelReader excelReader = EasyExcel.read(resourceAsStream, OverViewDTO.class, new OverViewListener(result)).build();

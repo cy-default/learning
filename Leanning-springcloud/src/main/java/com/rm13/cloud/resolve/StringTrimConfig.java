@@ -1,4 +1,4 @@
-package com.rm13.cloud.config;
+package com.rm13.cloud.resolve;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;

@@ -1,4 +1,4 @@
-package com.rm13.cloud.config;
+package com.rm13.cloud.resolve;
 
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.web.bind.WebDataBinder;

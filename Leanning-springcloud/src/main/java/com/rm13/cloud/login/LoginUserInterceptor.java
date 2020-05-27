@@ -16,11 +16,12 @@ import java.util.Objects;
 /**
  * 登陆校验拦截器
  * 从redis中读取用户信息，并把用户信息存入threadLocal中
- * @see com.rm13.cloud.config.WebConfig
- * @see com.rm13.cloud.controller.LoginController
+ *
  * @author yuan.chen
  * @email chen.yuan135@chinaredstar.com
  * @Date 2020/5/18
+ * @see com.rm13.cloud.config.WebConfig
+ * @see com.rm13.cloud.controller.LoginController
  */
 public class LoginUserInterceptor extends HandlerInterceptorAdapter {
 
@@ -28,7 +29,7 @@ public class LoginUserInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         // 1.不需要登陆校验
-        if(isPassLogin(handler)){
+        if (isPassLogin(handler)) {
             return true;
         }
 
@@ -86,7 +87,7 @@ public class LoginUserInterceptor extends HandlerInterceptorAdapter {
                 passLogin = handlerMethod.getMethod().getDeclaringClass().getAnnotation(PassLogin.class);
             }
 
-            if(passLogin != null){
+            if (passLogin != null) {
                 return true;
             }
         }
