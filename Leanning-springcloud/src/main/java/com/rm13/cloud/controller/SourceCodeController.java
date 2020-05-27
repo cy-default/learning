@@ -1,7 +1,5 @@
 package com.rm13.cloud.controller;
 
-import com.rm13.cloud.bean.User;
-import com.rm13.cloud.bean.User2;
 import com.rm13.cloud.common.annotation.PassLogin;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;

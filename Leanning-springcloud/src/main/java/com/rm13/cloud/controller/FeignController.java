@@ -1,7 +1,6 @@
 package com.rm13.cloud.controller;
 
 import com.google.common.collect.Maps;
-import com.rm13.cloud.bean.User;
 import com.rm13.cloud.common.annotation.PassLogin;
 import com.rm13.cloud.feign.FeignProxy;
 import org.springframework.beans.factory.annotation.Autowired;

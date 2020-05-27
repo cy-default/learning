@@ -1,20 +1,8 @@
 package com.rm13.cloud.feign;
 
-import com.rm13.cloud.bean.User;
-import feign.Logger;
-import feign.codec.Encoder;
-import feign.form.spring.SpringFormEncoder;
+import com.rm13.cloud.domain.po.User;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.ObjectFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.cloud.openfeign.SpringQueryMap;
-import org.springframework.cloud.openfeign.support.SpringEncoder;
-import org.springframework.context.annotation.Bean;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
