@@ -9,8 +9,16 @@ import java.math.BigDecimal;
  */
 public class BigDecimalTest {
     public static void main(String[] args) {
-        BigDecimal bigDecimal = new BigDecimal("20.2");
-        bigDecimal = bigDecimal.add(new BigDecimal("20"));
+        BigDecimal bigDecimal = new BigDecimal("1");
+        bigDecimal = bigDecimal.add(new BigDecimal("1"));
         System.out.println(bigDecimal.toString());
+
+
+
+        BigDecimal a1 = new BigDecimal("1");
+        BigDecimal a2 = new BigDecimal("3");
+
+        System.out.println(a1.divide(a2, 1, BigDecimal.ROUND_DOWN));
+
     }
 }

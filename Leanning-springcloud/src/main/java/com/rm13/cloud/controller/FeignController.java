@@ -3,6 +3,7 @@ package com.rm13.cloud.controller;
 import com.google.common.collect.Maps;
 import com.rm13.cloud.common.annotation.PassLogin;
 import com.rm13.cloud.feign.FeignProxy;
+import com.rm13.cloud.pojo.po.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

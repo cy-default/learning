@@ -23,12 +23,32 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-        <!--
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
+            <!--1.5的版本默认采用的连接池技术是jedis，2.0以上版本默认连接池是lettuce, 因为此次是采用jedis，所以需要排除lettuce的jar -->
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <groupId>redis.clients</groupId>
+                    <artifactId>jedis</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.lettuce</groupId>
+                    <artifactId>lettuce-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
-        -->
+
+        <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.10.2</version>
+        </dependency>
         <!--
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -62,6 +82,12 @@
             <version>3.8.0</version>
         </dependency>
         -->
+
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>weixin-java-mp</artifactId>
+            <version>3.8.0</version>
+        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -156,7 +182,20 @@
     </dependencies>
 
 
-
+    <repositories>
+        <repository>
+            <id>maven-ali</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public//</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>fail</checksumPolicy>
+            </snapshots>
+        </repository>
+    </repositories>
     <build>
         <plugins>
             <plugin>

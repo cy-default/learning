@@ -13,14 +13,13 @@ import java.util.stream.Collectors;
 public class OptionalTest {
 
     public static void main(String[] args) {
-
-        demo2();
+        multilevel();
     }
 
     /**
      * 利用Optional进行多级判断
      */
-    public void multilevel(){
+    public static void multilevel(){
         User user = new User();
         // old
         if(user!=null){
@@ -30,6 +29,10 @@ public class OptionalTest {
         }
         // new
         boolean present = Optional.ofNullable(user).map(User::getAddress).map(Address::getEmail).isPresent();
+        // new
+        final String value = Optional.ofNullable(user).map(User::getAddress).map(Address::getEmail).orElse("null");
+        System.out.println(value);
+
 
     }
 
@@ -42,7 +45,7 @@ public class OptionalTest {
 
     public static void demo2(){
         User user = null;
-        Optional.ofNullable(user).map(u->u.getName()).filter(StringUtils::isNotBlank).orElseGet(()->{
+        Optional.ofNullable(user).map(User::getName).filter(StringUtils::isNotBlank).orElseGet(()->{
             System.out.println("hhhh");
             return null;
         });

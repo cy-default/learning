@@ -51,6 +51,14 @@ public class StreamTest {
     public static void toGroup(){
         Map<String, List<Person>> collect = list.stream().collect(Collectors.groupingBy(Person::getSex));
         System.out.println("toGroup=="+collect);
+
+        List<String> items = Arrays.asList("apple", "apple", "banana", "apple", "orange", "banana", "papaya");
+        Map<String, Long> result = items.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        System.out.println(result);
+    }
+
+    public static void main(String[] args) throws Exception {
+        toGroup();
     }
 
     public static void toJoining(){
@@ -136,10 +144,6 @@ public class StreamTest {
         forkJoinPool.awaitTermination(1, TimeUnit.HOURS);
     }
 
-
-    public static void main(String[] args) throws Exception {
-        parllonStream2();
-    }
 
 
     static {

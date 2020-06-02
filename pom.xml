@@ -23,7 +23,6 @@
         <module>Leanning-spring</module>
         <module>Leanning-arithmetic</module>
         <module>Leanning-springboot</module>
-        <module>Leanning-springboot2</module>
         <module>Leanning-kafka</module>
         <module>Leanning-mybatis</module>
         <module>Leanning-springmvc</module>

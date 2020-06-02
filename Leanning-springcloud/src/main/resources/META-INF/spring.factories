@@ -1,2 +1,2 @@
-org.springframework.context.ApplicationContextInitializer=com.rm13.boot.leanning01.source.MyApplicationContextInitializer
-org.springframework.context.ApplicationListener=com.rm13.boot.leanning01.source.MyApplicationListener
+org.springframework.context.ApplicationContextInitializer=com.rm13.cloud.factories.MyApplicationContextInitializer
+org.springframework.context.ApplicationListener=com.rm13.cloud.factories.MyApplicationListener

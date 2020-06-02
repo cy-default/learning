@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
  * @Date 2020/5/18
  */
 @Data
-public class UserDTO {
+public class CurrentUser {
     /**
      * 用户名
      */

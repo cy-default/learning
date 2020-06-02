@@ -1,6 +1,6 @@
 package com.rm13.cloud.login;
 
-import com.rm13.cloud.pojo.dto.user.UserDTO;
+import com.rm13.cloud.pojo.dto.user.CurrentUser;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -25,13 +25,13 @@ public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver 
      * 用于判断当前参数是否需要转换类型
      *
      * @param parameter 源参数
-     * @return {@code true} 参数类型为 {@link com.rm13.cloud.pojo.dto.user.UserDTO}
+     * @return {@code true} 参数类型为 {@link CurrentUser}
      */
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
         final Method method = parameter.getMethod();
         if (method != null) {
-            return parameter.getParameterType().isAssignableFrom(UserDTO.class);
+            return parameter.getParameterType().isAssignableFrom(CurrentUser.class);
         }
         return false;
     }

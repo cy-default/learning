@@ -2,6 +2,7 @@ package com.rm13.date;
 
 import java.time.*;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjusters;
 
 /**
  *
@@ -12,15 +13,16 @@ import java.time.temporal.ChronoUnit;
 public class PeriodTest {
 
     /**
+     * https://blog.csdn.net/hspingcc/article/details/73332526
      * 在Java8中，我们可以使用以下类来计算日期时间差异：
-     * 1.Period
-     * 2.Duration
-     * 3.ChronoUnit
+     * 1.Period : 计算日期
+     * 2.Duration : 计算时间
+     * 3.ChronoUnit : 指定单位内测量一段时间
      * @param args
      */
 
     public static void main(String[] args) {
-        final LocalDate beg = LocalDate.of(1990, 07, 06);
+        final LocalDate beg = LocalDate.of(2018, 05, 29);
         final LocalDate now = LocalDate.now();
         // Period类方法getYears（），getMonths（）和getDays（）来计算.
         final Period between = Period.between(beg, now);
@@ -44,6 +46,12 @@ public class PeriodTest {
         System.out.println("月："+ChronoUnit.MONTHS.between(beg, now));
         System.out.println("周："+ChronoUnit.WEEKS.between(beg, now));
         System.out.println("天："+ChronoUnit.DAYS.between(beg, now));
+
+
+        // 获取今年的第一天
+        System.out.println(LocalDate.now().with(TemporalAdjusters.firstDayOfYear()));
+        // 获取今年的最后一天
+        System.out.println(LocalDate.now().with(TemporalAdjusters.lastDayOfYear()));
 
     }
 }
