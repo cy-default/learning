@@ -12,12 +12,11 @@
         <version>2.2.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    
+
     <name>Leanning</name>
     <description>Leanning</description>
 
     <modules>
-        <module>Leanning-utils</module>
         <module>Leanning-design-patterns</module>
         <module>Leanning-jdk</module>
         <module>Leanning-spring</module>

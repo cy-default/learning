@@ -1,0 +1,32 @@
+package com.rm13.wx.handler;
+
+import com.rm13.wx.util.JsonUtils;
+import me.chanjar.weixin.common.error.WxErrorException;
+import me.chanjar.weixin.common.session.WxSessionManager;
+import me.chanjar.weixin.mp.api.WxMpService;
+import me.chanjar.weixin.mp.api.WxMpUserService;
+import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
+import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
+import me.chanjar.weixin.mp.bean.result.WxMpUser;
+import org.springframework.stereotype.Component;
+
+import java.util.Map;
+
+/**
+ * @author Binary Wang(https://github.com/binarywang)
+ */
+@Component
+public class LogHandler extends AbstractHandler {
+    @Override
+    public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage,
+                                    Map<String, Object> context, WxMpService wxMpService,
+                                    WxSessionManager sessionManager) throws WxErrorException {
+        this.logger.info("\n接收到请求消息，内容：{}", JsonUtils.toJson(wxMessage));
+
+        WxMpUserService userService = wxMpService.getUserService();
+        WxMpUser wxMpUser = userService.userInfo(wxMessage.getFromUser());
+        this.logger.info("WxMpUser:{}", JsonUtils.toJson(wxMpUser));
+        return null;
+    }
+
+}

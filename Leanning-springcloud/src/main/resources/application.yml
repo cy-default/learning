@@ -48,6 +48,15 @@ server:
   servlet:
     session:
       timeout: 30
+  tomcat:
+    max-threads: 100
+    uri-encoding: utf-8
+
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/articledb
 
 management:
   endpoint:
@@ -82,4 +91,6 @@ person:
     age: 18
   user2: {name: cc, age: 18}
   detail2: [{aa: a2, bb: b2},{aa: a3, bb: b3}]
+
+
 

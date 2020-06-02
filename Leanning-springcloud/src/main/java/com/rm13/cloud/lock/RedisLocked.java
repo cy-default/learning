@@ -9,6 +9,7 @@ import java.lang.annotation.*;
  * redisLock redis分布式锁
  * aop处理程序
  *
+ * @author yuan.chen
  * @see RedisLockedAspect
  * 返回结果
  */
@@ -19,8 +20,6 @@ import java.lang.annotation.*;
 public @interface RedisLocked {
     /**
      * 加锁失败消息
-     *
-     * @see
      */
     String value() default "其他用户正在操作，请稍后重试";
 
