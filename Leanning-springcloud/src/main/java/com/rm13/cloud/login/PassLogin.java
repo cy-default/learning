@@ -1,4 +1,4 @@
-package com.rm13.cloud.common.annotation;
+package com.rm13.cloud.login;
 
 import java.lang.annotation.*;
 
@@ -8,6 +8,7 @@ import java.lang.annotation.*;
  * @author roamer
  * @version v1.0
  * @date 2019/12/26 14:22
+ * @see com.rm13.cloud.login.LoginUserInterceptor
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE, ElementType.METHOD})

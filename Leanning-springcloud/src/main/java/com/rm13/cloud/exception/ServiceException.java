@@ -1,4 +1,4 @@
-package com.rm13.cloud.common;
+package com.rm13.cloud.exception;
 
 /**
  * @author yuan.chen
@@ -6,7 +6,7 @@ package com.rm13.cloud.common;
  * @Date 2020/5/18
  */
 
-import com.rm13.cloud.common.result.ResultCode;
+import com.rm13.cloud.result.ResultCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

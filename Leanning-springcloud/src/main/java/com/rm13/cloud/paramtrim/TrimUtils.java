@@ -1,6 +1,5 @@
-package com.rm13.cloud.common;
+package com.rm13.cloud.paramtrim;
 
-import com.rm13.cloud.common.annotation.Trim;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 

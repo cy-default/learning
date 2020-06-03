@@ -1,4 +1,4 @@
-package com.rm13.cloud.common.annotation;
+package com.rm13.cloud.paramtrim;
 
 /**
  * @author yuan.chen

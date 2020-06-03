@@ -1,7 +1,6 @@
 package com.rm13.cloud.login;
 
 import com.alibaba.fastjson.JSON;
-import com.rm13.cloud.common.annotation.PassLogin;
 import com.rm13.cloud.pojo.dto.user.CurrentUser;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;

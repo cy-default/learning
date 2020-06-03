@@ -1,4 +1,4 @@
-package com.rm13.cloud.common;
+package com.rm13.cloud.exception;
 
 import lombok.Data;
 

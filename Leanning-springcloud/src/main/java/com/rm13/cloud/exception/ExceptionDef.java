@@ -1,4 +1,4 @@
-package com.rm13.cloud.common.constant;
+package com.rm13.cloud.exception;
 
 /**
  * 接口返回的结果状态码

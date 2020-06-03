@@ -1,7 +1,6 @@
-package com.rm13.cloud.common;
+package com.rm13.cloud.exception;
 
-import com.rm13.cloud.common.constant.ExceptionDef;
-import com.rm13.cloud.common.result.ResultResponse;
+import com.rm13.cloud.result.ResultResponse;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,6 +36,7 @@ public class CustomExceptionHandle {
     @Order(4)
     public ResultResponse handleException(ServiceException ex) {
         ResultResponse<Object> result = ResultResponse.error(ex.getCode(), ex.getMessage());
+        ex.printStackTrace();
         logger.error("CustomGlobalExceptionHandler ServiceException error", ex);
         return result;
     }
@@ -71,6 +71,7 @@ public class CustomExceptionHandle {
         result.setMessage(message == null ? "请求必填参数为空" : message);
         result.setData(null);
         logger.error("CustomGlobalExceptionHandler BindException error", ex);
+        ex.printStackTrace();
         return result;
     }
 
@@ -84,6 +85,7 @@ public class CustomExceptionHandle {
         result.setMessage(new ServiceException().matchMessage(ExceptionDef.C415));
         result.setData(null);
         logger.error("CustomGlobalExceptionHandler HttpMediaTypeNotSupportedException error", ex);
+        ex.printStackTrace();
         return result;
     }
 
@@ -97,6 +99,7 @@ public class CustomExceptionHandle {
         result.setMessage(new ServiceException().matchMessage(ExceptionDef.C405));
         result.setData(null);
         logger.error("CustomGlobalExceptionHandler HttpRequestMethodNotSupportedException error", ex);
+        ex.printStackTrace();
         return result;
     }
 
@@ -115,6 +118,7 @@ public class CustomExceptionHandle {
         result.setMessage(new ServiceException().matchMessage(ExceptionDef.C500));
         result.setData(null);
         logger.error("CustomGlobalExceptionHandler MethodArgumentTypeMismatchException error", ex);
+        ex.printStackTrace();
         return result;
     }
 
@@ -129,6 +133,7 @@ public class CustomExceptionHandle {
         result.setMessage(new ServiceException().matchMessage(ExceptionDef.C500));
         result.setData(null);
         logger.error("CustomGlobalExceptionHandler Exception error", ex);
+        ex.printStackTrace();
         return result;
     }
 }

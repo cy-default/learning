@@ -1,6 +1,6 @@
 package com.rm13.cloud.controller;
 
-import com.rm13.cloud.common.annotation.PassLogin;
+import com.rm13.cloud.login.PassLogin;
 import com.rm13.cloud.retry.RetryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

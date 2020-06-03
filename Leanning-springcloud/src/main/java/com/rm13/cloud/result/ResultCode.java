@@ -1,4 +1,4 @@
-package com.rm13.cloud.common.result;
+package com.rm13.cloud.result;
 
 /**
  * @author yuan.chen

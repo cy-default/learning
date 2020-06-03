@@ -1,4 +1,4 @@
-package com.rm13.cloud.common.constant;
+package com.rm13.cloud.constant;
 
 /**
  * 常量

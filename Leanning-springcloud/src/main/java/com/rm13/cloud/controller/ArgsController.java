@@ -1,6 +1,6 @@
 package com.rm13.cloud.controller;
 
-import com.rm13.cloud.common.annotation.PassLogin;
+import com.rm13.cloud.login.PassLogin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
