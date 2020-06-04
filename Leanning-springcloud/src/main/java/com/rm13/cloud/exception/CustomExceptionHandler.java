@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 @ControllerAdvice
-public class CustomExceptionHandle {
+public class CustomExceptionHandler {
 
-    private static final Logger logger = LoggerFactory.getLogger(CustomExceptionHandle.class);
+    private static final Logger logger = LoggerFactory.getLogger(CustomExceptionHandler.class);
 
     /**
      * 拦截ServiceException
