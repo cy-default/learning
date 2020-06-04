@@ -1,6 +1,5 @@
-package com.rm13.cloud.controller;
+package com.rm13.cloud.login;
 
-import com.rm13.cloud.login.PassLogin;
 import com.rm13.cloud.pojo.dto.user.CurrentUser;
 import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +15,8 @@ import java.time.LocalDateTime;
  * 为了实现解耦，
  * 需要把当前登陆的用户信息 从controll层一直传递下去
  *
- * @see com.rm13.cloud.login.LoginUserArgumentResolver
- * @see com.rm13.cloud.login.LoginUserInterceptor
+ * @see LoginUserArgumentResolver
+ * @see LoginUserInterceptor
  *
  * @author yuan.chen
  * @email chen.yuan135@chinaredstar.com

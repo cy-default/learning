@@ -1,7 +1,5 @@
-package com.rm13.cloud.config;
+package com.rm13.cloud.login;
 
-import com.rm13.cloud.login.LoginUserArgumentResolver;
-import com.rm13.cloud.login.LoginUserInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -10,12 +8,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.util.List;
 
 /**
+ * 参数解析器
+ *
  * @author yuan.chen
  * @email chen.yuan135@chinaredstar.com
- * @Date 2020/5/18
+ * @Date 2020/6/4
  */
 @Configuration
-public class WebConfig implements WebMvcConfigurer {
+public class LoginConfig implements WebMvcConfigurer {
 
     /**
      * 添加参数解析器

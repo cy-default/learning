@@ -18,8 +18,8 @@ import java.util.Objects;
  * @author yuan.chen
  * @email chen.yuan135@chinaredstar.com
  * @Date 2020/5/18
- * @see com.rm13.cloud.config.WebConfig
- * @see com.rm13.cloud.controller.LoginController
+ * @see com.rm13.cloud.login.LoginConfig
+ * @see com.rm13.cloud.login.LoginController
  */
 public class LoginUserInterceptor extends HandlerInterceptorAdapter {
 

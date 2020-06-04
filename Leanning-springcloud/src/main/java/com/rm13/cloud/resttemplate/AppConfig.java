@@ -1,4 +1,4 @@
-package com.rm13.cloud.config;
+package com.rm13.cloud.resttemplate;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
