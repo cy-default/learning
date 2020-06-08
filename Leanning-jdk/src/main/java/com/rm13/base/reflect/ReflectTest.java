@@ -3,9 +3,8 @@ package com.rm13.base.reflect;
 import com.rm13.optional.User;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,6 +29,9 @@ public class ReflectTest {
         System.out.println(value);
         phone.set(ob, "2122");
         System.out.println(ob);
+
+        System.out.println("====");
+        Arrays.stream(ReflectTest.class.getDeclaredMethods()).peek(c-> System.out.println(c.getName()));
 
 
     }
