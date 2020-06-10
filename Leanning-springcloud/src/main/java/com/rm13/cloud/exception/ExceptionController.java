@@ -22,4 +22,12 @@ public class ExceptionController {
         }
         return "exception";
     }
+
+    @GetMapping("/biz")
+    public String biz(){
+        if(true){
+            throw new ServiceException(2300);
+        }
+        return "exception";
+    }
 }

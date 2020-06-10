@@ -19,6 +19,16 @@ public class StringTest {
         System.out.println(s3==s2);
         System.out.println(s1==s2);
 
+        //字符串靠左，多余的地方填充_
+        System.out.println(String.format("%-10s", "love").replace(' ', '_'));
+        //字符串靠右，多余的地方填充_
+        System.out.println(String.format("%10s", "love"));
+        System.out.println(String.format("%3s", "love"));
+
+
+        //数字靠右，多余的地方用0填充 stringBuilder.append(String.format("%05d", age));
+        System.out.println(String.format("%05d", 20));
+
     }
 }
 

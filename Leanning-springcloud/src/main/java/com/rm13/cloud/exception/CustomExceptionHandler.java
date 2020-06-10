@@ -36,8 +36,10 @@ public class CustomExceptionHandler {
     @Order(4)
     public ResultResponse handleException(ServiceException ex) {
         ResultResponse<Object> result = ResultResponse.error(ex.getCode(), ex.getMessage());
-        ex.printStackTrace();
-        logger.error("CustomGlobalExceptionHandler ServiceException error", ex);
+        // 日志已经记录异常了，不需要再把异常栈信息打印出来
+        // 业务异常以 warn形式打印出来，系统异常以error形式打印
+        logger.warn("CustomGlobalExceptionHandler ServiceException error", ex);
+        // ex.printStackTrace();
         return result;
     }
 
@@ -70,8 +72,9 @@ public class CustomExceptionHandler {
         result.setCode(ExceptionDef.REQUIRED_PARAMS_NOT_EXISTS);
         result.setMessage(message == null ? "请求必填参数为空" : message);
         result.setData(null);
+        // 日志已经记录异常和异常栈信息了，不需要再把异常栈信息打印出来
         logger.error("CustomGlobalExceptionHandler BindException error", ex);
-        ex.printStackTrace();
+        // ex.printStackTrace();
         return result;
     }
 
@@ -84,8 +87,9 @@ public class CustomExceptionHandler {
         result.setCode(ExceptionDef.C415);
         result.setMessage(new ServiceException().matchMessage(ExceptionDef.C415));
         result.setData(null);
+        // 日志已经记录异常和异常栈信息了，不需要再把异常栈信息打印出来
         logger.error("CustomGlobalExceptionHandler HttpMediaTypeNotSupportedException error", ex);
-        ex.printStackTrace();
+        // ex.printStackTrace();
         return result;
     }
 
@@ -98,8 +102,9 @@ public class CustomExceptionHandler {
         result.setCode(ExceptionDef.C405);
         result.setMessage(new ServiceException().matchMessage(ExceptionDef.C405));
         result.setData(null);
+        // 日志已经记录异常和异常栈信息了，不需要再把异常栈信息打印出来
         logger.error("CustomGlobalExceptionHandler HttpRequestMethodNotSupportedException error", ex);
-        ex.printStackTrace();
+        // ex.printStackTrace();
         return result;
     }
 
@@ -117,8 +122,9 @@ public class CustomExceptionHandler {
         result.setCode(ExceptionDef.C500);
         result.setMessage(new ServiceException().matchMessage(ExceptionDef.C500));
         result.setData(null);
+        // 日志已经记录异常和异常栈信息了，不需要再把异常栈信息打印出来
         logger.error("CustomGlobalExceptionHandler MethodArgumentTypeMismatchException error", ex);
-        ex.printStackTrace();
+        // ex.printStackTrace();
         return result;
     }
 
@@ -132,8 +138,9 @@ public class CustomExceptionHandler {
         result.setCode(ExceptionDef.C500);
         result.setMessage(new ServiceException().matchMessage(ExceptionDef.C500));
         result.setData(null);
+        // 日志已经记录异常和异常栈信息了，不需要再把异常栈信息打印出来
         logger.error("CustomGlobalExceptionHandler Exception error", ex);
-        ex.printStackTrace();
+        // ex.printStackTrace();
         return result;
     }
 }
