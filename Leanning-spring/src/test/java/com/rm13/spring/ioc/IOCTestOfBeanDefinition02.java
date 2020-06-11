@@ -1,9 +1,9 @@
 package com.rm13.spring.ioc;
 
 import com.alibaba.fastjson.JSON;
-import com.rm13.spring.config.MainConfigOfBeanDefinition02;
-import com.rm13.spring.domain.entity.Blue;
-import com.rm13.spring.domain.entity.Person;
+import com.rm13.spring.ioc.config.MainConfigOfBeanDefinition02;
+import com.rm13.spring.ioc.entity.Blue;
+import com.rm13.spring.ioc.entity.Person;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

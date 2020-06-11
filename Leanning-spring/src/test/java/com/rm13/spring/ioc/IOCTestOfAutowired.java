@@ -1,14 +1,11 @@
 package com.rm13.spring.ioc;
 
-import com.alibaba.fastjson.JSON;
-import com.rm13.spring.config.MainConfigOfAutowired;
-import com.rm13.spring.config.MainConfigOfBeanDefinition01;
-import com.rm13.spring.dao.BookDao;
-import com.rm13.spring.domain.entity.Boss;
-import com.rm13.spring.domain.entity.Car;
-import com.rm13.spring.domain.entity.Color;
-import com.rm13.spring.domain.entity.Person;
-import com.rm13.spring.service.BookService;
+import com.rm13.spring.ioc.config.MainConfigOfAutowired;
+import com.rm13.spring.ioc.dao.BookDao;
+import com.rm13.spring.ioc.entity.Boss;
+import com.rm13.spring.ioc.entity.Car;
+import com.rm13.spring.ioc.entity.Color;
+import com.rm13.spring.ioc.service.BookService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

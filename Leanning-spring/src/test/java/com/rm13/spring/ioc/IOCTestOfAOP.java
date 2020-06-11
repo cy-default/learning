@@ -1,13 +1,7 @@
 package com.rm13.spring.ioc;
 
-import com.rm13.spring.aop.MathCalculator;
-import com.rm13.spring.config.MainConfigOfAOP;
-import com.rm13.spring.config.MainConfigOfAutowired;
-import com.rm13.spring.dao.BookDao;
-import com.rm13.spring.domain.entity.Boss;
-import com.rm13.spring.domain.entity.Car;
-import com.rm13.spring.domain.entity.Color;
-import com.rm13.spring.service.BookService;
+import com.rm13.spring.ioc.aop.MathCalculator;
+import com.rm13.spring.ioc.config.MainConfigOfAOP;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
