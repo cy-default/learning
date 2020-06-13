@@ -1,2 +1,3 @@
-org.springframework.context.ApplicationContextInitializer=com.rm13.cloud.factories.MyApplicationContextInitializer
+# spring容器刷新之前执行的一个回调函数，可以向spring容器中注册属性。
+org.springframework.context.ApplicationContextInitializer=com.rm13.cloud.factories.FirstApplicationContextInitializer
 org.springframework.context.ApplicationListener=com.rm13.cloud.factories.MyApplicationListener

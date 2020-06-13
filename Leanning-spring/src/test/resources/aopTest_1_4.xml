@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="com.rm13.spring.aop.service.UserServiceImpl" id="userServiceImpl"></bean>
+    <bean class="com.rm13.spring.aop.service.OrderServiceImpl" id="orderServiceImpl"></bean>
+
+    <!--定义2个 advice-->
+    <bean class="com.rm13.spring.aop.aop.LogArgsAdvice" id="logArgsAdvice"></bean>
+    <bean class="com.rm13.spring.aop.aop.LogResultAdvice" id="logResultAdvice"></bean>
+
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+        <!--InterceptorNames 是可以配置成 Advice，Advisor 和 Interceptor 的。-->
+        <property name="interceptorNames">
+            <list>
+                <value>logArgsAdvice</value>
+                <value>logResultAdvice</value>
+            </list>
+        </property>
+        <property name="beanNames" value="*ServiceImpl"></property>
+    </bean>
+</beans>

@@ -16,7 +16,6 @@ import org.springframework.context.annotation.Primary;
  */
 @Configuration
 @ComponentScan({
-        "com.rm13.spring.ioc.controller",
         "com.rm13.spring.ioc.service",
         "com.rm13.spring.ioc.dao",
         "com.rm13.spring.ioc.entity"})

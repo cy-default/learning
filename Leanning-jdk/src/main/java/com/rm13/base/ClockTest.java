@@ -13,5 +13,7 @@ public class ClockTest {
         final TimeZone aDefault = TimeZone.getDefault();
         System.out.println(ZoneId.systemDefault());
         System.out.println(aDefault);
+
+        System.out.println(System.currentTimeMillis());
     }
 }
