@@ -1,4 +1,4 @@
-package com.rm13.cloud.controller;
+package com.rm13.cloud.retry;
 
 import com.rm13.cloud.login.PassLogin;
 import com.rm13.cloud.retry.RetryService;
