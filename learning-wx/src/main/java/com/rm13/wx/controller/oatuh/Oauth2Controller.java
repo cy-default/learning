@@ -118,7 +118,8 @@ public class Oauth2Controller {
         // fuck 不同域cookie不能共享。
         Cookie cookie = new Cookie("wxUser1", URLEncoder.encode(JSONUtil.toJsonStr(wxMpUser),"UTF-8"));
         cookie.setMaxAge(60*60);
-        cookie.setDomain(".com"); // 必须是 同域才能共享cookie
+        // 必须是 同域才能共享cookie
+        cookie.setDomain(".idcfengye.com");
         cookie.setPath("/");
         resp.addCookie(cookie);
 
