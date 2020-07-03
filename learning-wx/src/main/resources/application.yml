@@ -1,17 +1,32 @@
 wx:
   mp:
     configs:
+      # 公众号
       - appId: wx39a57465e542c815
         secret: 2e8c1c05cf833250ab1888c0113e1c1d
         token: lovemyrm13
         aesKey: 20PQmo8xLWk0onA9uP9DGrNwrbONBpZivu45NOjqFdh
+      # 测试环境
+      - appId: wx7894b94696fb6f9b
+        secret: 4ed1f4df55d7b2af91c6928ef83d2901
+        token: lovemyrm13
+        aesKey: 20PQmo8xLWk0onA9uP9DGrNwrbONBpZivu45NOjqFdh
+
+
+
+
 server:
-  port: 8080
+  domain: http://rm23.5gzvip.idcfengye.com/
+  port: 62371
   tomcat:
     uri-encoding: utf-8
     max-threads: 100
   servlet:
-    context-path: /snmt/wx
+    context-path: /
 spring:
   application:
     name: wx-mp-server
+logging:
+  level:
+    com: info
+    org: info

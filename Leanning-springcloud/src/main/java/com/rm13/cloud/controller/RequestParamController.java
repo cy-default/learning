@@ -18,8 +18,8 @@ import java.util.Map;
 @PassLogin
 @Slf4j
 @RestController
-@RequestMapping("/req")
-public class RequestController {
+@RequestMapping("/req/param")
+public class RequestParamController {
 
     @RequestMapping("/demo")
     public String req(HttpServletRequest request){

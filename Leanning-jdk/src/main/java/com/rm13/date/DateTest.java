@@ -21,6 +21,7 @@ public class DateTest {
         System.out.println(start.toString());
         System.out.println(end.toString());
 
+
         // 398
         System.out.println(ChronoUnit.DAYS.between(start, end));
         // 398
@@ -38,8 +39,13 @@ public class DateTest {
         System.out.println(period.getYears());
 
 
+
         String[] result = new String[]{"11","22","33"};
         System.out.println(String.join(",", result));
+
+        System.out.println("===");
+        System.out.println(LocalDate.now().getDayOfYear());
+        System.out.println(LocalDate.of(2020, 01, 01).getDayOfYear());
 
     }
 }

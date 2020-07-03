@@ -1,6 +1,7 @@
 package com.rm13.cloud.factories;
 
 import com.google.common.collect.Maps;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.annotation.Order;
@@ -19,6 +20,7 @@ import java.util.HashMap;
  * @email chen.yuan135@chinaredstar.com
  * @Date 2019/12/11
  */
+@Slf4j
 @Order(2)
 public class SecondApplicationContextInitializer implements ApplicationContextInitializer {
 
@@ -29,7 +31,7 @@ public class SecondApplicationContextInitializer implements ApplicationContextIn
         map.put("love", "lovemyrm14");
         MapPropertySource mapPropertySource = new MapPropertySource("SecondApplicationContextInitializer", map);
         environment.getPropertySources().addLast(mapPropertySource);
-        System.out.println("======SecondApplicationContextInitializer======");
+        log.info("SecondApplicationContextInitializer initialize");
 
     }
 }

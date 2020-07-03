@@ -2,10 +2,13 @@ package com.rm13.cloud.feign;
 
 import com.rm13.cloud.pojo.po.User;
 import feign.Logger;
+import feign.RequestInterceptor;
+import feign.RequestTemplate;
 import feign.codec.Encoder;
 import feign.form.spring.SpringFormEncoder;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.SpringQueryMap;
@@ -71,6 +74,9 @@ public interface FeignProxy {
         @Autowired
         private ObjectFactory<HttpMessageConverters> messageConverters;
 
+        @Value("${hello:}")
+        private String hello;
+
         /**
          * 参数编码
          *
@@ -89,6 +95,22 @@ public interface FeignProxy {
         @Bean
         public Logger.Level feignLoggerLevel() {
             return Logger.Level.FULL;
+        }
+
+        /**
+         * 请求拦截器，可以在这个地方给请求头添加参数
+         *
+         * @return
+         */
+        @Bean
+        public RequestInterceptor requestInterceptor() {
+            return new RequestInterceptor() {
+                @Override
+                public void apply(RequestTemplate template) {
+
+                    template.header("auth", "lovemyrm13" + hello);
+                }
+            };
         }
     }
 }

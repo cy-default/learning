@@ -1,6 +1,7 @@
 package com.rm13.base;
 
 import com.rm13.optional.User;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -12,7 +13,7 @@ import java.util.LinkedList;
  */
 public class CloneTest {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CloneNotSupportedException {
         ArrayList<User> result1 = new ArrayList<>();
         result1.add(new User("11","11"));
         result1.add(new User("22","22"));
@@ -31,5 +32,23 @@ public class CloneTest {
         clone1.add(2);
         System.out.println(before);
         System.out.println(clone1);
+
+
+        System.out.println("======");
+        CloneData cloneData1 = new CloneData();
+        cloneData1.setName("love");
+        CloneData cloneData2 = (CloneData)cloneData1.clone();
+        System.out.println(cloneData1.getName()==cloneData2.getName());
+        System.out.println(cloneData1.getName().toString());
+    }
+}
+
+@Data
+class CloneData implements Cloneable{
+    private String name;
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

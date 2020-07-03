@@ -57,10 +57,6 @@ public class StreamTest {
         System.out.println(result);
     }
 
-    public static void main(String[] args) throws Exception {
-        toGroup();
-    }
-
     public static void toJoining(){
         String collect = list.stream().map(Person::getName).collect(Collectors.joining(",", "{", "}"));
         System.out.println("toJoining=="+collect);
@@ -92,7 +88,14 @@ public class StreamTest {
         ArrayList<String> arrayList = new ArrayList();
         String result = arrayList.stream().filter(t -> t.equals("cc")).findFirst().orElse("null");
         System.out.println(result);
+
+        final ArrayList<Integer> integers = new ArrayList<>();
+        System.out.println(integers.stream().reduce(Integer::sum).orElse(-1));
     }
+    public static void main(String[] args) throws Exception {
+        emptyListFilter();
+    }
+
 
 
     public static void baseTypeStream(){

@@ -1,8 +1,5 @@
 package com.rm13.cloud;
 
-import com.sun.media.sound.SoftTuning;
-import org.springframework.boot.test.context.SpringBootTest;
-
 class LeanningSpringcloudApplicationTests {
 
     public static void main(String[] args) {

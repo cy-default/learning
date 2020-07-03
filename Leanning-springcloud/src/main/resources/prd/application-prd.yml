@@ -9,6 +9,7 @@ feign:
   hystrix:
     enabled: true
 
+
 hystrix:
   command:
     default:
@@ -43,6 +44,13 @@ server:
     max-threads: 100
     uri-encoding: utf-8
 
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/articledb
+  profiles:
+    active: dev
 
 management:
   endpoint:
@@ -79,7 +87,6 @@ person:
   detail2: [{aa: a2, bb: b2},{aa: a3, bb: b3}]
 
 
-#根据maven 动态配置profile
-spring:
-  profiles:
-    active: '@env@'
+
+
+

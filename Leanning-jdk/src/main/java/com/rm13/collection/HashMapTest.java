@@ -11,7 +11,7 @@ import java.util.function.Function;
  * @email chen.yuan135@chinaredstar.com
  * @Date 2019-08-29
  */
-public class HashMap<K,V> extends AbstractMap<K,V> {
+public class HashMapTest<K,V> extends AbstractMap<K,V> {
 
     @Override
     public Set<Entry<K, V>> entrySet() {
