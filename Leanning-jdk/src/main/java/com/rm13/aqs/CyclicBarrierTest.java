@@ -13,17 +13,17 @@ import java.util.stream.IntStream;
 public class CyclicBarrierTest {
 
     public static void main(String[] args) throws IOException {
-        CyclicBarrier cyclicBarrier = new CyclicBarrier(3);
+        CyclicBarrier cyclicBarrier = new CyclicBarrier(10);
 
-        IntStream.range(0, 3).forEach(i->new Thread(() -> {
-            System.out.println("beg:"+Thread.currentThread().getId());
+        IntStream.range(0, 10).forEach(i->new Thread(() -> {
+            System.out.println("beg:"+i+"=="+Thread.currentThread().getId());
             try {
                 cyclicBarrier.await();
                 Thread.sleep(1000);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            System.out.println("end:"+Thread.currentThread().getId());
+            System.out.println("end:"+i+"=="+Thread.currentThread().getId());
 
         }).start());
 
