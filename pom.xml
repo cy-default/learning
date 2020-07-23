@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.rm13</groupId>
-    <artifactId>Leanning-parent</artifactId>
+    <artifactId>learning</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
     <parent>
@@ -13,19 +13,19 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <name>Leanning</name>
-    <description>Leanning</description>
+    <name>learning</name>
+    <description>learning</description>
 
     <modules>
-        <module>Leanning-design-patterns</module>
-        <module>Leanning-jdk</module>
-        <module>Leanning-spring</module>
-        <module>Leanning-arithmetic</module>
-        <module>Leanning-springboot</module>
-        <module>Leanning-kafka</module>
-        <module>Leanning-mybatis</module>
-        <module>Leanning-springmvc</module>
-        <module>Leanning-shiro</module>
+        <module>learning-design-patterns</module>
+        <module>learning-jdk</module>
+        <module>learning-spring</module>
+        <module>learning-arithmetic</module>
+        <module>learning-springboot</module>
+        <module>learning-kafka</module>
+        <module>learning-mybatis</module>
+        <module>learning-springmvc</module>
+        <module>learning-shiro</module>
         <module>cloud-metrics</module>
     </modules>
 
