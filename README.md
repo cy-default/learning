@@ -1,2 +1,2 @@
 # Leanning
- my leanning
+ my learning
