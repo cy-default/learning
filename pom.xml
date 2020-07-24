@@ -26,6 +26,7 @@
         <module>learning-mybatis</module>
         <module>learning-springmvc</module>
         <module>learning-shiro</module>
+        <module>learning-springcloud</module>
         <module>cloud-metrics</module>
     </modules>
 

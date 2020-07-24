@@ -6,9 +6,6 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.UnavailableSecurityManagerException;
 import org.apache.shiro.session.InvalidSessionException;
 import org.apache.shiro.subject.Subject;
-import sun.rmi.runtime.Log;
-
-import java.security.Principal;
 
 /**
  * @author yuan.chen

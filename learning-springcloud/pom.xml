@@ -5,12 +5,12 @@
 
     <parent>
         <groupId>com.rm13</groupId>
-        <artifactId>learning-parent</artifactId>
+        <artifactId>learning</artifactId>
         <version>1.0.0</version>
         <relativePath>../</relativePath>
     </parent>
-    <artifactId>leanning-springcloud</artifactId>
-    <name>leanning-springcloud</name>
+    <artifactId>learning-springcloud</artifactId>
+    <name>learning-springcloud</name>
     <description>Demo project for Spring Boot</description>
 
     <dependencies>
@@ -140,6 +140,14 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-loadbalancer</artifactId>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.rocketmq/rocketmq-client -->
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-client</artifactId>
+            <version>4.7.1</version>
+        </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
         <dependency>
