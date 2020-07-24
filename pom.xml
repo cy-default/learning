@@ -27,6 +27,9 @@
         <module>learning-springmvc</module>
         <module>learning-shiro</module>
         <module>learning-springcloud</module>
+        <module>learning-web</module>
+        <module>learning-wx</module>
+        <module>learning-springdata</module>
         <module>cloud-metrics</module>
     </modules>
 
@@ -58,7 +61,7 @@
     <repositories>
         <repository>
             <id>maven-ali</id>
-            <url>http://maven.aliyun.com/nexus/content/groups/public//</url>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
