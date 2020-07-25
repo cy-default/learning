@@ -4,9 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.learn.data.springdata.domain.Account;
 import com.learn.data.springdata.domain.Comment;
 import com.learn.data.springdata.domain.User;
-import com.learn.data.springdata.repository.CommentRepository;
 import com.mongodb.client.result.UpdateResult;
-import com.sun.media.sound.SoftTuning;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +17,6 @@ import org.springframework.data.mongodb.core.query.Update;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 
 import static org.springframework.data.mongodb.core.query.Query.query;

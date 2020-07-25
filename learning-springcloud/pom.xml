@@ -11,7 +11,7 @@
     </parent>
     <artifactId>learning-springcloud</artifactId>
     <name>learning-springcloud</name>
-    <description>Demo project for Spring Boot</description>
+    <description>commons learning</description>
 
     <dependencies>
         <dependency>
@@ -153,7 +153,6 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>28.1-jre</version>
         </dependency>
 
         <dependency>
