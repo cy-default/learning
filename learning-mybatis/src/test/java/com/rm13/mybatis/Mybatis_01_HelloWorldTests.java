@@ -15,6 +15,7 @@ import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -65,7 +66,7 @@ public class Mybatis_01_HelloWorldTests {
 		 * @param parameter A parameter object to pass to the statement.
 		 *                  传递给语句的参数对象。
 		 */
-		final Employee employee = sqlSession.selectOne("com.rm13.mybatis.EmployeeMapper.selectEmp", 1);
+		final Employee employee = sqlSession.selectOne("com.rm13.mybatis.dao.EmployeeMapper.selectEmp", 1);
 
 		System.out.println(employee);
 
@@ -89,6 +90,66 @@ public class Mybatis_01_HelloWorldTests {
 		System.out.println(employee);
 	}
 
+
+	/**
+	 * list
+	 */
+	@Test
+	public void test03(){
+		// 1: 获取sqlSessionFactory对象
+		// 2: 获取sqlSession对象
+		final SqlSession sqlSession = sqlSessionFactory.openSession();
+
+		// 3: 获取接口的实现类对象
+		// 会为接口自动的创建一个代理对象， 代理对象去执行增删改查
+		final EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
+		System.out.println(mapper.getClass());
+		final List<Employee> love = mapper.listByName("love");
+		System.out.println(love);
+	}
+
+	/**
+	 * map
+	 */
+	@Test
+	public void test04(){
+		// 1: 获取sqlSessionFactory对象
+		// 2: 获取sqlSession对象
+		final SqlSession sqlSession = sqlSessionFactory.openSession();
+
+		// 3: 获取接口的实现类对象
+		// 会为接口自动的创建一个代理对象， 代理对象去执行增删改查
+		final EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
+		System.out.println(mapper.getClass());
+		final Map<String, Map<Object,Object>> love = mapper.mapByName("love");
+		love.entrySet().forEach(v->{
+			System.out.println(v.getValue().getClass().getName());
+			System.out.println(v.getValue());
+			System.out.println("=================");
+		});
+		System.out.println(love);
+	}
+
+	/**
+	 * object map
+	 */
+	@Test
+	public void test05(){
+		// 1: 获取sqlSessionFactory对象
+		// 2: 获取sqlSession对象
+		final SqlSession sqlSession = sqlSessionFactory.openSession();
+
+		// 3: 获取接口的实现类对象
+		// 会为接口自动的创建一个代理对象， 代理对象去执行增删改查
+		final EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
+		System.out.println(mapper.getClass());
+		final Map<String, Employee> love = mapper.objectMapByName("love");
+		love.entrySet().forEach(v->{
+			System.out.println(v.getValue().getClass().getName());
+			System.out.println(v);
+			System.out.println("=================");
+		});
+	}
 
 
 }

@@ -16,6 +16,15 @@ public interface EmployeeMapper {
 
     Employee selectEmp(Integer id);
 
+    List<Employee> listByName(String name);
+
+    @MapKey("last_name")
+    Map<String, Map<Object, Object>> mapByName(String name);
+
+    @MapKey("lastName")
+    Map<String, Employee> objectMapByName(String name);
+
+
     Employee getEmpById(Integer id);
 
     boolean addEmp(Employee employee);

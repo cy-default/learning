@@ -81,7 +81,15 @@
     <select id="getEmpByLastNameLikeReturnMap" resultType="com.rm13.mybatis.entity.Employee" databaseId="mysql">
         select * from tbl_employee where 1=1 and last_name like #{lastName}
     </select>
-
+    <select id="listByName" resultType="com.rm13.mybatis.entity.Employee">
+        select * from tbl_employee where 1=1 and last_name like CONCAT('%',#{name},'%')
+    </select>
+    <select id="mapByName" resultType="java.util.Map">
+        select * from tbl_employee where 1=1 and last_name like CONCAT('%',#{name},'%')
+    </select>
+    <select id="objectMapByName" resultMap="emp">
+        select * from tbl_employee where 1=1 and last_name like CONCAT('%',#{name},'%')
+    </select>
 
 
     <resultMap id="emp" type="com.rm13.mybatis.entity.Employee">
