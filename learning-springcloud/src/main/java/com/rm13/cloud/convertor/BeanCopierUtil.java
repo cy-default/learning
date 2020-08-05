@@ -1,9 +1,12 @@
 package com.rm13.cloud.convertor;
 
+import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -55,6 +58,31 @@ public class BeanCopierUtil {
             T targetBean = targetClass.newInstance();
             copy(sourceBean, targetBean);
             return targetBean;
+        } catch (Exception e) {
+            log.error("Transform bean error", e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * 转换方法
+     *
+     * @param sourceBean  原对象
+     * @param targetClass 目标类
+     * @param <S>
+     * @param <T>
+     * @return
+     */
+    public static <S, T> List<T> convert(List<S> sourceBean, Class<T> targetClass) {
+        try {
+            assert sourceBean != null;
+            ArrayList<T> targets = Lists.newArrayList();
+            for (S source : sourceBean) {
+                T targetBean = targetClass.newInstance();
+                copy(source, targetBean);
+                targets.add(targetBean);
+            }
+            return targets;
         } catch (Exception e) {
             log.error("Transform bean error", e);
             throw new RuntimeException(e);
