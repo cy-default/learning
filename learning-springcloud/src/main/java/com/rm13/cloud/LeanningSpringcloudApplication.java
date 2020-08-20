@@ -6,11 +6,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.swing.*;
 import java.io.IOException;
 
 @EnableFeignClients
+@EnableTransactionManagement
 @SpringBootApplication(exclude = {RedisAutoConfiguration.class})
 public class LeanningSpringcloudApplication {
 

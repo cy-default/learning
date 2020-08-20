@@ -2,7 +2,9 @@ package com.rm13.date;
 
 import java.time.*;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
+import java.time.temporal.TemporalField;
 
 /**
  *
@@ -52,6 +54,12 @@ public class PeriodTest {
         System.out.println(LocalDate.now().with(TemporalAdjusters.firstDayOfYear()));
         // 获取今年的最后一天
         System.out.println(LocalDate.now().with(TemporalAdjusters.lastDayOfYear()));
+
+        System.out.println("-----");
+        LocalDateTime end1 = LocalDate.now().minusMonths(1).with(TemporalAdjusters.lastDayOfMonth()).atTime(LocalTime.MAX);
+        LocalDateTime beg1 = LocalDate.now().minusMonths(12).with(TemporalAdjusters.firstDayOfMonth()).atTime(LocalTime.MIN);
+        System.out.println(end1);
+        System.out.println(beg1);
 
     }
 }

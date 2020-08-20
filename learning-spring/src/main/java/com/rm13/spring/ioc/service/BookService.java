@@ -5,6 +5,7 @@ import com.rm13.spring.ioc.dao.BookDao;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,6 +39,9 @@ public class BookService {
 
     @Autowired
     private Map<String, BookDao> bookDaoMap;
+
+    @Value("${love:}")
+    private String love;
 
 
     public void print(){
