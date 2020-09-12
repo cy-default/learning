@@ -17,5 +17,6 @@ public class UUIDTest {
         System.out.println(result);
         System.out.println(UUID.randomUUID().toString().replaceAll("-", ""));
         stopWatch.stop();
+
     }
 }

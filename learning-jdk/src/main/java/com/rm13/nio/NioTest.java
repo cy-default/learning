@@ -2,9 +2,14 @@ package com.rm13.nio;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
+import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.file.OpenOption;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 /**
  * @author yuan.chen
@@ -57,7 +62,35 @@ public class NioTest {
         writeFileChannel.close();
         readFile.close();
         writeFile.close();
+    }
 
+    /**
+     * 使用内存映射文件
+     * @throws IOException
+     */
+    public static void channel3() throws IOException {
+        final FileChannel readChannel = FileChannel.open(Paths.get("18mm.mp4"), StandardOpenOption.READ);
+        final FileChannel writeChannel = FileChannel.open(Paths.get("20mm.mp4"), StandardOpenOption.WRITE, StandardOpenOption.READ, StandardOpenOption.CREATE);
+
+        final MappedByteBuffer readMap = readChannel.map(FileChannel.MapMode.READ_ONLY, 0, readChannel.size());
+        final MappedByteBuffer writeMap = writeChannel.map(FileChannel.MapMode.READ_WRITE, 0, writeChannel.size());
+        byte[] dst = new byte[readMap.limit()];
+        readMap.get(dst);
+        writeMap.put(dst);
+        readChannel.close();
+        writeChannel.close();
+    }
+
+    /**
+     * 通道之间的数据传输（直接缓冲区）
+     * @throws IOException
+     */
+    public static void channel4() throws IOException {
+        final FileChannel readChannel = FileChannel.open(Paths.get("18mm.mp4"), StandardOpenOption.READ);
+        final FileChannel writeChannel = FileChannel.open(Paths.get("20mm.mp4"), StandardOpenOption.WRITE, StandardOpenOption.READ, StandardOpenOption.CREATE);
+        readChannel.transferTo(0, readChannel.size(), writeChannel);
+        readChannel.close();
+        writeChannel.close();
     }
 
     public static void buffer() {
