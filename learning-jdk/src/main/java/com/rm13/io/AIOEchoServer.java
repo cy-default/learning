@@ -30,7 +30,7 @@ public class AIOEchoServer {
                     // 再次监听accept 事件
                     serverSocketChannel.accept(null, this);
 
-                    // 消息处理
+                    // 消息处理x
                     while (true) {
                         final ByteBuffer allocate = ByteBuffer.allocate(1024);
                         final Future<Integer> read = socketChannel.read(allocate);

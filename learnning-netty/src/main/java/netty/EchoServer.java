@@ -18,7 +18,7 @@ public class EchoServer {
     public static void main(String[] args) throws InterruptedException {
         // 1：声明线程（必须）
         // bossGroup处理Accept事件， workerGroup处理消息的读写事件
-        EventLoopGroup acceptorGroup = new NioEventLoopGroup(1);
+        NioEventLoopGroup acceptorGroup = new NioEventLoopGroup(1);
         NioEventLoopGroup clientGroup = new NioEventLoopGroup();
 
         // 2：创建服务端引导类（必须）
