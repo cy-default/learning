@@ -52,6 +52,12 @@
             <version>2.1.2</version>
         </dependency>
 
+        <!--spring batch 批处理框架-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-batch</artifactId>
+        </dependency>
+
 
 
         <!--
