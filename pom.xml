@@ -31,7 +31,7 @@
         <module>learning-wx</module>
         <module>learning-springdata</module>
         <module>cloud-metrics</module>
-        <module>learnning-netty</module>
+        <module>learning-netty</module>
     </modules>
 
     <dependencyManagement>

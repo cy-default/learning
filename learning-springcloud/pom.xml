@@ -59,7 +59,6 @@
         </dependency>
 
 
-
         <!--
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -210,7 +209,6 @@
     </dependencies>
 
 
-
     <profiles>
         <!--JVM的配置注意Java内存问题,考虑是后台计算还是实时服务-->
         <!-- dev -->
@@ -220,7 +218,8 @@
                 <env>dev</env>
                 <jvmSettings.initialMemorySize>512</jvmSettings.initialMemorySize>
                 <jvmSettings.maxMemorySize>512</jvmSettings.maxMemorySize>
-                <jvmSettings.javaagent>-javaagent:/data/app/pinpoint-agent-1.8.3/pinpoint-bootstrap-1.8.3.jar</jvmSettings.javaagent>
+                <jvmSettings.javaagent>-javaagent:/data/app/pinpoint-agent-1.8.3/pinpoint-bootstrap-1.8.3.jar
+                </jvmSettings.javaagent>
             </properties>
 
         </profile>
@@ -231,7 +230,8 @@
                 <env>prd</env>
                 <jvmSettings.initialMemorySize>2560</jvmSettings.initialMemorySize>
                 <jvmSettings.maxMemorySize>2560</jvmSettings.maxMemorySize>
-                <jvmSettings.javaagent>-javaagent:/data/app/pinpoint-agent-1.8.3/pinpoint-bootstrap-1.8.3.jar</jvmSettings.javaagent>
+                <jvmSettings.javaagent>-javaagent:/data/app/pinpoint-agent-1.8.3/pinpoint-bootstrap-1.8.3.jar
+                </jvmSettings.javaagent>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
