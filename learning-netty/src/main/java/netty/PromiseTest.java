@@ -1,10 +1,6 @@
 package netty;
 
-import cn.hutool.core.date.StopWatch;
-import io.netty.util.concurrent.DefaultEventExecutor;
-import io.netty.util.concurrent.DefaultPromise;
-import io.netty.util.concurrent.Future;
-import io.netty.util.concurrent.GenericFutureListener;
+import io.netty.util.concurrent.*;
 
 /**
  * @author yuan.chen
@@ -14,38 +10,45 @@ import io.netty.util.concurrent.GenericFutureListener;
 public class PromiseTest {
 
     public static void main(String[] args) {
-
         // 构造线程池
-        final DefaultEventExecutor eventExecutors = new DefaultEventExecutor();
-
-        // 构建promise实例
-        final DefaultPromise promise = new DefaultPromise(eventExecutors);
-
-        promise.addListener((GenericFutureListener<Future<Integer>>) future -> {
-            if(future.isSuccess()){
-                System.out.println("任务结束，结果："+future.get());
-            }else{
-                System.out.println("任务失败，异常："+future.cause());
+        EventExecutor executor = new DefaultEventExecutor();
+        // 创建 DefaultPromise 实例
+        Promise promise = new DefaultPromise(executor);
+        // 下面给这个 promise 添加两个 listener
+        promise.addListener(new GenericFutureListener<Future<Integer>>() {
+            @Override
+            public void operationComplete(Future future) throws Exception {
+                if (future.isSuccess()) {
+                    System.out.println("任务结束，结果：" + future.get());
+                } else {
+                    System.out.println("任务失败，异常：" + future.cause());
+                }
+            }
+        }).addListener(new GenericFutureListener<Future<Integer>>() {
+            @Override
+            public void operationComplete(Future future) throws Exception {
+                System.out.println("任务结束，balabala...");
             }
         });
-        promise.addListener((GenericFutureListener<Future<Integer>>) future -> {
-            System.out.println("任务结束，balabala。。。");
-        });
-
-
-        eventExecutors.submit(() -> {
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        // 提交任务到线程池，五秒后执行结束，设置执行 promise 的结果
+        executor.submit(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                }
+                System.out.println(Thread.currentThread().getName());
+                // 设置 promise 的结果
+                // promise.setFailure(new RuntimeException());
+                promise.setSuccess(123456);
             }
         });
-
-        // main线程阻塞等待执行结果
+        // main 线程阻塞等待执行结果
         try {
             promise.sync();
         } catch (InterruptedException e) {
-            e.printStackTrace();
         }
     }
+
 }

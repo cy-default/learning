@@ -1,6 +1,7 @@
 package com.rm13.cloud;
 
 import com.rm13.cloud.factories.SecondApplicationContextInitializer;
+import org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
@@ -13,7 +14,7 @@ import java.io.IOException;
 
 @EnableFeignClients
 @EnableTransactionManagement
-@SpringBootApplication(exclude = {RedisAutoConfiguration.class})
+@SpringBootApplication(exclude = {RedisAutoConfiguration.class, MybatisAutoConfiguration.class})
 public class LeanningSpringcloudApplication {
 
 

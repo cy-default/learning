@@ -8,52 +8,49 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
-import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
-import java.util.Set;
 
 /**
  * @author yuan.chen
  * @email chen.yuan135@chinaredstar.com
  * @Date 2020/9/19
  */
-public class NIOTest {
+public class IO_NIOTest {
 
     public static void main(String[] args) throws IOException {
-
         final Selector selector = Selector.open();
-
         final ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
         serverSocketChannel.configureBlocking(false);
-        serverSocketChannel.bind(new InetSocketAddress(8000));
-
+        serverSocketChannel.bind(new InetSocketAddress(8888));
         serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
+        System.out.println("server start");
 
         while (true) {
             selector.select();
-            final Set<SelectionKey> selectionKeys = selector.selectedKeys();
-            final Iterator<SelectionKey> iterator = selectionKeys.iterator();
+
+            final Iterator<SelectionKey> iterator = selector.selectedKeys().iterator();
             while (iterator.hasNext()) {
                 final SelectionKey selectionKey = iterator.next();
+
                 if (selectionKey.isAcceptable()) {
-                    final ServerSocketChannel channel = (ServerSocketChannel) selectionKey.channel();
-                    final SocketChannel socketChannel = channel.accept();
-                    channel.configureBlocking(false);
+                    final ServerSocketChannel serverChannel = (ServerSocketChannel) selectionKey.channel();
+                    final SocketChannel socketChannel = serverChannel.accept();
+                    socketChannel.configureBlocking(false);
                     socketChannel.register(selector, SelectionKey.OP_READ);
                 } else if (selectionKey.isReadable()) {
-                    final SocketChannel channel = (SocketChannel) selectionKey.channel();
+                    final SocketChannel socketChannel = (SocketChannel) selectionKey.channel();
                     final ByteBuffer allocate = ByteBuffer.allocate(1024);
-
-                    while (channel.read(allocate) > 0) {
+                    while (socketChannel.read(allocate) > 0) {
                         allocate.flip();
-                        final byte[] bytes = new byte[allocate.limit()];
+                        final byte[] bytes = new byte[allocate.remaining()];
                         allocate.get(bytes);
-                        final String result = new String(bytes, StandardCharsets.UTF_8);
-                        System.out.println(result);
+                        String msg = new String(bytes);
+                        System.out.println("receive msg:" + msg);
+                        allocate.clear();
                     }
                 }
+                iterator.remove();
             }
-
         }
     }
 }

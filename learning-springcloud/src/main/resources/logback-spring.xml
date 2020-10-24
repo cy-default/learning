@@ -12,12 +12,14 @@
 
     <!--日志文件所在目录，如果是tomcat，如下写法日志文件会在则为${TOMCAT_HOME}/bin/logs/目录下-->
     <!--    <property name="LOG_HOME_WINDOWS" value="logs"/>-->
-    <property name="LOG_HOME_WINDOWS" value="D:/code_resource/workspace_all/idea/slf4j-logback/src/main/resources/logs"/>
+    <property name="LOG_HOME_WINDOWS"
+              value="D:/code_resource/workspace_all/idea/slf4j-logback/src/main/resources/logs"/>
     <property name="LOG_HOME_LINUX" value="./logs"/>
 
 
     <!-- 日志格式   [%-5p] %d{yyyy-MM-dd HH:mm:ss,SSS} method:%l%n%m%n  -->
-    <property name="CONSOLE_LOG_PATTERN" value="[%d{yyyy-MM-dd HH:mm:ss.SSS}][%X{traceId}] [%thread] %-5level %logger{36} : %msg%n"/>
+    <property name="CONSOLE_LOG_PATTERN"
+              value="[%d{yyyy-MM-dd HH:mm:ss.SSS}][%X{traceId}] [%thread] %-5level %logger{36} : %msg%n"/>
 
     <!--控制台-->
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
@@ -66,6 +68,18 @@
         </encoder>
     </appender>
 
+
+    <!-- 异步输出 -->
+    <appender name="ASYNC-INFO" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+        <discardingThreshold>0</discardingThreshold>
+        <!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
+        <queueSize>256</queueSize>
+        <!-- 添加附加的appender,最多只能添加一个 -->
+        <appender-ref ref="INFO-LOG"/>
+    </appender>
+
+
     <!--这里如果是info，spring、mybatis等框架则不会输出：TRACE < DEBUG < INFO <  WARN < ERROR-->
     <!--root是所有logger的初始级，均继承root，如果某一个自定义的logger没有指定level，就会寻找父logger看有没有指定级别，直到找到root。-->
     <!--    <root level="debug">-->
@@ -102,24 +116,24 @@
     </logger>
 
     <root level="info">
-        <appender-ref ref="stdout" />
+        <appender-ref ref="stdout"/>
     </root>
 
     <!--配置多环境日志输出  可以在application.properties中配置选择哪个profiles : spring.profiles.active=dev-->
     <!--开发环境:打印控制台-->
     <springProfile name="dev">
         <root level="debug">
-            <appender-ref ref="stdout" />
-            <appender-ref ref="infoFile" />
-            <appender-ref ref="errorFile" />
+            <appender-ref ref="stdout"/>
+            <appender-ref ref="infoFile"/>
+            <appender-ref ref="errorFile"/>
         </root>
     </springProfile>
     <!--生产环境:输出到文件-->
     <springProfile name="prd">
         <root level="debug">
-            <appender-ref ref="stdout" />
-            <appender-ref ref="infoFile" />
-            <appender-ref ref="errorFile" />
+            <appender-ref ref="stdout"/>
+            <appender-ref ref="infoFile"/>
+            <appender-ref ref="errorFile"/>
         </root>
     </springProfile>
 

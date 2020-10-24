@@ -7,7 +7,7 @@ import java.util.Arrays;
  * @email chen.yuan135@chinaredstar.com
  * @Date 2020/9/15
  */
-public class SelectSortTest {
+public class Sort_SelectSortTest {
 
     public static void main(String[] args) {
         int[] arr = {-1,2,10,5,8, -10,2,4};

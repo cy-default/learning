@@ -17,38 +17,37 @@ import java.nio.charset.StandardCharsets;
  * @email chen.yuan135@chinaredstar.com
  * @Date 2020/9/19
  */
-public class NettyTest {
+public class IO_NIOTest_NettyTest {
 
     public static void main(String[] args) throws InterruptedException {
         final NioEventLoopGroup boss = new NioEventLoopGroup(1);
         final NioEventLoopGroup child = new NioEventLoopGroup();
 
         final ServerBootstrap serverBootstrap = new ServerBootstrap();
-        final EchoServerHandler echoServerHandler = new EchoServerHandler();
+
         serverBootstrap.group(boss, child)
                 .channel(NioServerSocketChannel.class)
-                .handler(new LoggingHandler())
-                .option(ChannelOption.SO_BACKLOG, 100)
+                .option(ChannelOption.SO_BACKLOG, 0)
+                .handler(new LoggingHandler(LogLevel.DEBUG))
                 .childHandler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel ch) throws Exception {
                         final ChannelPipeline pipeline = ch.pipeline();
-                        pipeline.addLast(new LoggingHandler(LogLevel.INFO));
-                        pipeline.addLast(echoServerHandler);
+                        pipeline.addLast(new LoggingHandler(LogLevel.DEBUG));
+                        pipeline.addLast(new EchoServerHandler());
                     }
                 });
 
-        final ChannelFuture sync = serverBootstrap.bind(8000).sync();
-
-        sync.channel().closeFuture().sync();
-
+        final ChannelFuture channelFuture = serverBootstrap.bind(8888).sync();
+        System.out.println("111-------");
+        channelFuture.channel().closeFuture().sync();
+        System.out.println("222-------");
         boss.shutdownGracefully();
         child.shutdownGracefully();
 
-
     }
 
-    public static void send(SocketChannel socketChannel, String msg){
+    public static void send(SocketChannel socketChannel, String msg) {
         final ByteBufAllocator aDefault = ByteBufAllocator.DEFAULT;
         final ByteBuf buffer = aDefault.buffer(msg.getBytes().length);
         buffer.writeCharSequence(msg, StandardCharsets.UTF_8);
@@ -63,7 +62,7 @@ public class NettyTest {
         protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
             final ByteBuf msg1 = (ByteBuf) msg;
             final byte[] bytes = new byte[msg1.readableBytes()];
-            msg1.writeBytes(bytes);
+            msg1.readBytes(bytes);
             final String result = new String(bytes, StandardCharsets.UTF_8);
             System.out.println(result);
             ctx.write(msg);
