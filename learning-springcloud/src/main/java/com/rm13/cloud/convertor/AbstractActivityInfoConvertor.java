@@ -1,9 +1,9 @@
 package com.rm13.cloud.convertor;
 
-import com.rm13.cloud.pojo.bo.ActivityInfoBO;
-import com.rm13.cloud.pojo.dto.ActivityInfoDTO;
-import com.rm13.cloud.pojo.dto.user.UserInfoDTO;
-import com.rm13.cloud.pojo.po.*;
+import com.rm13.cloud.model.bo.ActivityInfoBO;
+import com.rm13.cloud.model.dto.ActivityInfoDTO;
+import com.rm13.cloud.model.dto.user.UserInfoDTO;
+import com.rm13.cloud.model.po.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;

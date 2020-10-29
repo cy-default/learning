@@ -3,7 +3,7 @@ package com.rm13.cloud;
 import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.IdUtil;
 import com.alibaba.fastjson.JSON;
-import com.rm13.cloud.pojo.po.User;
+import com.rm13.cloud.model.po.User;
 import org.springframework.util.StopWatch;
 
 import java.util.ArrayList;

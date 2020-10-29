@@ -1,6 +1,6 @@
 package com.rm13.cloud.feign;
 
-import com.rm13.cloud.pojo.po.User;
+import com.rm13.cloud.model.po.User;
 import feign.Logger;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;

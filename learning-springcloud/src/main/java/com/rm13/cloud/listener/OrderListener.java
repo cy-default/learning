@@ -1,7 +1,7 @@
 package com.rm13.cloud.listener;
 
 import com.alibaba.fastjson.JSON;
-import com.rm13.cloud.pojo.po.User;
+import com.rm13.cloud.model.po.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.core.annotation.Order;

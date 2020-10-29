@@ -1,7 +1,7 @@
 package com.rm13.cloud.controller;
 
 import com.rm13.cloud.login.PassLogin;
-import com.rm13.cloud.pojo.po.User;
+import com.rm13.cloud.model.po.User;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

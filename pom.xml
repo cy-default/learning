@@ -22,7 +22,7 @@
         <module>learning-spring</module>
         <module>learning-arithmetic</module>
         <module>learning-springboot</module>
-        <module>learning-kafka</module>
+        <module>learning-mq</module>
         <module>learning-mybatis</module>
         <module>learning-springmvc</module>
         <module>learning-shiro</module>

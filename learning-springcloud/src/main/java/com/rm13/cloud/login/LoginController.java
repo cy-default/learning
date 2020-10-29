@@ -1,6 +1,6 @@
 package com.rm13.cloud.login;
 
-import com.rm13.cloud.pojo.dto.user.CurrentUser;
+import com.rm13.cloud.model.dto.user.CurrentUser;
 import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

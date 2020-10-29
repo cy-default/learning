@@ -1,7 +1,7 @@
 package com.rm13.cloud.listener;
 
-import com.rm13.cloud.pojo.po.Order;
-import com.rm13.cloud.pojo.po.User;
+import com.rm13.cloud.model.po.Order;
+import com.rm13.cloud.model.po.User;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.stereotype.Service;

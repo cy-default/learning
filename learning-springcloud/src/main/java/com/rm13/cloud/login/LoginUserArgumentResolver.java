@@ -1,6 +1,6 @@
 package com.rm13.cloud.login;
 
-import com.rm13.cloud.pojo.dto.user.CurrentUser;
+import com.rm13.cloud.model.dto.user.CurrentUser;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;

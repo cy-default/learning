@@ -1,7 +1,7 @@
 package com.rm13.cloud.login;
 
 import com.rm13.cloud.exception.CustomException;
-import com.rm13.cloud.pojo.dto.user.CurrentUser;
+import com.rm13.cloud.model.dto.user.CurrentUser;
 import org.springframework.core.NamedThreadLocal;
 
 /**
