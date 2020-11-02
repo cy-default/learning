@@ -1,7 +1,7 @@
 package com.rm13.cloud.kaptcha;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
-import com.rm13.cloud.login.PassLogin;
+import com.rm13.cloud.login.passlogin.PassLogin;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

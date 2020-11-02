@@ -28,8 +28,8 @@ import org.springframework.core.io.Resource;
  * @email chen.yuan135@chinaredstar.com
  * @Date 2020/9/14
  */
-@Configuration
-@EnableBatchProcessing
+// @Configuration
+// @EnableBatchProcessing
 public class BatchConfig {
 
     @Value("input/inputData*.csv")

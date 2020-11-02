@@ -4,17 +4,17 @@ import com.rm13.cloud.factories.SecondApplicationContextInitializer;
 import org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.swing.*;
 import java.io.IOException;
 
 @EnableFeignClients
 @EnableTransactionManagement
-@SpringBootApplication(exclude = {RedisAutoConfiguration.class, MybatisAutoConfiguration.class})
+@SpringBootApplication(exclude = {RedisAutoConfiguration.class, RabbitAutoConfiguration.class, MybatisAutoConfiguration.class, DataSourceAutoConfiguration.class})
 public class LeanningSpringcloudApplication {
 
 

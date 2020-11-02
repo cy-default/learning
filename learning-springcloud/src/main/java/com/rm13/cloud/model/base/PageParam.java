@@ -13,7 +13,6 @@ import lombok.experimental.Accessors;
  * @Date 2020/10/28
  */
 @Data
-//
 @Accessors(chain = true)
 public class PageParam<T> implements IPage {
 

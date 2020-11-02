@@ -1,6 +1,6 @@
 package com.rm13.cloud.controller;
 
-import com.rm13.cloud.login.PassLogin;
+import com.rm13.cloud.login.passlogin.PassLogin;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Forward转发仅限在服务器内部转发， 同一个请求， 同一个线程处理。请求体内容没变
+ * Forward转发仅限在服务器内部转发， 同一个请求， 同一个线程处理, 同一个请求体，请求体内容没变
  *
  * @author yuan.chen
  * @email chen.yuan135@chinaredstar.com

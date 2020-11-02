@@ -1,7 +1,10 @@
 package com.rm13.cloud.login;
 
+import com.rm13.cloud.login.argsresolver.LoginUserArgumentResolver;
+import com.rm13.cloud.login.passlogin.LoginUserInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -25,6 +28,14 @@ public class LoginConfig implements WebMvcConfigurer {
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
         resolvers.add(new LoginUserArgumentResolver());
+    }
+
+    /**
+     * 添加返回值解析器
+     * @param handlers
+     */
+    @Override
+    public void addReturnValueHandlers(List<HandlerMethodReturnValueHandler> handlers) {
     }
 
     /**

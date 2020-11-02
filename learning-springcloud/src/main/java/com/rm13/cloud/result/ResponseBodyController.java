@@ -1,6 +1,6 @@
 package com.rm13.cloud.result;
 
-import com.rm13.cloud.login.PassLogin;
+import com.rm13.cloud.login.passlogin.PassLogin;
 import com.rm13.cloud.model.po.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

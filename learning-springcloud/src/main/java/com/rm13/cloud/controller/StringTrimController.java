@@ -1,7 +1,7 @@
 package com.rm13.cloud.controller;
 
 import com.rm13.cloud.model.po.Account;
-import com.rm13.cloud.login.PassLogin;
+import com.rm13.cloud.login.passlogin.PassLogin;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 

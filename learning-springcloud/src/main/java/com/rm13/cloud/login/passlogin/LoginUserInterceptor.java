@@ -1,6 +1,8 @@
-package com.rm13.cloud.login;
+package com.rm13.cloud.login.passlogin;
 
 import com.alibaba.fastjson.JSON;
+import com.rm13.cloud.login.LoginConfig;
+import com.rm13.cloud.login.LoginController;
 import com.rm13.cloud.model.dto.user.CurrentUser;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -18,8 +20,8 @@ import java.util.Objects;
  * @author yuan.chen
  * @email chen.yuan135@chinaredstar.com
  * @Date 2020/5/18
- * @see com.rm13.cloud.login.LoginConfig
- * @see com.rm13.cloud.login.LoginController
+ * @see LoginConfig
+ * @see LoginController
  */
 public class LoginUserInterceptor extends HandlerInterceptorAdapter {
 
@@ -49,14 +51,14 @@ public class LoginUserInterceptor extends HandlerInterceptorAdapter {
         // Demo实例
         String user = "{\"nickName\":\"cy\",\"password\":\"sb!@#$%^\",\"phone\":\"17606119876\",\"username\":\"lovemyrm13\"}";
         CurrentUser currentUser = JSON.parseObject(user, CurrentUser.class);
-        LoginUserHolder.set(currentUser);
+        LoginController.LoginUserHolder.set(currentUser);
         return true;
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         // 移除threadLocal中的值，必须
-        LoginUserHolder.remove();
+        LoginController.LoginUserHolder.remove();
     }
 
     public void authrizationFailed(HttpServletResponse response) throws IOException {

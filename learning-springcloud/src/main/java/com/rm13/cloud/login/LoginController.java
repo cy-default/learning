@@ -1,7 +1,12 @@
 package com.rm13.cloud.login;
 
+import com.rm13.cloud.exception.CustomException;
+import com.rm13.cloud.login.argsresolver.LoginUserArgumentResolver;
+import com.rm13.cloud.login.passlogin.LoginUserInterceptor;
+import com.rm13.cloud.login.passlogin.PassLogin;
 import com.rm13.cloud.model.dto.user.CurrentUser;
 import io.swagger.annotations.*;
+import org.springframework.core.NamedThreadLocal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,5 +49,34 @@ public class LoginController {
     public CurrentUser business2(@RequestParam("name")String name, CurrentUser currentUser){
         currentUser.setCurrentTime(LocalDateTime.now());
         return currentUser;
+    }
+
+    /**
+     * 获取当前登陆用户
+     */
+    public static class LoginUserHolder {
+
+        /**
+         * C端用户账号信息本地变量
+         */
+        private static final ThreadLocal<CurrentUser> C_ACCOUNT_THREAD_LOCAL = new NamedThreadLocal<>("C_ACCOUNT_THREAD_LOCAL");
+
+        public static void set(CurrentUser currentUser) {
+            C_ACCOUNT_THREAD_LOCAL.set(currentUser);
+        }
+
+        public static void remove() {
+            C_ACCOUNT_THREAD_LOCAL.remove();
+        }
+
+        public static CurrentUser get() {
+            CurrentUser userInfo = C_ACCOUNT_THREAD_LOCAL.get();
+            if (userInfo == null) {
+                throw new CustomException(1102,"用户不存在");
+            }
+            return userInfo;
+        }
+        private LoginUserHolder() {
+        }
     }
 }

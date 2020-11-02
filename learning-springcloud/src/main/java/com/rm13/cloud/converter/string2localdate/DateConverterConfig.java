@@ -1,15 +1,15 @@
-package com.rm13.cloud.localDateParam;
+package com.rm13.cloud.converter.string2localdate;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.format.FormatterRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- *
  * 两个bean会注入到spring mvc的参数解析器(ParameterConversionService)
  * 当传入的字符串要转为LocalDateTime类时，spring会调用该Converter对这个入参进行转换。
  *
@@ -18,19 +18,24 @@ import java.time.format.DateTimeFormatter;
  * @Date 2020/6/14
  */
 @Configuration
-public class DateConverterConfig {
+public class DateConverterConfig implements WebMvcConfigurer {
+
+
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addConverter(localDateConverter());
+        registry.addConverter(localDateTimeConverter());
+    }
 
     /**
      * 使用lambada表达式报错
      * IllegalArgumentException: Unable to determine source type <S> and target type <T> for your Converter [com.rm13.cloud.localDateParam.DateConverterConfig$$Lambda$569/440435702]; does the class parameterize those types?
-     *
+     * <p>
      * 需要改为使用匿名内部类
-     *
      *
      * @return
      */
-    @Bean
-    public Converter<String, LocalDate> localDateConverter() {
+    private Converter<String, LocalDate> localDateConverter() {
         return new Converter<String, LocalDate>() {
             @Override
             public LocalDate convert(String source) {
@@ -39,8 +44,8 @@ public class DateConverterConfig {
         };
     }
 
-    @Bean
-    public Converter<String, LocalDateTime> localDateTimeConverter() {
+
+    private Converter<String, LocalDateTime> localDateTimeConverter() {
         return new Converter<String, LocalDateTime>() {
             @Override
             public LocalDateTime convert(String source) {

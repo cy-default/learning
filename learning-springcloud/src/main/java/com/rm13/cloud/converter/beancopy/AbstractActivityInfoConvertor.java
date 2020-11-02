@@ -1,4 +1,4 @@
-package com.rm13.cloud.convertor;
+package com.rm13.cloud.converter.beancopy;
 
 import com.rm13.cloud.model.bo.ActivityInfoBO;
 import com.rm13.cloud.model.dto.ActivityInfoDTO;

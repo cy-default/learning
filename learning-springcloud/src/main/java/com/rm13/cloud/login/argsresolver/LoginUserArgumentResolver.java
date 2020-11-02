@@ -1,5 +1,7 @@
-package com.rm13.cloud.login;
+package com.rm13.cloud.login.argsresolver;
 
+import com.rm13.cloud.login.LoginConfig;
+import com.rm13.cloud.login.LoginController;
 import com.rm13.cloud.model.dto.user.CurrentUser;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
@@ -12,8 +14,8 @@ import java.lang.reflect.Method;
 /**
  * 需要把该类加入到webmvc参数解析中
  *
- * @see com.rm13.cloud.login.LoginConfig
- * @see com.rm13.cloud.login.LoginController
+ * @see LoginConfig
+ * @see LoginController
  * 登陆用户 参数解析器
  * <p>
  * 自动注入当前登陆用户
@@ -49,6 +51,6 @@ public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer,
                                   NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-        return LoginUserHolder.get();
+        return LoginController.LoginUserHolder.get();
     }
 }
