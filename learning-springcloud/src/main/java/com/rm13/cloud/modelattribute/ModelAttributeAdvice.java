@@ -1,4 +1,4 @@
-package com.rm13.cloud.config;
+package com.rm13.cloud.modelattribute;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
 

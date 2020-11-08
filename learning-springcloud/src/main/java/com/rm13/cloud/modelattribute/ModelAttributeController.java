@@ -1,4 +1,4 @@
-package com.rm13.cloud.controller;
+package com.rm13.cloud.modelattribute;
 
 import com.rm13.cloud.login.passlogin.PassLogin;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -37,7 +37,7 @@ public class ModelAttributeController {
     }
 
     @ModelAttribute("modelAttributeTest")
-    public Object modelAttributeTest(HttpServletRequest request){
+    public Object modelatt(HttpServletRequest request){
         System.out.println("ModelAttributeController:modelAttributeTest:"+request.getAttribute("aaa"));
         return request.getAttribute("aaa");
     }
