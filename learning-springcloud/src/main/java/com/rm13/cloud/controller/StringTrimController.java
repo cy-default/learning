@@ -2,6 +2,7 @@ package com.rm13.cloud.controller;
 
 import com.rm13.cloud.model.po.Account;
 import com.rm13.cloud.login.passlogin.PassLogin;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
  * @email chen.yuan135@chinaredstar.com
  * @Date 2020/5/21
  */
+@Api(value = "StringTrimController", tags = "参数时自动去除前后空格")
 @Slf4j
 @PassLogin
 @RestController

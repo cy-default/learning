@@ -64,8 +64,8 @@ public class SwaggerConfig {
                 .paths(PathSelectors.any())
                 .build()
                 .globalOperationParameters(pars)
-                // .enable(enable) 是否开启api
-                ;
+                // 是否开启api
+                .enable(enable);
     }
 
     @Bean
@@ -78,8 +78,8 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("com.rm13.cloud.controller.ForwardController"))
                 .paths(PathSelectors.any())
                 .build()
-                //.enable(enable) 是否开启api
-                ;
+                // 是否开启api
+                .enable(enable);
     }
 
     @Bean
@@ -92,8 +92,22 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("com.rm13.cloud.controller.ArgsController"))
                 .paths(PathSelectors.any())
                 .build()
-                //.enable(enable) 是否开启api
-                ;
+                // 是否开启api
+                .enable(enable);
+    }
+
+    @Bean
+    public Docket stringtrim() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(apiInfo())
+                .groupName("cloud-参数格式化")
+                //.host(host) 自定义请求URL
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.rm13.cloud.controller.StringTrimController"))
+                .paths(PathSelectors.any())
+                .build()
+                // 是否开启api
+                .enable(enable);
     }
 
 

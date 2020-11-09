@@ -26,6 +26,7 @@ import java.util.UUID;
  * @email chen.yuan135@chinaredstar.com
  * @Date 2020/4/26
  */
+
 @PassLogin
 @Slf4j
 @Controller
