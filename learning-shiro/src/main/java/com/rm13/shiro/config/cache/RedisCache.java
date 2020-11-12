@@ -1,4 +1,4 @@
-package com.rm13.shiro.config.redis;
+package com.rm13.shiro.config.cache;
 
 import com.rm13.shiro.model.generator.User;
 import lombok.extern.slf4j.Slf4j;

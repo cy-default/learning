@@ -1,8 +1,8 @@
 package com.rm13.shiro.config;
 
 import com.rm13.shiro.config.customfilter.*;
-import com.rm13.shiro.config.redis.CustomSessionManager;
-import com.rm13.shiro.config.redis.RedisCacheManager;
+import com.rm13.shiro.config.session.CustomSessionManager;
+import com.rm13.shiro.config.cache.RedisCacheManager;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.crypto.hash.Sha1Hash;
 import org.apache.shiro.mgt.SecurityManager;

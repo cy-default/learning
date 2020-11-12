@@ -20,8 +20,9 @@ public class GlobalExceptionHandler {
 
 
     /**
-     * 处理基于注解的shiro权限管理
+     * 处理"基于注解"的shiro权限管理(配合shiroFilterFactoryBean一起使用)
      * RequiresPermissions/RequiresRoles
+     *
      * @param e
      * @return
      */

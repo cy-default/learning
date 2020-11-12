@@ -1,4 +1,4 @@
-package com.rm13.shiro.config.redis;
+package com.rm13.shiro.config.session;
 
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.UnknownSessionException;
