@@ -1,27 +1,28 @@
 package com.rm13.shiro.config;
 
-import org.apache.shiro.SecurityUtils;
+import com.rm13.shiro.config.customfilter.*;
+import com.rm13.shiro.config.redis.CustomSessionManager;
+import com.rm13.shiro.config.redis.RedisCacheManager;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.crypto.hash.Sha1Hash;
-import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.filter.mgt.DefaultFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 
-import java.net.UnknownHostException;
+import javax.servlet.Filter;
 import java.util.LinkedHashMap;
 
 /**
@@ -30,36 +31,94 @@ import java.util.LinkedHashMap;
  * @Date 2019/12/30
  */
 @Configuration
-public class ShiroConfig3 {
-
+public class ShiroConfig {
 
     /**
-     * redis 作为缓存
+     * 自定义 认证/授权
+     *
+     * @return
+     */
+    @Bean
+    public MyRealm myRealm() {
+        // 配置Realm，需自己实现
+        MyRealm myRealm = new MyRealm();
+        // 默认没开启缓存
+        // myRealm.setAuthenticationCachingEnabled(true);
+        // 设置自定义规则的权限缓存逻辑
+        myRealm.setCredentialsMatcher(hashedCredentialsMatcher());
+        return myRealm;
+    }
+
+    @Bean
+    public SessionDAO customSessionDAO() {
+        EnterpriseCacheSessionDAO sessionDAO = new EnterpriseCacheSessionDAO();
+        return sessionDAO;
+    }
+
+    /**
+     * session 会话管理
+     *
+     * @return
+     */
+    @Bean
+    public CustomSessionManager sessionManager() {
+        CustomSessionManager customSessionManager = new CustomSessionManager();
+        customSessionManager.setSessionDAO(customSessionDAO());
+        return customSessionManager;
+    }
+
+    /**
+     * shiro 缓存管理（会话session， 认证authentication， 授权authorization， ）
+     *
      * @param redisConnectionFactory
      * @return
      */
     @Bean
-    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
-        RedisTemplate<String, Object> template = new RedisTemplate<>();
-        template.setKeySerializer(RedisSerializer.string());
-        template.setConnectionFactory(redisConnectionFactory);
-        return template;
+    public RedisCacheManager shiroRedisCacheManager(RedisConnectionFactory redisConnectionFactory) {
+        RedisTemplate<String, Object> shiroRedisTemplate = new RedisTemplate<>();
+        shiroRedisTemplate.setKeySerializer(new GenericJackson2JsonRedisSerializer());
+        shiroRedisTemplate.setValueSerializer(new JdkSerializationRedisSerializer());
+        shiroRedisTemplate.setConnectionFactory(redisConnectionFactory);
+        shiroRedisTemplate.afterPropertiesSet();
+        return new RedisCacheManager(shiroRedisTemplate);
     }
 
+    /**
+     * shiro 核心管理器
+     * 管理(authenticator, authorizer, sessionManager, realms, sessionDAO, cacheManager)
+     *
+     * @param redisCacheManager
+     * @param myRealm
+     * @param sessionManager
+     * @return
+     */
     @Bean
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(ShiroRedisCacheManager redisCacheManager) {
+    public SecurityManager securityManager(RedisCacheManager redisCacheManager,
+                                           MyRealm myRealm,
+                                           CustomSessionManager sessionManager) {
+        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+        securityManager.setRealm(myRealm);
+        securityManager.setCacheManager(redisCacheManager);
+        securityManager.setSessionManager(sessionManager);
+        return securityManager;
+    }
+
+
+    /**
+     * shiro 入口；
+     * 先通过filter做第一层过滤，再通过注解做第二层拦截。（注解是通过Spring-aop来实现的）
+     *
+     * @param securityManager
+     * @return
+     */
+    @Bean
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         // 设置securityManager
-        shiroFilterFactoryBean.setSecurityManager(securityManager());
-        // 登录的url
+        shiroFilterFactoryBean.setSecurityManager(securityManager);
         shiroFilterFactoryBean.setLoginUrl("/login");
-        // 登录成功后跳转的url
-        shiroFilterFactoryBean.setSuccessUrl("/index");
-        // 未授权url
-        shiroFilterFactoryBean.setUnauthorizedUrl("/403");
-
         LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-
+        filterChainDefinitionMap.put("/shiro/logout", "logout");
         // 定义filterChain，静态资源不拦截
         filterChainDefinitionMap.put("/css/**", "anon");
         filterChainDefinitionMap.put("/js/**", "anon");
@@ -67,60 +126,23 @@ public class ShiroConfig3 {
         filterChainDefinitionMap.put("/img/**", "anon");
         // druid数据源监控页面不拦截
         filterChainDefinitionMap.put("/druid/**", "anon");
-        // 配置退出过滤器，其中具体的退出代码Shiro已经替我们实现了
-
-        // 调用logout后，会重定向到/login
-        filterChainDefinitionMap.put("/logout", "logout");
-        filterChainDefinitionMap.put("/login", "anon");
-        filterChainDefinitionMap.put("/403", "perms");
-
-        // 除上以外所有url都必须是用户才可以访问，未通过认证自动访问LoginUrl
+        // 其余所有请求都要求登陆操作
         filterChainDefinitionMap.put("/**", "user");
-
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+
+        // 重要地方，使用自定义的过滤器
+        LinkedHashMap<String, Filter> filterMap = new LinkedHashMap<>();
+        filterMap.put(DefaultFilter.user.name(), new ShiroUserFilter());
+        filterMap.put(DefaultFilter.authc.name(), new ShiroFormAuthenticationFilter());
+        filterMap.put(DefaultFilter.roles.name(), new ShiroRolesAuthorizationFilter());
+        filterMap.put(DefaultFilter.perms.name(), new ShiroPermissionsAuthorizationFilter());
+        filterMap.put(DefaultFilter.logout.name(), new ShiroLogoutFilter());
+        shiroFilterFactoryBean.setFilters(filterMap);
         return shiroFilterFactoryBean;
     }
 
     @Bean
-    public SecurityManager securityManager(){
-        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        securityManager.setRealm(myRealm());
-        securityManager.setCacheManager(customCacheManager());
-        securityManager.setSessionManager(customSessionManager());
-        return securityManager;
-    }
-
-    @Bean
-    public SessionManager customSessionManager(){
-        CustomSessionManager customSessionManager = new CustomSessionManager();
-        customSessionManager.setSessionDAO(customSessionDAO());
-        customSessionManager.setCacheManager(customCacheManager());
-        return customSessionManager;
-    }
-
-    @Bean
-    public SessionDAO customSessionDAO(){
-        EnterpriseCacheSessionDAO sessionDAO = new EnterpriseCacheSessionDAO();
-        return sessionDAO;
-    }
-
-    @Bean
-    public ShiroRedisCacheManager customCacheManager(){
-        return new ShiroRedisCacheManager();
-    }
-
-    @Bean
-    public MyRealm myRealm(){
-        // 配置Realm，需自己实现
-        MyRealm shiroRealm = new MyRealm();
-        // 设置自定义规则的权限缓存逻辑
-        shiroRealm.setCacheManager(customCacheManager());
-        shiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
-        return shiroRealm;
-    }
-
-    @Bean
-    public HashedCredentialsMatcher hashedCredentialsMatcher(){
+    public HashedCredentialsMatcher hashedCredentialsMatcher() {
         HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
         hashedCredentialsMatcher.setHashAlgorithmName(Sha1Hash.ALGORITHM_NAME);
         return hashedCredentialsMatcher;
@@ -137,8 +159,9 @@ public class ShiroConfig3 {
     /**
      * 开启Shiro的注解(如@RequiresRoles,@RequiresPermissions),需借助SpringAOP扫描使用Shiro注解的类,并在必要时进行安全逻辑验证
      * 配置以下两个bean(DefaultAdvisorAutoProxyCreator(可选)和AuthorizationAttributeSourceAdvisor)即可实现此功能
+     * <p>
+     * 相等于@EnableAspectJAutoProxy(proxyTargetClass=true)
      */
-    // 相等于@EnableAspectJAutoProxy(proxyTargetClass=true)
     @Bean
     @DependsOn({"lifecycleBeanPostProcessor"})
     public DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator() {
@@ -148,20 +171,12 @@ public class ShiroConfig3 {
     }
 
     @Bean
-    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor() {
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager) {
         AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
-        authorizationAttributeSourceAdvisor.setSecurityManager(securityManager());
+        authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
         return authorizationAttributeSourceAdvisor;
     }
 
-    /**
-     * 解决 UnauthorizedUrl（403） 不生效问题
-     * @return
-     */
-    @Bean
-    public MyExceptionResolver myExceptionResolver(){
-        return new MyExceptionResolver();
-    }
 
     /**
      * 凭证匹配器

@@ -1,6 +1,5 @@
 package com.rm13.shiro.config;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -15,11 +14,10 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(loginHandlerInterceptor()).addPathPatterns("/**");
+        // registry.addInterceptor(loginHandlerInterceptor()).addPathPatterns("/**").excludePathPatterns("/shiro/login");
     }
 
-    @Bean
-    public LoginHandlerInterceptor loginHandlerInterceptor(){
+    private LoginHandlerInterceptor loginHandlerInterceptor() {
         return new LoginHandlerInterceptor();
     }
 }

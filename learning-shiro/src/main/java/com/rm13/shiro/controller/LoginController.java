@@ -36,16 +36,6 @@ public class LoginController {
     private AbstractUserConvertor userConvertor;
 
 
-    @GetMapping("/login")
-    public ResponseMsg<String> login() {
-        log.info("GetMapping==login");
-        User user = ShiroUtil.getPrincipal();
-        if (user != null) {
-            return ResponseMsg.success("已登录");
-        }
-        return ResponseMsg.error("用户未登录", ResultCode.C401.getCode());
-    }
-
     @GetMapping("/logout")
     public ResponseMsg<String> redirectIndex() {
         log.info("GetMapping==logout");
@@ -71,7 +61,7 @@ public class LoginController {
     }
 
 
-    @PostMapping(value = "/login")
+    @GetMapping(value = "/login")
     public ResponseMsg login(@RequestParam("username") String username,
                              @RequestParam("password") String password){
         log.info("login====================");
