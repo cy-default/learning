@@ -1,6 +1,6 @@
 package com.rm13.shardingsphere.controller.user;
 
-import com.rm13.shardingsphere.po.User;
+import com.rm13.shardingsphere.model.po.User;
 import com.rm13.shardingsphere.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

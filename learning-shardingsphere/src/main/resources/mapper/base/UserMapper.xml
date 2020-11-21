@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rm13.shardingsphere.dao.base.UserMapper">
-  <resultMap id="BaseResultMap" type="com.rm13.shardingsphere.po.User">
+  <resultMap id="BaseResultMap" type="com.rm13.shardingsphere.model.po.User">
     <constructor>
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="username" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -31,7 +31,7 @@
     delete from tb_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.rm13.shardingsphere.po.User" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.rm13.shardingsphere.model.po.User" useGeneratedKeys="true">
     insert into tb_user (username, password, name, 
       nick_name, age, address, 
       create_by, create_time, modify_by, 
@@ -41,7 +41,7 @@
       #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyBy,jdbcType=VARCHAR}, 
       #{modifyTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.rm13.shardingsphere.po.User" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.rm13.shardingsphere.model.po.User" useGeneratedKeys="true">
     insert into tb_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="username != null">
@@ -114,7 +114,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.rm13.shardingsphere.po.User">
+  <update id="updateByPrimaryKeySelective" parameterType="com.rm13.shardingsphere.model.po.User">
     update tb_user
     <set>
       <if test="username != null">
@@ -153,7 +153,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.rm13.shardingsphere.po.User">
+  <update id="updateByPrimaryKey" parameterType="com.rm13.shardingsphere.model.po.User">
     update tb_user
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},

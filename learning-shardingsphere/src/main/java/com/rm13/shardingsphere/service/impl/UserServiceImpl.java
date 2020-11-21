@@ -1,9 +1,11 @@
 package com.rm13.shardingsphere.service.impl;
 
 import com.rm13.shardingsphere.dao.UserDAO;
-import com.rm13.shardingsphere.dao.base.UserMapper;
-import com.rm13.shardingsphere.po.User;
+import com.rm13.shardingsphere.model.po.User;
+import com.rm13.shardingsphere.model.query.UserQuery;
+import com.rm13.shardingsphere.model.vo.UserVO;
 import com.rm13.shardingsphere.service.UserService;
+import com.rm13.shardingsphere.util.BeanCopierUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,16 +22,18 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDAO userDAO;
 
+
     @Override
-    public List<User> listUser() {
-        List<User> users = userDAO.listUser();
-        return users;
+    public List<UserVO> list(UserQuery query) {
+        List<User> users = userDAO.list(query);
+        List<UserVO> userVOS = BeanCopierUtil.convert(users, UserVO.class);
+        return userVOS;
     }
 
-
     @Override
-    public User getUser(Integer id) {
+    public UserVO get(Integer id) {
         User user = userDAO.selectByPrimaryKey(id);
-        return user;
+        UserVO userVO = BeanCopierUtil.convert(user, UserVO.class);
+        return userVO;
     }
 }

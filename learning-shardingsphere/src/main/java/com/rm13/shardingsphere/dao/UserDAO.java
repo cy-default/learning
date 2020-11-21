@@ -1,7 +1,9 @@
 package com.rm13.shardingsphere.dao;
 
 import com.rm13.shardingsphere.dao.base.UserMapper;
-import com.rm13.shardingsphere.po.User;
+import com.rm13.shardingsphere.model.po.User;
+import com.rm13.shardingsphere.model.query.UserQuery;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -12,5 +14,5 @@ import java.util.List;
  */
 public interface UserDAO extends UserMapper {
 
-    List<User> listUser();
+    List<User> list(@Param("query") UserQuery query);
 }

@@ -1,4 +1,4 @@
-package com.rm13.shardingsphere.po;
+package com.rm13.shardingsphere.model.po;
 
 import java.time.LocalDateTime;
 

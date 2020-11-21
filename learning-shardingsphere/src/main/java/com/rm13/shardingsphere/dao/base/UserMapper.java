@@ -1,6 +1,6 @@
 package com.rm13.shardingsphere.dao.base;
 
-import com.rm13.shardingsphere.po.User;
+import com.rm13.shardingsphere.model.po.User;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
