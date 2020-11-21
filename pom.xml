@@ -32,6 +32,7 @@
         <module>learning-springdata</module>
         <module>cloud-metrics</module>
         <module>learning-netty</module>
+        <module>learning-shardingsphere</module>
     </modules>
 
     <dependencyManagement>

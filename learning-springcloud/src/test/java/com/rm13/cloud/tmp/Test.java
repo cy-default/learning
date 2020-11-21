@@ -1,36 +1,60 @@
 package com.rm13.cloud.tmp;
 
-import com.rm13.cloud.model.po.User;
-import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
-
-import java.util.ArrayList;
-import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.*;
 
 /**
  * @author yuan.chen
  * @email chen.yuan135@chinaredstar.com
  * @Date 2020/11/5
  */
+
+@SpringBootTest
 public class Test {
 
-    public static void main(String[] args) {
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
 
-        /*
-        final User user = new User();
-        user.setFirstName("lovemyrm13");
+    @org.junit.jupiter.api.Test
+    public void redis() {
 
-        final GenericJackson2JsonRedisSerializer genericJackson2JsonRedisSerializer = new GenericJackson2JsonRedisSerializer();
-        byte[] lovemyrm13s = genericJackson2JsonRedisSerializer.serialize(user);
-        final String result = new String(lovemyrm13s);
-        System.out.println("-------");
-        System.out.println(result);
+        final ValueOperations<String, String> valueOperations = stringRedisTemplate.opsForValue();
+        valueOperations.setBit("snmt:bit", 10086, true);
+        final Boolean bit = valueOperations.getBit("snmt:bit", 10086);
+        System.out.println(bit);
 
-         */
+        //////
+        final ZSetOperations<String, String> zSetOperations = stringRedisTemplate.opsForZSet();
+        zSetOperations.add("snmt:rank", "cy1", 1);
+        zSetOperations.add("snmt:rank", "cy2", 2);
+        zSetOperations.add("snmt:rank", "cy3", 3);
+        zSetOperations.add("snmt:rank", "cy4", 4);
+        zSetOperations.add("snmt:rank", "cy5", 5);
+        zSetOperations.add("snmt:rank", "cy6", 6);
+        zSetOperations.add("snmt:rank", "cy7", 7);
+        zSetOperations.add("snmt:rank", "cy8", 8);
+        zSetOperations.add("snmt:rank", "cy9", 9);
+        zSetOperations.add("snmt:rank", "cy10", 10);
+        zSetOperations.add("snmt:rank", "cy11", 11);
+        zSetOperations.add("snmt:rank", "cy12", 12);
+        zSetOperations.add("snmt:rank", "cy13", 13);
+        zSetOperations.add("snmt:rank", "cy14", 14);
+        System.out.println(zSetOperations.reverseRange("snmt:rank", 0, 9));
 
-        final ArrayList<Integer> integers = new ArrayList<>();
-        System.out.println(integers.stream().filter(t -> t > 0).collect(Collectors.toList()));
+        //////
+        final HyperLogLogOperations<String, String> hyperLogLogOperations = stringRedisTemplate.opsForHyperLogLog();
+        hyperLogLogOperations.add("snmt:uv", "redis");
+        hyperLogLogOperations.add("snmt:uv", "mysql");
+        hyperLogLogOperations.add("snmt:uv", "redis");
+        hyperLogLogOperations.add("snmt:uv", "rabbitmq");
+        final Long size = hyperLogLogOperations.size("snmt:uv");
+        System.out.println(size);
+        //////
 
+        final GeoOperations<String, String> geoOperations = stringRedisTemplate.opsForGeo();
+        geoOperations.radius("snmt:radius", "mkl", 5000);
 
-
+        //////
     }
 }
