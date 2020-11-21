@@ -9,8 +9,6 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
-import com.github.pagehelper.PageHelper;
-import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
@@ -27,7 +25,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Properties;
 
 /**
  * @author yuan.chen
@@ -35,7 +32,7 @@ import java.util.Properties;
  * @Date 2020/11/21
  */
 @Configuration
-@MapperScan(basePackages = {"com.mklinfo.snmt.mapper.base","com.mklinfo.snmt.mapper.extend"})
+@MapperScan(basePackages = {"com.mklinfo.snmt.mapper.base", "com.mklinfo.snmt.mapper.extend"})
 public class MybatisConfig {
 
     //mybaits mapper xml搜索路径
@@ -56,14 +53,6 @@ public class MybatisConfig {
         sqlSessionFactoryBean.setDataSource(dataSource);
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         sqlSessionFactoryBean.setMapperLocations(resolver.getResources(mapperLocations));
-        //PageHelper分页插件配置start
-        Interceptor pageInterceptor = new PageHelper();
-        Properties pageProperties = new Properties();
-        pageProperties.setProperty("helperDialect", "mysql");
-        pageInterceptor.setProperties(pageProperties);
-        Interceptor[] plugins = {pageInterceptor};
-        sqlSessionFactoryBean.setPlugins(plugins);
-        //PageHelper分页插件配置end
         return sqlSessionFactoryBean.getObject();
     }
 
