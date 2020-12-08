@@ -23,20 +23,20 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/list")
-    public Result<List<UserVO>> listUser() {
-        List<UserVO> result = userService.list(null);
+    @PostMapping("/list")
+    public Result<List<UserVO>> list(@RequestBody UserQuery query) {
+        List<UserVO> result = userService.list(query);
         return Result.success(result);
     }
 
     @PostMapping("/list/page")
-    public Result<PageInfo<UserVO>> pageUser(@RequestBody PageParam<UserQuery> query) {
+    public Result<PageInfo<UserVO>> page(@RequestBody PageParam<UserQuery> query) {
         PageInfo<UserVO> page = userService.page(query);
         return Result.success(page);
     }
 
     @GetMapping("/{id}")
-    public Result<UserVO> getUser(@PathVariable("id") Integer id) {
+    public Result<UserVO> info(@PathVariable("id") Integer id) {
         UserVO userVO = userService.get(id);
         return Result.success(userVO);
     }

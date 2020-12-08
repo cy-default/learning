@@ -1,9 +1,14 @@
 package com.rm13.kafka.producer;
+
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.producer.*;
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 
@@ -32,22 +37,37 @@ public class Producer {
         properties.setProperty(ProducerConfig.ACKS_CONFIG, "-1");
         // 保证消息的有序性时， 把该值设置位1， 不要求有序性的时候可以放大，提交吞吐量
         properties.setProperty(ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION, "1");
+        // 自定义分区，保证相同key的消息发送到同一个分区，保证消息顺序性
+        properties.setProperty(ProducerConfig.PARTITIONER_CLASS_CONFIG, OrderPartitioner.class.getName());
 
         KafkaProducer producer = new KafkaProducer(properties);
 
-        ProducerRecord<String, String> producerRecord = new ProducerRecord<>(TOPIC_NAME, "hello kafka!");
-        // 同步获取
-        RecordMetadata RecordMetadata = (RecordMetadata)producer.send(producerRecord).get();
-        log.info("RecordMetadata future:{}", RecordMetadata.toString());
+        ArrayList<ProducerRecord> list = new ArrayList<>();
+        ProducerRecord<String, String> producerRecord = new ProducerRecord<>(TOPIC_NAME, "key-001", "key001-hello kafka001!");
+        list.add(producerRecord);
+        producerRecord = new ProducerRecord<>(TOPIC_NAME, "key-001", "key001-hello kafka002!");
+        list.add(producerRecord);
+        producerRecord = new ProducerRecord<>(TOPIC_NAME, "key-002", "key-002-hello kafka003!");
+        list.add(producerRecord);
+        producerRecord = new ProducerRecord<>(TOPIC_NAME, "key-002", "key-002-hello kafka004!");
+        list.add(producerRecord);
 
-        producer.send(producerRecord, (metadata, exception) -> {
-            if(exception!=null){
-                log.error("KafkaProducer send error :{}", exception.getMessage());
-                return;
-            }
-            log.info("RecordMetadata callback:{}", metadata.toString());
-        });
+        for (ProducerRecord record : list) {
+            // 同步发送
+            RecordMetadata RecordMetadata = (RecordMetadata) producer.send(record).get();
+            log.info("RecordMetadata future:{}", RecordMetadata.toString());
+        }
 
+        for (ProducerRecord record : list) {
+            // 异步发送
+            producer.send(record, (metadata, exception) -> {
+                if (exception != null) {
+                    log.error("KafkaProducer send error :{}", exception.getMessage());
+                    return;
+                }
+                log.info("RecordMetadata callback:{}", metadata.toString());
+            });
+        }
         System.in.read();
     }
 }

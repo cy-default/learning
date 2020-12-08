@@ -22,7 +22,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDAO userDAO;
 
-
     @Override
     public List<UserVO> list(UserQuery query) {
         List<User> users = userDAO.list(query);

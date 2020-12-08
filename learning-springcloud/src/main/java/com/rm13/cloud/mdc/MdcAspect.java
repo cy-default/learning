@@ -22,7 +22,7 @@ import java.util.UUID;
 @Aspect
 @Component
 public class MdcAspect {
-    private final static String TRACE_ID = "trxId";
+    public final static String TRACE_ID = "trxId";
     private static Logger log = LoggerFactory.getLogger(MdcAspect.class);
 
     @Pointcut("@annotation(com.rm13.cloud.mdc.Mdc)")

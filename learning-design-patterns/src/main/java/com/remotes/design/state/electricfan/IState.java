@@ -1,4 +1,4 @@
-package com.remotes.design.state;
+package com.remotes.design.state.electricfan;
 
 /**
  * 电扇状态机状态

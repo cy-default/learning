@@ -9,14 +9,11 @@ import java.util.List;
 /**
  * 分页基础类（分页和集合查询解耦）
  *
+ * @param <Param>  泛型request
+ * @param <Result> 泛型response
  * @author yuan.chen
  * @email chen.yuan135@chinaredstar.com
  * @Date 2020/10/28
- */
-
-/**
- * @param <Param>  泛型request
- * @param <Result> 泛型response
  */
 public interface BaseService<Param, Result> {
 

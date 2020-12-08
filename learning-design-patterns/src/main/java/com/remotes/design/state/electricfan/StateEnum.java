@@ -1,4 +1,4 @@
-package com.remotes.design.state;
+package com.remotes.design.state.electricfan;
 
 import lombok.Data;
 import lombok.Getter;
