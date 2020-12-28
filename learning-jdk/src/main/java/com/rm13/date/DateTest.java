@@ -47,6 +47,12 @@ public class DateTest {
         System.out.println(LocalDate.now().getDayOfYear());
         System.out.println(LocalDate.of(2020, 01, 01).getDayOfYear());
 
+        System.out.println("======");
+        LocalDateTime startTime = LocalDateTime.of(2019, 10, 12, 10, 10);
+        LocalDateTime endTime = LocalDateTime.of(2020, 11, 13, 10,10);
+        Duration between = Duration.between(startTime, endTime);
+        System.out.println(between.toDays());
+
 
 
 

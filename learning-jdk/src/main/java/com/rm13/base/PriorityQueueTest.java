@@ -12,7 +12,7 @@ import java.util.PriorityQueue;
 public class PriorityQueueTest {
 
     public static void main(String[] args) {
-        PriorityQueue<Integer> queue = new PriorityQueue<Integer>(Comparator.comparingInt(a -> a));
+        PriorityQueue<Integer> queue = new PriorityQueue<Integer>(3,Comparator.comparingInt(a -> a) );
         queue.add(4);
         queue.add(2);
         queue.add(3);
@@ -29,7 +29,7 @@ public class PriorityQueueTest {
 
 class App {
     public static void main(String[] args) {
-        PriorityQueue<String> q = new PriorityQueue<String>();
+        PriorityQueue<String> q = new PriorityQueue<String>(3);
         //入列
         q.offer("3");
         q.offer("4");

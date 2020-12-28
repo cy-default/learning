@@ -33,6 +33,7 @@
         <module>cloud-metrics</module>
         <module>learning-netty</module>
         <module>learning-shardingsphere</module>
+        <module>learning-es</module>
     </modules>
 
     <dependencyManagement>

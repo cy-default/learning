@@ -1,8 +1,7 @@
 package com.rm13.base;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
+import java.time.temporal.ChronoField;
 import java.time.temporal.TemporalAdjusters;
 
 /**
@@ -23,6 +22,11 @@ public class DateTest {
         System.out.println(now.toEpochDay());
         final LocalDate begDate = LocalDate.of(1970, 1, 1);
         System.out.println(begDate.toEpochDay());
+
+
+        System.out.println("-------");
+        System.out.println(LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli());
+        System.out.println(LocalDateTime.now().toEpochSecond(ZoneOffset.of("+8")));
 
     }
 }

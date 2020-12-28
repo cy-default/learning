@@ -1,4 +1,4 @@
-package com.learn.data.springdata;
+package com.learn.data.springdata.mongo;
 
 import com.alibaba.fastjson.JSON;
 import com.learn.data.springdata.domain.Comment;

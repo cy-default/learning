@@ -2,6 +2,7 @@ package com.learn.data.springdata.repository;
 
 import com.learn.data.springdata.domain.Comment;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.repository.NoRepositoryBean;
 
 /**
  * @author yuan.chen
