@@ -20,7 +20,7 @@
         <!--滚动策略-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--路径-->
-            <fileNamePattern>${LOG_INFO_HOME}//%d.log</fileNamePattern>
+            <fileNamePattern>logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>30</maxHistory>
         </rollingPolicy>
     </appender>
@@ -29,13 +29,15 @@
             <level>ERROR</level>
         </filter>
         <encoder>
-            <pattern>[%d{yyyy-MM-dd' 'HH:mm:ss.sss}] [%C] [%t] [%L] [%-5p] %m%n</pattern>
+            <pattern>[%date{yyyy-MM-dd' 'HH:mm:ss.sss}] [%logger] [%thread] [%line] [%-5level] %msg%n</pattern>
         </encoder>
         <!--滚动策略-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!--路径-->
-            <fileNamePattern>${LOG_ERROR_HOME}//%d.log</fileNamePattern>
+            <!--按天轮转-->
+            <fileNamePattern>logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!--保存 30 天的历史记录，最大大小为 30GB -->
             <maxHistory>30</maxHistory>
+            <totalSizeCap>3GB</totalSizeCap>
         </rollingPolicy>
     </appender>
 
@@ -59,8 +61,8 @@
     </appender>
 
     <root level="info">
-        <appender-ref ref="CONSOLE-LOG" />
-        <appender-ref ref="ASYNC-INFO" />
-        <appender-ref ref="ASYNC-ERROR" />
+        <appender-ref ref="CONSOLE-LOG"/>
+        <appender-ref ref="ASYNC-INFO"/>
+        <appender-ref ref="ASYNC-ERROR"/>
     </root>
 </configuration>

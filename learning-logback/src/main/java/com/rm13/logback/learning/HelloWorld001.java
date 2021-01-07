@@ -13,5 +13,6 @@ public class HelloWorld001 {
     public static void main(String[] args) {
         final Logger logger = LoggerFactory.getLogger(HelloWorld001.class);
         logger.debug("hello world");
+        System.out.println("hello world");
     }
 }
