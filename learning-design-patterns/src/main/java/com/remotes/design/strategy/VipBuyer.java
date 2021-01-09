@@ -61,6 +61,6 @@ public class VipBuyer implements Buyer, InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        StrategyFactory.addStrategy(Constants.Strategy.VipBuyer.getCode(), this);
+        StrategyFactory.addStrategy(getType(), this);
     }
 }

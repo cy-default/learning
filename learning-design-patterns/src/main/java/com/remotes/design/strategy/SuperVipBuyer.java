@@ -39,6 +39,6 @@ public class SuperVipBuyer implements Buyer, InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        StrategyFactory.addStrategy( Constants.Strategy.SuperVipBuyer.getCode(), this);
+        StrategyFactory.addStrategy( getType(), this);
     }
 }

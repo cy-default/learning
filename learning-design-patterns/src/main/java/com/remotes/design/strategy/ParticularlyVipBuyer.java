@@ -8,8 +8,9 @@ import java.math.BigDecimal;
 
 /**
  * 具体策略类
- *
+ * <p>
  * 专属会员
+ *
  * @author yuan.chen
  * @email yuan.chen@ingeek.com
  * @company INGEEK
@@ -28,12 +29,13 @@ public class ParticularlyVipBuyer implements Buyer, InitializingBean {
 
     /**
      * 专属会员订单价格>30, 7折优惠
+     *
      * @param orderPrice 订单价格
      * @return
      */
     @Override
     public BigDecimal calPrice(BigDecimal orderPrice) {
-        if(orderPrice.compareTo(discountPrice)>0){
+        if (orderPrice.compareTo(discountPrice) > 0) {
             return orderPrice.multiply(discount);
         }
         return orderPrice;
@@ -41,6 +43,6 @@ public class ParticularlyVipBuyer implements Buyer, InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        StrategyFactory.addStrategy( Constants.Strategy.ParticularlyVipBuyer.getCode(), this);
+        StrategyFactory.addStrategy(getType(), this);
     }
 }
