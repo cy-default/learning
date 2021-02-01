@@ -24,7 +24,7 @@ public class User {
     private String a;
     private String b;
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate c;
     @Min(value = 10, message = "不能小于10")
     private Integer num;

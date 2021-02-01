@@ -1,5 +1,6 @@
 package com.rm13.cloud.feign;
 
+import com.rm13.cloud.model.po.Order;
 import com.rm13.cloud.model.po.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -32,6 +33,19 @@ public class FeignProxyFallBack implements FeignProxy {
     public String after3(Map<String, String> param, String ab) {
         log.error("FeignProxyFallBack.after3");
         return "after3";
+    }
+
+    @Override
+    public String mapTest(Map<String, Object> user) {
+        log.error("mapTestmapTestmapTestmapTestmapTest");
+
+        return null;
+    }
+
+    @Override
+    public String multiJSON(String name, User user) {
+        log.error("multiJSONmultiJSONmultiJSONmultiJSONmultiJSON");
+        return null;
     }
 
     @Override

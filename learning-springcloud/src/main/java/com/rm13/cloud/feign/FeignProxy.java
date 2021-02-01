@@ -1,5 +1,6 @@
 package com.rm13.cloud.feign;
 
+import com.rm13.cloud.model.po.Order;
 import com.rm13.cloud.model.po.User;
 import feign.Logger;
 import feign.RequestInterceptor;
@@ -25,92 +26,108 @@ import java.util.Map;
  * @Date 2019/12/12
  */
 @FeignClient(name = "feignProxy",
-        url = "http://localhost:8080",
-        configuration = FeignProxy.FeignProxyConfig.class,
-        fallback = FeignProxyFallBack.class
+		url = "http://localhost:8080",
+		configuration = FeignProxy.FeignProxyConfig.class
 )
 public interface FeignProxy {
 
 
-    /**
-     * post请求中， form表单/json等， 参数都是@requestBody， 请求头可以通过@requestHeader设置
-     *
-     * @param user
-     * @return
-     */
-    @PostMapping(value = "/feign/after1", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    String after1(@RequestBody User user, @RequestHeader("ab") String ab);
+	/**
+	 * post请求中， form表单/json等， 参数都是@requestBody， 请求头可以通过@requestHeader设置
+	 *
+	 * @param user
+	 * @return
+	 */
+	@PostMapping(value = "/feign/after1", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces =
+			MediaType.APPLICATION_JSON_UTF8_VALUE)
+	String after1(@RequestBody User user, @RequestHeader("ab") String ab);
 
 
-    /**
-     * // @RequestParam参数形式的值都是以get请求的方式拼接到url后面，不管请求方式是post/get
-     *
-     * @param a
-     * @param b
-     * @param ab
-     * @return
-     */
-    @GetMapping(value = "/feign/after2", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    String after2(@RequestParam("a") String a, @RequestParam("b") String b, @RequestHeader("ab") String ab);
+	/**
+	 * // @RequestParam参数形式的值都是以get请求的方式拼接到url后面，不管请求方式是post/get
+	 *
+	 * @param a
+	 * @param b
+	 * @param ab
+	 * @return
+	 */
+	@GetMapping(value = "/feign/after2", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces =
+			MediaType.APPLICATION_JSON_UTF8_VALUE)
+	String after2(@RequestParam("a") String a, @RequestParam("b") String b, @RequestHeader("ab") String ab);
 
 
-    @GetMapping(value = "/feign/after3", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    String after3(@SpringQueryMap Map<String, String> param, @RequestHeader("ab") String ab);
+	@GetMapping(value = "/feign/after3", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces =
+			MediaType.APPLICATION_JSON_UTF8_VALUE)
+	String after3(@SpringQueryMap Map<String, String> param, @RequestHeader("ab") String ab);
 
 
-    /**
-     * 使用map调用post请求， 类型定义必须是Map<String, ?>, ?是Object也不行。
-     *
-     * @param user
-     * @param ab
-     * @return
-     */
-    @PostMapping(value = "/feign/after4", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    String after4(@RequestBody Map<String, ?> user, @RequestHeader("ab") String ab);
+	/**
+	 * 使用map调用post请求， 类型定义必须是Map<String, ?>, ?是Object也不行。
+	 *
+	 * @param user
+	 * @param ab
+	 * @return
+	 */
+	@PostMapping(value = "/feign/after4", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces =
+			MediaType.APPLICATION_JSON_UTF8_VALUE)
+	String after4(@RequestBody Map<String, ?> user, @RequestHeader("ab") String ab);
 
 
-    class FeignProxyConfig {
+	@PostMapping(value = "/feign/mapTestAfter")
+	String mapTest(@RequestBody Map<String, Object> user);
 
-        @Autowired
-        private ObjectFactory<HttpMessageConverters> messageConverters;
+	/**
+	 * bad
+	 * @param name
+	 * @param user
+	 * @return
+	 */
+	@PostMapping(value = "/feign/multiJSONFeign")
+	String multiJSON(@RequestParam String name, User user);
 
-        @Value("${hello:}")
-        private String hello;
 
-        /**
-         * 参数编码
-         *
-         * @return
-         */
-        @Bean
-        public Encoder feignFormEncoder() {
-            return new SpringFormEncoder(new SpringEncoder(messageConverters));
-        }
 
-        /**
-         * 日志级别
-         *
-         * @return
-         */
-        @Bean
-        public Logger.Level feignLoggerLevel() {
-            return Logger.Level.FULL;
-        }
+	class FeignProxyConfig {
 
-        /**
-         * 请求拦截器，可以在这个地方给请求头添加参数
-         *
-         * @return
-         */
-        @Bean
-        public RequestInterceptor requestInterceptor() {
-            return new RequestInterceptor() {
-                @Override
-                public void apply(RequestTemplate template) {
+		@Autowired
+		private ObjectFactory<HttpMessageConverters> messageConverters;
 
-                    template.header("auth", "lovemyrm13" + hello);
-                }
-            };
-        }
-    }
+		@Value("${hello:}")
+		private String hello;
+
+		/**
+		 * 参数编码
+		 *
+		 * @return
+		 */
+		@Bean
+		public Encoder feignFormEncoder() {
+			return new SpringFormEncoder(new SpringEncoder(messageConverters));
+		}
+
+		/**
+		 * 日志级别
+		 *
+		 * @return
+		 */
+		@Bean
+		public Logger.Level feignLoggerLevel() {
+			return Logger.Level.FULL;
+		}
+
+		/**
+		 * 请求拦截器，可以在这个地方给请求头添加参数
+		 *
+		 * @return
+		 */
+		@Bean
+		public RequestInterceptor requestInterceptor() {
+			return new RequestInterceptor() {
+				@Override
+				public void apply(RequestTemplate template) {
+					template.header("auth", "lovemyrm13" + hello);
+				}
+			};
+		}
+	}
 }

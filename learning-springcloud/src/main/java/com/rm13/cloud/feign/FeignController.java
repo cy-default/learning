@@ -3,11 +3,14 @@ package com.rm13.cloud.feign;
 import cn.hutool.core.util.IdUtil;
 import com.google.common.collect.Maps;
 import com.rm13.cloud.login.passlogin.PassLogin;
+import com.rm13.cloud.model.po.Order;
 import com.rm13.cloud.model.po.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -77,9 +80,10 @@ public class FeignController {
 
     @GetMapping("/before4")
     public String before4(@RequestParam("a")String a, @RequestParam("b")String b){
-        Map map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         map.put("a", a);
         map.put("b", b);
+        map.put("c",1);
         return feignProxy.after4(map, a+b);
     }
 
@@ -87,4 +91,46 @@ public class FeignController {
     public String after4(@RequestParam("a")String a, @RequestParam("b")String b){
         return a+b+"after3@aliyun.com";
     }
+
+    @GetMapping("/mapTestBefore")
+    public String mapTestBefore(){
+        User user = new User();
+        user.setA("a");
+        user.setB("b");
+        user.setC(LocalDate.now());
+        Map<String, Object> map = new HashMap<>();
+        map.put("a", "love");
+        map.put("b", Arrays.asList(1,2,3,4));
+        map.put("c",user);
+        return feignProxy.mapTest(map);
+    }
+
+    @ResponseBody
+    @RequestMapping("/mapTestAfter")
+    public Map<String, Object> mapTestAfter(@RequestBody Map<String, Object> user){
+        log.info("feign client user:{}", user);
+        return user;
+    }
+
+    @GetMapping("/multiJSONBefore")
+    public String multiJSONBefore(){
+        User user = new User();
+        user.setA("a");
+        user.setB("b");
+        user.setC(LocalDate.now());
+        Order order = new Order();
+        order.setGoodsId(1000L);
+        order.setOrderNo("2000");
+        order.setUserId(3000L);
+        String rm13 = feignProxy.multiJSON("rm13", user);
+        return rm13;
+    }
+
+    @ResponseBody
+    @RequestMapping("/multiJSONFeign")
+    public String multiJSONFeign(@RequestParam String name, @RequestBody User user){
+        log.info("name:{}, user:{}, order:{}", name, user);
+        return "test";
+    }
+
 }
