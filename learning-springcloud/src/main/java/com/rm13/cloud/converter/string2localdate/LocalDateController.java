@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 /**
  * @author yuan.chen
@@ -34,7 +35,7 @@ public class LocalDateController {
      * <p>
      * 前端json转后端pojo底层使用的是Json序列化Jackson工具（HttpMessgeConverter）；而时间字符串作为普通请求参数传入时，转换用的是Converter，两者在处理方式上是有区别。
      *
-     * @param localDate
+     * @param localDateda
      * @return
      */
     @GetMapping("/demo1")
@@ -48,6 +49,12 @@ public class LocalDateController {
     public LocalDate demo2(@DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate localDate) {
         log.info(localDate.toString());
         return localDate;
+    }
+
+    @RequestMapping("/str2date")
+    public User demo2(User user) {
+        log.info("date:{}", user);
+        return user;
     }
 
     /**

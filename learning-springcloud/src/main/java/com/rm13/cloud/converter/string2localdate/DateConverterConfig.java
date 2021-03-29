@@ -8,6 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 /**
  * 两个bean会注入到spring mvc的参数解析器(ParameterConversionService)
@@ -25,6 +26,7 @@ public class DateConverterConfig implements WebMvcConfigurer {
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(localDateConverter());
         registry.addConverter(localDateTimeConverter());
+        registry.addConverter(string2DateConverter());
     }
 
     /**
@@ -50,6 +52,16 @@ public class DateConverterConfig implements WebMvcConfigurer {
             @Override
             public LocalDateTime convert(String source) {
                 return LocalDateTime.parse(source, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            }
+        };
+    }
+
+    private Converter<String, Date> string2DateConverter(){
+        return new Converter<String, Date>() {
+            @Override
+            public Date convert(String source) {
+                Long aLong = Long.valueOf(source);
+                return new Date(aLong);
             }
         };
     }

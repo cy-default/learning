@@ -82,8 +82,8 @@ public interface FeignProxy {
 	 * @param user
 	 * @return
 	 */
-	@PostMapping(value = "/feign/multiJSONFeign")
-	String multiJSON(@RequestParam String name, User user);
+//	@PostMapping(value = "/feign/multiJSONFeign")
+//	String multiJSON(@RequestParam String name,@RequestBody User user, @RequestBody Order order);
 
 
 

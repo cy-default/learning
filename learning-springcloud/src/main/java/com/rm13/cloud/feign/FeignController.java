@@ -122,7 +122,8 @@ public class FeignController {
         order.setGoodsId(1000L);
         order.setOrderNo("2000");
         order.setUserId(3000L);
-        String rm13 = feignProxy.multiJSON("rm13", user);
+        String rm13 = null;
+//        String rm13 = feignProxy.multiJSON("rm13", user, order);
         return rm13;
     }
 

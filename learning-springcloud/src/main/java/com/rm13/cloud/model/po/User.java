@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Min;
 import java.time.LocalDate;
+import java.util.Date;
 
 /**
  * @author yuan.chen
@@ -28,4 +29,6 @@ public class User {
     private LocalDate c;
     @Min(value = 10, message = "不能小于10")
     private Integer num;
+
+    private Date date;
 }

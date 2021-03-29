@@ -1,10 +1,11 @@
 package com.rm13.cloud;
 
+import cn.hutool.core.date.StopWatch;
 import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.IdUtil;
 import com.alibaba.fastjson.JSON;
 import com.rm13.cloud.model.po.User;
-import org.springframework.util.StopWatch;
+import org.apache.poi.ss.formula.functions.T;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,31 +16,18 @@ import java.util.Collections;
  * @Date 2020/4/23
  */
 public class UUIDTest {
-    public static void main(String[] args) {
-        final StopWatch stopWatch = new StopWatch();
-        stopWatch.start();
-        final String result = IdUtil.simpleUUID();
-        System.out.println(result);
-        System.out.println(UUID.randomUUID().toString().replaceAll("-", ""));
+    public static void main(String[] args) throws InterruptedException {
+        String traceId = UUID.randomUUID().toString();
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start("count(*)查询耗时");
+        Thread.sleep(2000);
+
         stopWatch.stop();
 
-        final User user = new User();
-        user.setFirstName("love");
-        System.out.println(JSON.toJSONString(user));
+        stopWatch.start("insert插入数据耗时");
+        Thread.sleep(1000);
+        stopWatch.stop();
 
-
-        final ArrayList<Integer> list = new ArrayList<>();
-        list.add(1);
-        list.add(2);
-
-        System.out.println(list.size());
-        System.out.println(list.subList(1, list.size()));
-
-        System.out.println("====");
-
-
-        Collections.reverse(list);
-        System.out.println(list);
-
+        System.out.println("traceId:"+traceId+"---\n"+stopWatch.prettyPrint());
     }
 }

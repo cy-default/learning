@@ -9,7 +9,7 @@ import javax.annotation.Nullable;
  * @email chen.yuan135@chinaredstar.com
  * @Date 2020/6/18
  */
-public interface Assert {
+public interface AssertUtil {
 
 
     /**

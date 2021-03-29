@@ -1,9 +1,12 @@
 package com.rm13.cloud.feign;
 
+import com.alibaba.fastjson.JSON;
 import com.rm13.cloud.model.po.Order;
 import com.rm13.cloud.model.po.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
 
@@ -42,11 +45,12 @@ public class FeignProxyFallBack implements FeignProxy {
         return null;
     }
 
-    @Override
-    public String multiJSON(String name, User user) {
-        log.error("multiJSONmultiJSONmultiJSONmultiJSONmultiJSON");
-        return null;
-    }
+//    @Override
+//    public String multiJSON(@RequestParam String name,@RequestBody User user, Order order) {
+//        log.error("multiJSONmultiJSONmultiJSONmultiJSONmultiJSON");
+//        String result = JSON.toJSONString(user).concat("----->").concat(name);
+//        return result;
+//    }
 
     @Override
     public String after4(Map<String, ?> user, String ab) {
