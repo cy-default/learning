@@ -1,0 +1,27 @@
+server:
+  port: 8888
+
+# 数据库基础配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: lovemyrm13
+    url: jdbc:mysql://47.103.195.210:3306/mybatisplus?useUnicode=true&useSSL=false&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+
+
+
+
+# mybatis-plus 通用配置
+mybatis-plus:
+  configuration:
+    # 打印日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    # 配置扫描枚举包路径
+  type-enums-package: com.rm13.learn.mybatisplus.bean.constant
+  global-config:
+    db-config:
+      # 配置逻辑删除字段,以及对应的删除状态值; 所有的查询，都走删除判断
+      logic-delete-field: deleteFlag
+      logic-not-delete-value: 0
+      logic-delete-value: 1
