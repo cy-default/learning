@@ -1,7 +1,10 @@
 package com.rm13.learn.mybatisplus.mapper;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.rm13.learn.mybatisplus.MybatisPlusApplication;
 import com.rm13.learn.mybatisplus.po.User;
+import com.rm13.learn.mybatisplus.vo.UserVo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -87,4 +90,11 @@ class UserMapperTest {
         System.out.println(user);
     }
 
+
+    @Test
+    public void testPage(){
+        Page page = new Page(1, 2);
+        IPage<UserVo> userVoIPage = userMapper.selectPageVo(page, 19);
+        userVoIPage.getRecords().forEach(System.out::println);
+    }
 }

@@ -7,7 +7,6 @@ import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.cache.support.SimpleCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.cache.RedisCacheManager;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +22,7 @@ public class CacheConfig {
 
     /*
     @Bean("redisCacheManager")
-    public CacheManager dataCacheManager(RedisTemplate redisTemplate){
+    public CacheManager dataCacheManager(StringRedisTemplate redisTemplate){
         final RedisCacheManager redisCacheManager = new RedisCacheManager(redisTemplate);
         redisCacheManager.setDefaultExpiration(60);
         redisCacheManager.setUsePrefix(true);
