@@ -57,4 +57,10 @@ public class FeignProxyFallBack implements FeignProxy {
         log.error("FeignProxyFallBack.after4");
         return "after4";
     }
+
+    @Override
+    public String parent() {
+        log.error("FeignProxyFallBack.parent");
+        return null;
+    }
 }

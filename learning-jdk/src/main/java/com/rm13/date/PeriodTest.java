@@ -24,8 +24,11 @@ public class PeriodTest {
      */
 
     public static void main(String[] args) {
+
+
         final LocalDate beg = LocalDate.of(2018, 05, 29);
         final LocalDate now = LocalDate.now();
+
         // Period类方法getYears（），getMonths（）和getDays（）来计算.
         final Period between = Period.between(beg, now);
         System.out.println(between.getYears());

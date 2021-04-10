@@ -26,10 +26,10 @@ import java.util.Map;
  * @Date 2019/12/12
  */
 @FeignClient(name = "feignProxy",
-		url = "http://localhost:8080",
+		url = "http://localhost:8888",
 		configuration = FeignProxy.FeignProxyConfig.class
 )
-public interface FeignProxy {
+public interface FeignProxy extends FeignParentProxy {
 
 
 	/**

@@ -134,4 +134,16 @@ public class FeignController {
         return "test";
     }
 
+
+    @GetMapping(value = "/parent/before")
+    public String parentBefore(){
+        String parent = feignProxy.parent();
+        return parent;
+    }
+
+    @GetMapping(value = "/parent")
+    public String parentafter(){
+        return "feign_parent";
+    }
+
 }

@@ -1,4 +1,9 @@
+
+api:
+  user: http://localhost:8888/retrofit/
+
 hello: application
+
 
 feign:
   okhttp:
@@ -43,6 +48,7 @@ server:
   tomcat:
     max-threads: 100
     uri-encoding: utf-8
+  port: 8888
 
 
 management:

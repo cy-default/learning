@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @Author: ChanFi
  * @Date: 2021/3/29 下午8:23
  */
-@RequestMapping("api/{version}/user")
-@RestController
+//@RequestMapping("api/{version}/user")
+//@RestController
 public class UserV1Controller {
 	@GetMapping("/test")
 	public String test() {
