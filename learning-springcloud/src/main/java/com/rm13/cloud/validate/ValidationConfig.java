@@ -3,6 +3,7 @@ package com.rm13.cloud.validate;
 import org.hibernate.validator.HibernateValidator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -24,12 +25,21 @@ public class ValidationConfig {
 	 * 可以通过一些简单的配置，开启Fali Fast模式，一旦校验失败就立即返回。
 	 * @return
 	 */
-	@Bean
-	public Validator validator() {
+	@Bean("failFastValidator")
+	public Validator failFastValidator() {
 		ValidatorFactory validatorFactory = Validation.byProvider(HibernateValidator.class)
 				.configure()
 				// 快速失败模式
 				.failFast(true)
+				.buildValidatorFactory();
+		return validatorFactory.getValidator();
+	}
+
+	@Primary
+	@Bean("validator")
+	public Validator validator() {
+		ValidatorFactory validatorFactory = Validation.byProvider(HibernateValidator.class)
+				.configure()
 				.buildValidatorFactory();
 		return validatorFactory.getValidator();
 	}

@@ -36,6 +36,11 @@ public class ModelAttributeController {
         return parm;
     }
 
+    /*
+     * 总结： ModelAttribute定义的， 会在controller方法调用前优先执行，
+     * 可以根据这一特点， 通过拦截器， 在拦截器中设置request.setAttribute，
+     * 再通过在modelAttribute方法在获取用户信息， 并把用户信息以controller参数的形式传递
+     */
     @ModelAttribute("modelAttributeTest")
     public Object modelatt(HttpServletRequest request){
         System.out.println("ModelAttributeController:modelAttributeTest:"+request.getAttribute("aaa"));

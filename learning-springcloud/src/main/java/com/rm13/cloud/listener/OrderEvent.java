@@ -1,5 +1,8 @@
 package com.rm13.cloud.listener;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.context.ApplicationEvent;
 
 /**
@@ -9,14 +12,19 @@ import org.springframework.context.ApplicationEvent;
  * @email chen.yuan135@chinaredstar.com
  * @Date 2020/5/29
  */
+@Getter
+@Setter
 public class OrderEvent extends ApplicationEvent {
-    /**
-     * Create a new {@code ApplicationEvent}.
-     *
-     * @param source the object on which the event initially occurred or with
-     *               which the event is associated (never {@code null})
-     */
+    private String orderNo;
+    private String orderPrice;
+
     public OrderEvent(Object source) {
         super(source);
+    }
+
+    public OrderEvent(Object source, String orderNo, String orderPrice) {
+        super(source);
+        this.orderNo = orderNo;
+        this.orderPrice = orderPrice;
     }
 }
