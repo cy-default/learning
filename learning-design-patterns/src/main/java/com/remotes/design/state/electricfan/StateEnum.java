@@ -41,4 +41,13 @@ public enum StateEnum {
         this.spreed = spreed;
         this.desc = desc;
     }
+    public static StateEnum getName(Integer no){
+        for (StateEnum value : StateEnum.values()) {
+            if(value.code.equals(no)){
+                return value;
+            }
+        }
+        return null;
+    }
+
 }

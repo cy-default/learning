@@ -76,14 +76,17 @@ public interface FeignProxy extends FeignParentProxy {
 	@PostMapping(value = "/feign/mapTestAfter")
 	String mapTest(@RequestBody Map<String, Object> user);
 
+	@GetMapping(value = "/feign/process/array")
+	String arrayProcessTest(@RequestParam String username,@RequestParam String[] ids);
+
 	/**
 	 * bad
 	 * @param name
 	 * @param user
 	 * @return
 	 */
-//	@PostMapping(value = "/feign/multiJSONFeign")
-//	String multiJSON(@RequestParam String name,@RequestBody User user, @RequestBody Order order);
+	@PostMapping(value = "/feign/multiJSONFeign")
+	String multiJSON(@RequestParam String name,@RequestBody User user);
 
 
 

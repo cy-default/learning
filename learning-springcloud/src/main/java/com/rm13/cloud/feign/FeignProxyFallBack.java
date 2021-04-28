@@ -63,4 +63,14 @@ public class FeignProxyFallBack implements FeignProxy {
         log.error("FeignProxyFallBack.parent");
         return null;
     }
+
+    @Override
+    public String arrayProcessTest(String username,String[] ids) {
+        return null;
+    }
+
+    @Override
+    public String multiJSON(String name, User user) {
+        return null;
+    }
 }

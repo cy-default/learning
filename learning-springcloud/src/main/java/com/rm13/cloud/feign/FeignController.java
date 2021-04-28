@@ -123,7 +123,7 @@ public class FeignController {
         order.setOrderNo("2000");
         order.setUserId(3000L);
         String rm13 = null;
-//        String rm13 = feignProxy.multiJSON("rm13", user, order);
+        feignProxy.multiJSON("rm13", user);
         return rm13;
     }
 
@@ -144,6 +144,22 @@ public class FeignController {
     @GetMapping(value = "/parent")
     public String parentafter(){
         return "feign_parent";
+    }
+
+
+    @GetMapping(value = "/array")
+    public String arrayTest(){
+        String[] ids = {"lovemyrm12","lovemyrm13","lovemyrm14"};
+        String username = "lovemyrm13";
+        String result = feignProxy.arrayProcessTest(username,ids);
+        return result;
+    }
+
+    @ResponseBody
+    @RequestMapping("/process/array")
+    public String arrayProcessTest(@RequestParam String username,@RequestParam String[] ids){
+        log.info("ids:{}, username:{}", ids, username);
+        return Arrays.toString(ids);
     }
 
 }

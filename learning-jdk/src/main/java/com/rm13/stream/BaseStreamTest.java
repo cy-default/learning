@@ -12,7 +12,6 @@ import java.util.stream.IntStream;
  * @Date 2019-11-25
  */
 public class BaseStreamTest {
-    private static List<Person> list  = null;
 
     public static void main(String[] args) {
 
@@ -27,7 +26,7 @@ public class BaseStreamTest {
 
         //java8 效率低;把List集合中的对象分成每100条为一组
         List<Integer> lists = IntStream.rangeClosed(1, 101).boxed().collect(Collectors.toList());
-        int subLength = 10;
+        int subLength = 4;
         List<Integer> subLists = null;
         for (int i = 0; i < lists.size(); i+=subLength) {
             subLists = lists.stream().skip(i).limit(subLength).collect(Collectors.toList());
@@ -40,6 +39,8 @@ public class BaseStreamTest {
             System.out.println("subLists:"+subLists.toString());
         }
     }
+
+    private static List<Person> list  = null;
 
     static {
         /*
