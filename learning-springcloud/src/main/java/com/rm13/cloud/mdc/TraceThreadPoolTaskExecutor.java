@@ -36,10 +36,10 @@ public class TraceThreadPoolTaskExecutor extends ThreadPoolTaskExecutor {
     }
 
     private static void setTraceIdIfAbsent() {
-        if (MDC.get(MdcAspect.TRACE_ID) == null) {
+        if (MDC.get(MdcUtil.TRACE_ID) == null) {
             String uuid = UUID.randomUUID().toString().replaceAll("-", "");
             uuid = "snmt-job-" + uuid;
-            MDC.put(MdcAspect.TRACE_ID, uuid);
+            MDC.put(MdcUtil.TRACE_ID, uuid);
         }
     }
 }

@@ -1,12 +1,15 @@
 package com.rm13.cloud.feign;
 
-import com.rm13.cloud.model.po.Order;
+import com.rm13.cloud.mdc.MdcUtil;
 import com.rm13.cloud.model.po.User;
 import feign.Logger;
+import feign.Request;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import feign.codec.Encoder;
 import feign.form.spring.SpringFormEncoder;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.MDC;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,6 +22,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author yuan.chen
@@ -92,11 +96,34 @@ public interface FeignProxy extends FeignParentProxy {
 
 	class FeignProxyConfig {
 
+		@Value("${default.feign.config.connect.timeout:10}")
+		public int connectTimeOutMillis;
+		@Value("${default.feign.config.read.timeout:50}")
+		public int readTimeOutMillis;
+		@Value("${default.feign.config.retryer.period:100}")
+		public int retryerPeriod;
+		@Value("${default.feign.config.retryer.period.max:1000}")
+		public int retryerMaxPeriod;
+		@Value("${default.feign.config.retryer.attempts.max:3}")
+		public int retryerMaxAttempts;
+
 		@Autowired
 		private ObjectFactory<HttpMessageConverters> messageConverters;
 
 		@Value("${hello:}")
 		private String hello;
+
+		/**
+		 * 超时
+		 *
+		 * @return
+		 */
+		@Bean
+		public Request.Options options() {
+			return new Request.Options(connectTimeOutMillis, TimeUnit.SECONDS, readTimeOutMillis, TimeUnit.SECONDS, true);
+		}
+
+
 
 		/**
 		 * 参数编码
@@ -119,16 +146,21 @@ public interface FeignProxy extends FeignParentProxy {
 		}
 
 		/**
-		 * 请求拦截器，可以在这个地方给请求头添加参数
+		 * 请求拦截器，可以在这个地方给请求头添加参数(增加traceid)
 		 *
 		 * @return
 		 */
 		@Bean
-		public RequestInterceptor requestInterceptor() {
+		public RequestInterceptor traceInterceptor() {
 			return new RequestInterceptor() {
 				@Override
 				public void apply(RequestTemplate template) {
-					template.header("auth", "lovemyrm13" + hello);
+					String traceId = MDC.get(MdcUtil.TRACE_ID);
+					if (StringUtils.isNotBlank(traceId)) {
+						template.header(MdcUtil.TRACE_ID, new String[]{traceId});
+					} else {
+						template.header(MdcUtil.TRACE_ID, new String[]{MdcUtil.generateTraceId()});
+					}
 				}
 			};
 		}

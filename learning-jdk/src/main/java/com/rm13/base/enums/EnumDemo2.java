@@ -8,4 +8,6 @@ package com.rm13.base.enums;
 public enum  EnumDemo2 {
 
     ONE,TWO
+
+
 }

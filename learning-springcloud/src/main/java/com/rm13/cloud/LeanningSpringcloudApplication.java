@@ -14,21 +14,30 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.io.IOException;
 
-@EnableFeignClients
+@EnableFeignClients(basePackages = "com.rm13.cloud.feign")
 @EnableTransactionManagement
-@SpringBootApplication(exclude = {RedisAutoConfiguration.class, RabbitAutoConfiguration.class,
-		MongoAutoConfiguration.class, DruidDataSourceAutoConfigure.class,
-        MybatisAutoConfiguration.class, DataSourceAutoConfiguration.class})
+@SpringBootApplication(exclude = {
+        RedisAutoConfiguration.class,
+        RabbitAutoConfiguration.class,
+        MongoAutoConfiguration.class,
+        DruidDataSourceAutoConfigure.class,
+        MybatisAutoConfiguration.class,
+        DataSourceAutoConfiguration.class})
+/**
+ * learning
+ * @author cy
+ * @date 2021-06-29 15:44:09
+ **/
 public class LeanningSpringcloudApplication {
 
 
-	public static void main(String[] args) throws IOException {
-		// final ConfigurableApplicationContext run = SpringApplication.run(LeanningSpringcloudApplication.class,
+    public static void main(String[] args) throws IOException {
+        // final ConfigurableApplicationContext run = SpringApplication.run(LeanningSpringcloudApplication.class,
         // args);
-		SpringApplication springApplication = new SpringApplication(LeanningSpringcloudApplication.class);
-		springApplication.addInitializers(new SecondApplicationContextInitializer());
-		springApplication.run(args);
+        SpringApplication springApplication = new SpringApplication(LeanningSpringcloudApplication.class);
+        springApplication.addInitializers(new SecondApplicationContextInitializer());
+        springApplication.run(args);
 
-	}
+    }
 
 }

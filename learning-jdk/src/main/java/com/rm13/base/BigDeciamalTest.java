@@ -10,8 +10,9 @@ public class BigDeciamalTest {
 
 	public static void main(String[] args) {
 		BigDecimal bigDecimal = new BigDecimal("123423111.211232131220000000");
-		System.out.println(bigDecimal.stripTrailingZeros().toString());
-
 		System.out.println(bigDecimal.stripTrailingZeros().toPlainString());
+		BigDecimal demo1 = new BigDecimal("0.0000");
+		System.out.println(demo1.toPlainString());
+
 	}
 }
