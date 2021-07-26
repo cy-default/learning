@@ -23,11 +23,11 @@ public interface BaseService<Param, Result> {
     /**
      * 分页查询
      *
-     * @param param 请求参数DTO
+     * @param pageParam 请求参数DTO
      * @return 分页集合
      */
-    default PageInfo<Result> page(PageParam<Param> param) {
-        PageInfo<Result> pageInfo = PageHelper.startPage(param).doSelectPageInfo(() -> list(param.getParam()));
+    default PageInfo<Result> page(PageParam<Param> pageParam) {
+        PageInfo<Result> pageInfo = PageHelper.startPage(pageParam).doSelectPageInfo(() -> list(pageParam.getParam()));
         return pageInfo;
     }
 
